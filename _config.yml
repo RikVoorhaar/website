@@ -28,7 +28,7 @@ github_username:  RikVoorhaar
 
 
 # Build settings
-theme: jekyll-theme-slate
+theme: minima
 plugins:
   - jekyll-feed
 
