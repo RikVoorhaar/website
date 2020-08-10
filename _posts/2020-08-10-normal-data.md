@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Is my data normal?"
-date:   2020-06-20
+date:   2020-08-10
 categories: data-science, statistics
 ---
 
