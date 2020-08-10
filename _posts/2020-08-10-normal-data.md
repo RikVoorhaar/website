@@ -186,7 +186,9 @@ So far all the methods we mentioned are completely general, and work on any (uni
 Now in our case of a single pixel, it actually looks like the distribution is a mixture of two truncated normal distributions. Is there a way to obtain the parameters of these distributions and see whether this fits better? One very general method to obtain a best-fit distribution is through maximum likelihood estimation. The idea here is that rather than asking "what are the parameters that best describe our data?", we should ask "given some parameters, what is the likelihood we got our data?". This leads to the likelihood function, which assigns to a set of parameters a probability of observing our data. The "best" parameters are then those that assign the highest likelihood to our data. This is a relative crude method, because it tells us nothing about how good our estimate of the parameters is, but more on that later.
 
 In our case we have a mixture of two normal distribitions (truncated to $$[0, 255]$$). Such a distribution is parametrized by $$\theta=(\mu_1,\sigma_1,\mu_2,\sigma_2,t)$$, where $$\mu_i$$ denote the means and $$\sigma_i$$ denote the standard deviation of both normal distribitions, and $$t$$ is a number between 0 and 1 giving a weight to either distribution. Ignoring the truncation, this distribution has density given by
+
 $$ f(x|\theta) = \frac{1}{\sigma_1 \sqrt{2 \pi}}\exp\left(-\frac12\left(\frac{x-\mu_1}{\sigma_1}\right)^2\right)+(1-t) \frac{1}{\sigma_2 \sqrt{2 \pi}}\exp\left(-\frac12\left(\frac{x-\mu_2}{\sigma_2}\right)^2\right) $$
+
 The likelihood of observing our data $$(y_1,\dots,y_n)$$ is then given by
 
 $$
