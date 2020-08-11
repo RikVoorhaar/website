@@ -1,15 +1,16 @@
 ---
-layout: post
+layout: posts
 title:  "Bias in figure skating judging"
 date:   2020-06-20
 categories: data-science
+excerpt_separator: <!--more-->
 ---
-
-## Introduction
 
 My wife is very enthuisiastic about figure skating. She often mentions that the judging is biased, in the sense that many judges give higher scores to athletes from their own country, and lower scores to athletes from other countries.
 
-This doesn't sound too surprising, but I wondered if it is actually true. Can I show that there is **a statistically significant bias in figure skating scoring?**
+This doesn't sound too surprising, but I wondered if it is actually true. Can I show that there is *a statistically significant bias in figure skating scoring?*
+
+<!--more-->
 
 ## The data
 

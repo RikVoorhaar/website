@@ -1,20 +1,13 @@
 ---
-layout: post
+layout: posts
 title:  "Is my data normal?"
 date:   2020-08-10
 categories: data-science, statistics
 ---
 
-# Is my data normal?
-
 Normally distributed data is great. It is easy to interpet, and many statistical and machine learning method work much better on normally distributed data. But how do we know if our data is actually normally distributed?
 
-
-```python
-import numpy as np
-import matplotlib.pyplot as plt
-import pandas as pd
-```
+<!--more-->
 
 Let's start with the well-known MNIST digit dataset. This is a very famous dataset. It consists of many 28x28 grayscale images of hand-drawn digits 0-9. Classifying digits is a great testing problem for many machine learning algorithms, and it's often used for this purpose in education. [You can find this data on kaggle](https://www.kaggle.com/c/digit-recognizer)
 
