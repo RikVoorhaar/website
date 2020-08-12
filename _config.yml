@@ -15,6 +15,7 @@
 minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
+
 locale                   : "en-US"
 title                    : "Rik Voorhaar"
 title_separator          : "-"
@@ -94,30 +95,20 @@ analytics:
 # Site Author
 author:
   name             : "Rik Voorhaar"
-  avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : "/imgs/avatar.jpg"
   bio              : "Mathematician and data science enthuisiast"
   location         : "Geneva, Switzerland"
   email            : "Rik.Voorhaar@unige.ch"
   links:
-    - label: "Email"
-      icon: "fas fa-fw fa-envelope-square"
-      # url: "mailto:your.name@email.com"
-    - label: "Website"
-      icon: "fas fa-fw fa-link"
-      # url: "https://your-website.com"
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      # url: "https://twitter.com/"
-    - label: "Facebook"
-      icon: "fab fa-fw fa-facebook-square"
-      # url: "https://facebook.com/"
+    - label: "Discord"
+      icon: "fab fa-fw fa-discord"
+      url: https://discord.com/users/354966598643220480
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      # url: "https://github.com/"
-    - label: "Instagram"
-      icon: "fab fa-fw fa-instagram"
-      # url: "https://instagram.com/"
-
+      url: "https://github.com/RikVoorhaar"
+    - label: "last.fm"
+      icon: "fab fa-fw fa-lastfm-square"
+      url: "https://www.last.fm/user/Tilpo"
 # Site Footer
 footer:
   links:

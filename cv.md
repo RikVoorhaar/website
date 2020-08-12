@@ -3,6 +3,7 @@ layout: single
 title: Curriculum Vitae
 permalink: /cv/
 toc: true
+teaching: /teaching.md
 ---
 
 ## Research
@@ -39,10 +40,10 @@ _Submitted to the Journal of Algebra_
 ## Education
 
 **2018-202X**  
--- PhD student at University of Geneva
+-- PhD student at _University of Geneva_
 
 **2016-2017**  
--- Masterclass Geometry, Toplogy and Physics at University of Geneva
+-- Masterclass Geometry, Toplogy and Physics at _University of Geneva_
 
 **2015-2018**  
 -- Masters degree Mathematical Sciences at _Utrecht University_ _(cum laude)_  
@@ -53,8 +54,7 @@ _Submitted to the Journal of Algebra_
 -- Bachelor degree Physics and Astronomy at _Utrecht University_ _(cum laude)_
 
 ### Online courses completed
-Coursera: [Advanced Machine Learning Specialization](https://www.coursera.org/specializations/aml)
-
+Coursera: [Advanced Machine Learning Specialization](https://www.coursera.org/specializations/aml)  
 Coursera: [Genomic Data Science Specialization](https://www.coursera.org/specializations/genomic-data-science)
 
 ## Teaching
@@ -115,6 +115,5 @@ Cython, Docker, Linux, NumPy, Pandas, PyTorch, Sagemath, SciPy, Sphinx, Tensorfl
 -- French
 
 **A2 Level**  
--- Spanish  
 -- Japanese  
 -- Russian
