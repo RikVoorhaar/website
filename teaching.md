@@ -3,7 +3,8 @@ layout: single
 title: Teaching
 ---
 
-If I'm assisting a course you're taking this semester, don't hesitate to email me with questions!
+If I'm assisting a course you're taking this semester, don't hesitate to contact me
+via email or Discord if you have questions!
 
 ## Past Teaching
 

@@ -99,6 +99,9 @@ author:
   bio              : "Mathematician and data science enthuisiast"
   location         : "Geneva, Switzerland"
   links:
+    - label: "Villa Battelle 104 "
+      icon:  "fas fa-fw fa-building"
+      url: "https://goo.gl/maps/7hxjyecwhjbqb3VU8"
     - label: "Email"
       icon: "far fa-fw fa-envelope"
       url: "mailto:Rik.Voorhaar@unige.ch"
