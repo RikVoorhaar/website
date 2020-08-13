@@ -98,17 +98,25 @@ author:
   avatar           : "/imgs/avatar.jpg"
   bio              : "Mathematician and data science enthuisiast"
   location         : "Geneva, Switzerland"
-  email            : "Rik.Voorhaar@unige.ch"
   links:
-    - label: "Discord"
-      icon: "fab fa-fw fa-discord"
-      url: https://discord.com/users/354966598643220480
+    - label: "Email"
+      icon: "far fa-fw fa-envelope"
+      url: "mailto:Rik.Voorhaar@unige.ch"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/RikVoorhaar"
-    - label: "last.fm"
+    - label: "Discord"
+      icon: "fab fa-fw fa-discord"
+      url: https://discord.com/users/354966598643220480
+    - label: "Last.fm"
       icon: "fab fa-fw fa-lastfm-square"
       url: "https://www.last.fm/user/Tilpo"
+    - label: "Goodreads"
+      icon: "fab fa-fw fa-goodreads"
+      url: "https://www.goodreads.com/user/show/62542056-tilpo"
+    - label: "Trakt.tv"
+      icon: "fas fa-film"
+      url: "https://trakt.tv/users/tilpo"
 # Site Footer
 footer:
   links:
