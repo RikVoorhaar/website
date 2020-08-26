@@ -102,15 +102,21 @@ author:
     - label: "Villa Battelle 104 "
       icon:  "fas fa-fw fa-building"
       url: "https://goo.gl/maps/7hxjyecwhjbqb3VU8"
-    - label: "Email"
+    - label: "Rik.Voorhaar@unige.ch"
       icon: "far fa-fw fa-envelope"
       url: "mailto:Rik.Voorhaar@unige.ch"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/RikVoorhaar"
+    - label: "Facebook"
+      icon: "fab fa-fw fa-facebook"
+      url: https://www.facebook.com/WH.Voorhaar
     - label: "Discord"
       icon: "fab fa-fw fa-discord"
       url: https://discord.com/users/354966598643220480
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: https://www.linkedin.com/in/rik-voorhaar-62723510a/
     - label: "Last.fm"
       icon: "fab fa-fw fa-lastfm-square"
       url: "https://www.last.fm/user/Tilpo"
