@@ -59,6 +59,14 @@ Coursera: [Genomic Data Science Specialization](https://www.coursera.org/special
 
 ## Teaching
 ### Université de Genève
+
+**Spring 2021**  
+-- Optimization with applications II  
+-- Travaux Pratiques
+
+**Autumn 2020**  
+-- Probabilités et statistique pour informaticiens  
+
 **Spring 2020**  
 -- Mathématiques pour informaticiens  
 -- Travaux Pratiques

@@ -6,6 +6,16 @@ title: Teaching
 If I'm assisting a course you're taking this semester, don't hesitate to contact me
 via email or Discord if you have questions!
 
+## Current Teaching
+**Autumn 2020**  
+-- Probabilités et statistique pour informaticiens  
+    ** [Moodle page](https://moodle.unige.ch/course/view.php?id=8953)  
+    ** [Solutions page](https://probastat2020.readthedocs.io/fr/latest/)  
+
+**Spring 2021**  
+-- Optimization with applications II  
+-- Travaux Pratiques
+
 ## Past Teaching
 
 ### Université de Genève
