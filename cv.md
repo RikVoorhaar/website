@@ -14,8 +14,8 @@ Before that I worked with Pavol Ševera on deformation quantization of Poisson-L
 
 ## Publications
 
-[A computer algorithm for the BGG resolution](https://arxiv.org/abs/1911.00871) November 2019, joint work with Nicolas Hemelsoet  
-_Submitted to the Journal of Algebra_
+[A computer algorithm for the BGG resolution](https://www.sciencedirect.com/science/article/abs/pii/S0021869320305135) November 2019, joint work with Nicolas Hemelsoet  
+_Accepted to the Journal of Algebra_
 <ul style="list-style-type:none;">
   <li><sup> In this work we descibe an algorithm to compute the BGG resolution for modules over a simple Lie algebra. This is then used to compute various thing like the Hochschild cohomology of some flag varietes.</sup></li>
 </ul>
@@ -30,11 +30,16 @@ _Submitted to the Journal of Algebra_
 
 [Higher Gauge Theory](https://dspace.library.uu.nl/handle/1874/361953) February 2018 (Master thesis)
 
-## Software
+## Open source contributions
 
 [bgg-cohomology sage package](https://github.com/RikVoorhaar/bgg-cohomology)
 <ul style="list-style-type:none;">
-  <li><sup>Sagemath package used for computing the BGG resolution of simple Lie algebra modules and the associated cohomology. </sup></li>
+  <li><sup>I wrote a Sagemath package used for computing the BGG resolution of simple Lie algebra modules and the associated cohomology. </sup></li>
+</ul>
+
+[geoopt](https://github.com/geoopt/geoopt)
+<ul style="list-style-type:none;">
+  <li><sup>This is a package for Riemannian optimization using PyTorch. I added a Riemannian line search and conjugate gradient optimizer to this project. </sup></li>
 </ul>
 
 ## Education
@@ -107,7 +112,7 @@ Coursera: [Genomic Data Science Specialization](https://www.coursera.org/special
 -- C/C++  
 -- R
 
-**Wishlish**  
+**Wishlist**  
 -- Julia  
 -- Matlab
 
