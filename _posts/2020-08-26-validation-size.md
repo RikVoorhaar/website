@@ -2,7 +2,7 @@
 layout: posts
 title:  "How big should my validation set be?"
 date:   2020-08-26
-categories: data-science, statistics
+categories: data-science statistics
 ---
 
 

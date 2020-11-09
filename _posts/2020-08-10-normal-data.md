@@ -2,7 +2,7 @@
 layout: posts
 title:  "Is my data normal?"
 date:   2020-08-10
-categories: data-science, statistics
+categories: data-science statistics
 ---
 
 Normally distributed data is great. It is easy to interpet, and many statistical and machine learning method work much better on normally distributed data. But how do we know if our data is actually normally distributed?
