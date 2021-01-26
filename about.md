@@ -19,8 +19,8 @@ Les Paul model (tuned to drop B♭!). I also have more pairs of headphones than 
 ### Gaming
 
 I really enjoy playing open world (both RPG and survivalcraft) games, the feeling of freedom,
-exploration  and creativity is wonderful. I also really enjoy replaying old Nintendo games from
-my youth. I'm also very enthuisiastic about speedrunning and its wonderful community. It feels
+exploration  and creativity is wonderful. I also really enjoy replaying old (Nintendo) games from
+my youth. I'm very enthuisiastic about speedrunning and its wonderful community. It feels
 like taking the scientific approach to gaming.
 
 ### Cooking

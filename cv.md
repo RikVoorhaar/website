@@ -8,9 +8,20 @@ teaching: /teaching.md
 
 ## Research
 
-Currently I'm working with Bart Vandereycken on low rank methods in tensor networks. Specifically, I'm trying to develop methods to compress MERA networks using Riemannian optimization methods. 
+Currently I'm working with Bart Vandereycken on low rank methods in tensor networks. Specifically
+I'm exploring the relationship between Tensor Train / MPS networks and random forests. It seems that
+tensor train networks can be used to define a general-purpose regressor that has similar properties
+to random forests. I'm using Riemannian methods to optimize them, and I'm trying to keep all my code
+backend agnostic so anyone can use it. 
 
-Before that I worked with Pavol Ševera on deformation quantization of Poisson-Lie principal bundles. The idea there is to combine the quantization of Poisson-Lie groups and of Poisson bivectors to quantize a bundle over a Poisson manifold with Poisson-Lie structure group into a Hopf-Galois extension of the quantized Lie bialgebra.
+Before that, I was trying to develop methods to compress MERA networks using Riemannian
+optimization methods. Unfortunately this didn't work as well as expected. It turns out to be very
+hard to compress tensor networks with loops.
+
+Still before that, I worked with Pavol Ševera on deformation quantization of Poisson-Lie principal
+bundles. The idea there is to combine the quantization of Poisson-Lie groups and of Poisson
+bivectors to quantize a bundle over a Poisson manifold with Poisson-Lie structure group into a
+Hopf-Galois extension of the quantized Lie bialgebra.
 
 ## Publications
 
@@ -62,6 +73,39 @@ _Accepted to the Journal of Algebra_
 Coursera: [Advanced Machine Learning Specialization](https://www.coursera.org/specializations/aml)  
 Coursera: [Genomic Data Science Specialization](https://www.coursera.org/specializations/genomic-data-science)
 
+## Skills
+
+### Programming languages
+**Advanced**  
+-- Python
+
+**Intermediate**  
+-- $$\LaTeX$$  
+-- Mathematica
+
+**Beginner**  
+-- C/C++  
+-- R
+
+**Wishlist**  
+-- Julia  
+-- Matlab
+
+**Tools**  
+Cython, Docker, Linux, NumPy, Pandas, PyTorch, Sagemath, SciPy, Sphinx, Tensorflow, Windows
+
+### Languages
+**C2 Level**  
+-- Dutch  
+-- English
+
+**B1 Level**  
+-- French
+
+**A2 Level**  
+-- Japanese  
+-- Russian
+
 ## Teaching
 ### Université de Genève
 
@@ -97,36 +141,3 @@ Coursera: [Genomic Data Science Specialization](https://www.coursera.org/special
 
 **Spring 2014**  
 -- Physics labs for course "Waves and optics"
-
-## Skills
-
-### Programming languages
-**Advanced**  
--- Python
-
-**Intermediate**  
--- $$\LaTeX$$  
--- Mathematica
-
-**Beginner**  
--- C/C++  
--- R
-
-**Wishlist**  
--- Julia  
--- Matlab
-
-**Tools**  
-Cython, Docker, Linux, NumPy, Pandas, PyTorch, Sagemath, SciPy, Sphinx, Tensorflow, Windows
-
-### Languages
-**C2 Level**  
--- Dutch  
--- English
-
-**B1 Level**  
--- French
-
-**A2 Level**  
--- Japanese  
--- Russian
