@@ -89,10 +89,10 @@ Coursera: [Genomic Data Science Specialization](https://www.coursera.org/special
 
 **Wishlist**  
 -- Julia  
--- Matlab
+-- MATLAB
 
 **Tools**  
-Cython, Docker, Linux, NumPy, Pandas, PyTorch, Sagemath, SciPy, Sphinx, Tensorflow, Windows
+Armadillo, Cython, Docker, Linux, NumPy, Pandas, PyTorch, Sagemath, SciPy, Sphinx, Tensorflow, Windows
 
 ### Languages
 **C2 Level**  
@@ -104,7 +104,8 @@ Cython, Docker, Linux, NumPy, Pandas, PyTorch, Sagemath, SciPy, Sphinx, Tensorfl
 
 **A2 Level**  
 -- Japanese  
--- Russian
+-- Russian  
+-- Spanish
 
 ## Teaching
 ### Université de Genève
