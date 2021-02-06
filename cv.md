@@ -70,8 +70,9 @@ _Accepted to the Journal of Algebra_
 -- Bachelor degree Physics and Astronomy at _Utrecht University_ _(cum laude)_
 
 ### Online courses completed
-Coursera: [Advanced Machine Learning Specialization](https://www.coursera.org/specializations/aml)  
-Coursera: [Genomic Data Science Specialization](https://www.coursera.org/specializations/genomic-data-science)
+2019/08 (Coursera): [Advanced Machine Learning Specialization](https://www.coursera.org/account/accomplishments/specialization/5BM8U5DJJCJN)  
+2020/09 (Coursera): [Genomic Data Science Specialization](https://www.coursera.org/account/accomplishments/specialization/NYQNJVCT7XV3)  
+2021/02 (Coursera): [Neuroscience and Neuroimaging Specialization](https://www.coursera.org/account/accomplishments/specialization/REWS86DYU496)
 
 ## Skills
 
