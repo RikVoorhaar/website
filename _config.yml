@@ -123,9 +123,6 @@ author:
     - label: "Goodreads"
       icon: "fab fa-fw fa-goodreads"
       url: "https://www.goodreads.com/user/show/62542056-tilpo"
-    - label: "Trakt.tv"
-      icon: "fas fa-fw fa-film"
-      url: "https://trakt.tv/users/tilpo"
 # Site Footer
 footer:
   links:
