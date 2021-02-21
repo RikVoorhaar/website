@@ -27,3 +27,12 @@ like taking the scientific approach to gaming.
 
 I love cooking and the sense of satisfaction that comes with eating food you made yourself.
 I don't shy away from any cuisine, and I'm constantly trying to improve and learn new things.
+
+### Reading
+
+I like to read hard sci-fi books, some of my favorite series are The Expanse (Corey), Foundation
+(Asimov), The Bobiverse (Taylor) and Old Man's War (Scalzi). I'm also a big fan of the books of
+Murakami. I also like to read fantasy books, and I recently came around to reading the Lord of the
+Rings. As of writing, I'm reading the Stormlight Archive series by Sanderson, which is a long, epic,
+fantasy series. Check out [my goodreads page](https://www.goodreads.com/user/show/62542056-tilpo)
+for more!

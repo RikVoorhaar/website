@@ -8,12 +8,10 @@ via email or Discord if you have questions!
 
 ## Current Teaching
 **Autumn 2020**  
--- Probabilités et statistique pour informaticiens  
-    ** [Moodle page](https://moodle.unige.ch/course/view.php?id=8953)  
-    ** [Solutions page](https://probastat2020.readthedocs.io/fr/latest/)  
+-- Probabilités et statistique pour informaticiens: [Moodle page](https://moodle.unige.ch/course/view.php?id=8953), [Solutions page](https://probastat2020.readthedocs.io/fr/latest/)  
 
 **Spring 2021**  
--- Optimization with applications II  
+-- Optimization with applications II: [Solutions page](https://optimization-ii-2021.readthedocs.io/en/latest/index.html)  
 -- Travaux Pratiques
 
 ## Past Teaching
