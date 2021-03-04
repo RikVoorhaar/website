@@ -77,8 +77,7 @@ _Published in the Journal of Algebra in 2021_
 
 [autoray](https://github.com/jcmgray/autoray)
 <ul style="list-style-type:none;">
-  <li><sup>This is a package meant to help writing backend agnostic code, i.e. code that can manipulate objects from different numerical libraries like numpy, tensorflow or pytorch (among others). I added a few extra translations from the numpy API to other libraries, and I improved the functionality
-  to infer the backend of the arguments of some functions. </sup></li>
+  <li><sup>This is a package meant to help writing backend agnostic code, i.e. code that can manipulate objects from different numerical libraries like numpy, tensorflow or pytorch (among others). I added a few extra translations from the numpy API to other libraries, I improved the functionality to infer the backend of the arguments of some functions, and I made data type handling for array creation operations more consistent. </sup></li>
 </ul>
 
 ## Work experience
