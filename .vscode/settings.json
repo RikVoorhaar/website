@@ -1,0 +1,11 @@
+{
+    "cSpell.enableFiletypes": [
+        "jupyter",
+        "markdown",
+        "r"
+    ],
+    "cSpell.ignoreWords": [
+        "imgs",
+        "sobel"
+    ]
+}

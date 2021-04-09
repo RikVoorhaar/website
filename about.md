@@ -20,7 +20,7 @@ Les Paul model (tuned to drop B♭!). I also have more pairs of headphones than 
 
 I really enjoy playing open world (both RPG and survivalcraft) games, the feeling of freedom,
 exploration  and creativity is wonderful. I also really enjoy replaying old (Nintendo) games from
-my youth. I'm very enthuisiastic about speedrunning and its wonderful community. It feels
+my youth. I'm very enthusiastic about speedrunning and its wonderful community. It feels
 like taking the scientific approach to gaming.
 
 ### Cooking
@@ -33,6 +33,5 @@ I don't shy away from any cuisine, and I'm constantly trying to improve and lear
 I like to read hard sci-fi books, some of my favorite series are The Expanse (Corey), Foundation
 (Asimov), The Bobiverse (Taylor) and Old Man's War (Scalzi). I'm also a big fan of the books of
 Murakami. I also like to read fantasy books, and I recently came around to reading the Lord of the
-Rings. As of writing, I'm reading the Stormlight Archive series by Sanderson, which is a long, epic,
-fantasy series. Check out [my goodreads page](https://www.goodreads.com/user/show/62542056-tilpo)
-for more!
+Rings, and the long Stormlight Archive series by Sanderson. Check out [my goodreads
+page](https://www.goodreads.com/user/show/62542056-tilpo) for more!

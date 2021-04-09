@@ -50,7 +50,7 @@ differential geometry of ordinary principal bundles to this setting.
 [A computer algorithm for the BGG resolution](https://www.sciencedirect.com/science/article/abs/pii/S0021869320305135) November 2019, joint work with Nicolas Hemelsoet  
 _Published in the Journal of Algebra in 2021_
 <ul style="list-style-type:none;">
-  <li><sup> In this work we descibe an algorithm to compute the BGG resolution for modules over a simple Lie algebra. This is then used to compute various thing like the Hochschild cohomology of some flag varietes.</sup></li>
+  <li><sup> In this work we describe an algorithm to compute the BGG resolution for modules over a simple Lie algebra. This is then used to compute various thing like the Hochschild cohomology of some flag varietes.</sup></li>
 </ul>
 
 [Parallel 2-transport and 2-group torsors](https://arxiv.org/abs/1811.10060) October 2018

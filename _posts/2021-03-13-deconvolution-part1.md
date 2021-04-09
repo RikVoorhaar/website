@@ -1,8 +1,8 @@
 ---
 layout: posts 
-title:  "Blind deconvolution: Part 1" 
+title:  "Blind Deconvolution #1: Non-blind Deconvolution" 
 date:   2021-03-13 
-categories: machine-learning signal-processing
+categories: machine-learning signal-processing computer-vision
 ---
 
 
