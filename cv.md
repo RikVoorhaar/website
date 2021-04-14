@@ -10,21 +10,21 @@ teaching: /teaching.md
 
 Research interests:  
 - Numerical linear algebra
-- Low-rank tensor decompositions
-- Riemannian optimization
+- Tensor networks
+- Non-convex and Riemannian optimization
 - Machine learning
 
-Currently I'm working with Bart Vandereycken on low rank methods in tensor networks. Specifically
+Currently I'm working with [Bart Vandereycken](https://www.unige.ch/math/vandereycken/) on low rank methods in tensor networks. Specifically
 I'm exploring the relationship between Tensor Train / MPS networks and random forests. It seems that
-tensor train networks can be used to define a general-purpose regressor that has similar properties
-to random forests. I'm using Riemannian methods to optimize them, and I'm trying to keep all my code
-backend agnostic so anyone can use it. 
+tensor train networks can be used to define a general-purpose machine learning estimator that has
+similar properties to random forests. I'm using Riemannian methods to optimize them, and I'm trying
+to keep all my code compatible with several numerical Python libraries. 
 
-On the weekends I like to study topics in datascience, bioinformatics and scientific computing to
+On the weekends I like to study topics in data science, bioinformatics and scientific computing to
 broaden my knowledge. I do this by either taking online courses, reading text books, or doing
 small programming projects. For the latter I usually write blog posts on this website.
 
-I am also working with Nicolas Hemelsoet on an algorithm to do explicit computations with the BGG
+<!-- I am also working with Nicolas Hemelsoet on an algorithm to do explicit computations with the BGG
 resolution. I wrote a package in Sagemath/Python that can compute the BGG resolution and its 
 cohomology for a large class of Lie algebra modules. This can be used to for example compute
 the Hochschild cohomology of flag varieties, or to do computations related to the center of the
@@ -42,15 +42,21 @@ Hopf-Galois extension of the quantized Lie bialgebra.
 I also dabbled in 2-categories and higher gauge theory in my master thesis, and at the beginning of
 my PhD. Under supervision of Anton Alekseev and with some help of Eugene Lerman I worked on a "toy
 model" of 2-gauge theory and principal 2-bundles. I translated a number of facts from the
-differential geometry of ordinary principal bundles to this setting.
+differential geometry of ordinary principal bundles to this setting. -->
 
 
-## Publications
+## Publications and preprints
+
+[On certain Hochschild cohomology groups for the small quantum group](https://arxiv.org/abs/2104.05113) April 2021, joint work with Nicolas Hemelsoet
+<ul style="list-style-type:none;">
+  <li><sup>We apply the algorithm for the BGG resolution developed in the previous paper to compute Hochschild cohomology of blocks of the small quantum group. This allows us to study the center of the small quantum group, and our computations give stronger evidence for several conjectures concerning the small quantum group. My contribution was writing all the code needed for this project. </sup></li>
+</ul>
+
 
 [A computer algorithm for the BGG resolution](https://www.sciencedirect.com/science/article/abs/pii/S0021869320305135) November 2019, joint work with Nicolas Hemelsoet  
 _Published in the Journal of Algebra in 2021_
 <ul style="list-style-type:none;">
-  <li><sup> In this work we describe an algorithm to compute the BGG resolution for modules over a simple Lie algebra. This is then used to compute various thing like the Hochschild cohomology of some flag varietes.</sup></li>
+  <li><sup> In this work we describe an algorithm to compute the BGG resolution for modules over a simple Lie algebra. This is then used to compute various thing like the Hochschild cohomology of some flag varieties. My contribution was coding the implementation of the algorithm, and solving several algorithmic problems.</sup></li>
 </ul>
 
 [Parallel 2-transport and 2-group torsors](https://arxiv.org/abs/1811.10060) October 2018
@@ -144,7 +150,8 @@ the International School Hilversum, taking IB Higher Level Mathematics. </sup></
 -- MATLAB
 
 **Tools**  
-Armadillo, Cython, Docker, Linux, NumPy, Pandas, PyTorch, Sagemath, SciPy, Sphinx, Tensorflow, Windows
+Armadillo, Cython, CVXPY, Docker, Linux, NumPy, Pandas, PyTorch, Sagemath, SciPy, Sphinx,
+Tensorflow, Windows
 
 ### Languages
 **C2 Level**  
@@ -158,3 +165,30 @@ Armadillo, Cython, Docker, Linux, NumPy, Pandas, PyTorch, Sagemath, SciPy, Sphin
 -- Japanese  
 -- Russian  
 -- Spanish
+
+
+### Mathematical expertise
+
+I have a wide background in pure and applied mathematics, and I feel comfortable with research-level mathematics in the following areas:
+
+**Applied mathematics:**  
+-- Bayesian statistics  
+-- Classical machine learning  
+-- Computer vision  
+-- Neural networks  
+-- Nonconvex optimization  
+-- Numerical linear algebra  
+-- Riemannian optimization  
+-- Signal processing  
+-- Tensor networks  
+
+**Pure mathematics:**  
+-- Category theory  
+-- Deformation quantization  
+-- Differential geometry  
+-- Fiber bundles  
+-- Lie theory  
+-- Lie groupoids  
+-- Operadic algebra  
+-- Poisson geometry  
+-- Tensor / monoidal categories  
