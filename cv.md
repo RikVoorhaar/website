@@ -24,28 +24,13 @@ On the weekends I like to study topics in data science, bioinformatics and scien
 broaden my knowledge. I do this by either taking online courses, reading text books, or doing
 small programming projects. For the latter I usually write blog posts on this website.
 
-<!-- I am also working with Nicolas Hemelsoet on an algorithm to do explicit computations with the BGG
-resolution. I wrote a package in Sagemath/Python that can compute the BGG resolution and its 
-cohomology for a large class of Lie algebra modules. This can be used to for example compute
-the Hochschild cohomology of flag varieties, or to do computations related to the center of the
-small quantum group. 
-
-Before that, I was trying to develop methods to compress MERA tensor networks using Riemannian
-optimization methods. Unfortunately this didn't work as well as expected. It turns out to be very
-hard to compress tensor networks with loops.
-
-Still before that, I worked with Pavol Ševera on deformation quantization of Poisson-Lie principal
-bundles. The idea there is to combine the quantization of Poisson-Lie groups and of Poisson
-bivectors to quantize a bundle over a Poisson manifold with Poisson-Lie structure group into a
-Hopf-Galois extension of the quantized Lie bialgebra.
-
-I also dabbled in 2-categories and higher gauge theory in my master thesis, and at the beginning of
-my PhD. Under supervision of Anton Alekseev and with some help of Eugene Lerman I worked on a "toy
-model" of 2-gauge theory and principal 2-bundles. I translated a number of facts from the
-differential geometry of ordinary principal bundles to this setting. -->
-
 
 ## Publications and preprints
+
+[Recovering data you have never seen](https://doi.org/10.25250/thescbr.brk513) April 2021
+<ul style="list-style-type:none;">
+  <li><sup> I wrote an piece in a science outreach journal describing an article about low-rank matrix completion. The goal of this journal is to make the core ideas behind published scientific research accessible to a wide audience. </sup></li>
+</ul>
 
 [On certain Hochschild cohomology groups for the small quantum group](https://arxiv.org/abs/2104.05113) April 2021, joint work with Nicolas Hemelsoet
 <ul style="list-style-type:none;">
