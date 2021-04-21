@@ -14,11 +14,12 @@ Research interests:
 - Non-convex and Riemannian optimization
 - Machine learning
 
-Currently I'm working with [Bart Vandereycken](https://www.unige.ch/math/vandereycken/) on low rank methods in tensor networks. Specifically
-I'm exploring the relationship between Tensor Train / MPS networks and random forests. It seems that
-tensor train networks can be used to define a general-purpose machine learning estimator that has
-similar properties to random forests. I'm using Riemannian methods to optimize them, and I'm trying
-to keep all my code compatible with several numerical Python libraries. 
+Currently I'm working with [Bart Vandereycken](https://www.unige.ch/math/vandereycken/) on low rank
+methods in tensor networks. Specifically I'm exploring the relationship between Tensor Train / MPS
+networks and random forests. It seems that tensor train networks can be used to define a
+general-purpose machine learning estimator that has similar properties to random forests. I'm using
+Riemannian methods to optimize them, and I'm trying to keep all my code compatible with several
+numerical Python libraries. 
 
 On the weekends I like to study topics in data science, bioinformatics and scientific computing to
 broaden my knowledge. I do this by either taking online courses, reading text books, or doing
@@ -94,14 +95,13 @@ during my time as a student at Utrecht.  </sup></li>
 **2012-2014**  
 -- Mathematics tutor. 
 <ul style="list-style-type:none;">
-<li><sup> I tutored two students in 2012-2013, and one student 2013-2014. The students studied 
-the International School Hilversum, taking IB Higher Level Mathematics. </sup></li>
+<li><sup> I tutored two students in 2012-2013, and one student 2013-2014. The students studied at the International School Hilversum, taking IB Higher Level Mathematics. </sup></li>
 </ul>
 
 ## Education
 
 **2016-2017**  
--- Masterclass Geometry, Toplogy and Physics at _University of Geneva_
+-- Masterclass Geometry, Topology and Physics at _University of Geneva_
 
 **2015-2018**  
 -- Masters degree Mathematical Sciences at _Utrecht University_ _(cum laude, GPA 4.00)_  
@@ -161,19 +161,22 @@ I have a wide background in pure and applied mathematics, and I feel comfortable
 -- Classical machine learning  
 -- Computer vision  
 -- Neural networks  
--- Nonconvex optimization  
+-- Non-convex optimization  
 -- Numerical linear algebra  
 -- Riemannian optimization  
 -- Signal processing  
 -- Tensor networks  
 
 **Pure mathematics:**  
+-- Algebraic topology  
 -- Category theory  
 -- Deformation quantization  
 -- Differential geometry  
 -- Fiber bundles  
+-- Homological algebra  
 -- Lie theory  
--- Lie groupoids  
--- Operadic algebra  
+-- Lie groupoids / algebroids  
+-- Moduli spaces  
+-- Operads  
 -- Poisson geometry  
 -- Tensor / monoidal categories  
