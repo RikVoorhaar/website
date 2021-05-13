@@ -1,6 +1,7 @@
 ---
 layout: single
 title: Teaching
+permalink: /teaching/
 ---
 
 If I'm assisting a course you're taking this semester, don't hesitate to contact me

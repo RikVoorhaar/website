@@ -1,6 +1,7 @@
 ---
 layout: single
-title: About me
+title: Personal interests and hobbies
+permalink: /about/
 ---
 
 Besides being a math student, it turns out I'm actually a person!

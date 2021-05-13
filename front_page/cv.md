@@ -3,7 +3,6 @@ layout: single
 title: Curriculum Vitae
 permalink: /cv/
 toc: true
-teaching: /teaching.md
 ---
 
 ## Research
@@ -28,7 +27,8 @@ small programming projects. For the latter I usually write blog posts on this we
 
 ## Publications and preprints
 
-[Recovering data you have never seen](https://doi.org/10.25250/thescbr.brk513) April 2021
+[Recovering data you have never seen](https://doi.org/10.25250/thescbr.brk513) April 2021  
+_Published by The Science Breaker_
 <ul style="list-style-type:none;">
   <li><sup> I wrote an piece in a science outreach journal describing an article about low-rank matrix completion. The goal of this journal is to make the core ideas behind published scientific research accessible to a wide audience. </sup></li>
 </ul>
@@ -135,7 +135,7 @@ during my time as a student at Utrecht.  </sup></li>
 -- MATLAB
 
 **Tools**  
-Armadillo, Cython, CVXPY, Docker, Linux, NumPy, Pandas, PyTorch, Sagemath, SciPy, Sphinx,
+Armadillo, Bash, Cython, CVXPY, Docker, Linux, Networkx, NumPy, Pandas, PyTorch, Sagemath, SciPy,
 Tensorflow, Windows
 
 ### Languages
@@ -154,12 +154,13 @@ Tensorflow, Windows
 
 ### Mathematical expertise
 
-I have a wide background in pure and applied mathematics, and I feel comfortable with research-level mathematics in the following areas:
+I have a wide background in pure and applied mathematics, and I feel comfortable with research-level
+mathematics in the following areas:
 
 **Applied mathematics:**  
 -- Bayesian statistics  
--- Classical machine learning  
 -- Computer vision  
+-- Machine learning  
 -- Neural networks  
 -- Non-convex optimization  
 -- Numerical linear algebra  
@@ -174,8 +175,8 @@ I have a wide background in pure and applied mathematics, and I feel comfortable
 -- Differential geometry  
 -- Fiber bundles  
 -- Homological algebra  
--- Lie theory  
 -- Lie groupoids / algebroids  
+-- Lie theory  
 -- Moduli spaces  
 -- Operads  
 -- Poisson geometry  
