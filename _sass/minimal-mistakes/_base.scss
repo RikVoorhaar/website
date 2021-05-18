@@ -64,6 +64,14 @@ h6 {
   color: #1E88E5
 }
 
+description,
+.description{
+  display: inline-block;
+  font-size: $type-size-6;
+  margin-left: 40px;
+}
+.description p{margin-left: 40px}
+
 small,
 .small {
   font-size: $type-size-6;

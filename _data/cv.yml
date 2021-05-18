@@ -1,0 +1,174 @@
+research-interests:
+  "_Research interests:_
+
+  <ul>
+  <li> Numerical linear algebra </li>
+  <li> Tensor networks </li>
+  <li> Non-convex and Riemannian optimization </li>
+  <li> Machine learning </li>
+  </ul>
+
+  Currently I'm working with [Bart Vandereycken](https://www.unige.ch/math/vandereycken/) on low rank methods in tensor networks. Specifically I'm exploring the relationship between Tensor Train / MPS networks and random forests. It seems that tensor train networks can be used to define a general-purpose machine learning estimator that has similar properties to random forests. I'm using Riemannian methods to optimize them, and I'm trying to keep all my code compatible with several numerical Python libraries. 
+  <br><br>
+  On the weekends I like to study topics in data science, bioinformatics and scientific computing to broaden my knowledge. I do this by either taking online courses, reading text books, or doing small programming projects. For the latter I usually write blog posts on this website."
+
+
+publications:
+  - name: Recovering data you have never seen
+    date: April 2021
+    url: https://doi.org/10.25250/thescbr.brk513
+    description: I wrote an piece in a science outreach journal describing an article about low-rank matrix completion. The aim of this article is to make the core concepts accessible and interesting to a wide audience. 
+    publisher: The Science Breaker
+    coauthor: 
+  - name: On certain Hochschild cohomology groups for the small quantum group
+    date: April 2021
+    url: https://arxiv.org/abs/2104.05113
+    description: We apply the algorithm for the BGG resolution developed in the previous paper to compute Hochschild cohomology of blocks of the small quantum group. This allows us to study the center of the small quantum group, and our computations give stronger evidence for several conjectures concerning the small quantum group. My contribution was writing all the code needed for this project.
+    coauthor: Nicolas Hemelsoet
+  - name: A computer algorithm for the BGG resolution
+    date: November 2019
+    url: https://www.sciencedirect.com/science/article/abs/pii/S0021869320305135
+    description: In this work we describe an algorithm to compute the BGG resolution for modules over a simple Lie algebra. This is then used to compute various thing like the Hochschild cohomology of some flag varieties. My contribution was coding the implementation of the algorithm, and solving several algorithmic problems.
+    publisher: Journal of Algebra
+    coauthor: Nicolas Hemelsoet
+  - name: Parallel 2-transport and 2-group torsors
+    date: October 2018
+    url: https://arxiv.org/abs/1811.10060
+    description:  This work is a continuation of my masters thesis. The idea is to study a toy model of principal 2-bundles and 2-transport by restricting to a stricter notion, where the fibers are all strict 2-groups. This allows to get some nice generalizations of the classical theory, which would be harder to proof with the more useful notions weaker notions.
+    publisher:
+    coauthor: 
+  - name: Higher Gauge Theory
+    date: February 2018 (master thesis)
+    url: https://dspace.library.uu.nl/handle/1874/361953
+    description: 
+    publisher:
+    coauthor: 
+
+
+open-source-contribs:
+  - name: bgg-cohomology sage package
+    url: https://github.com/RikVoorhaar/bgg-cohomology
+    description: I wrote a Sagemath package used for computing the BGG resolution of simple Lie algebra modules and the associated cohomology.
+  - name: geoopt
+    url: https://github.com/geoopt/geoopt
+    description: This is a package for Riemannian optimization using PyTorch. I added a Riemannian line search and conjugate gradient optimizer to this project. 
+  - name: autoray
+    url: https://github.com/jcmgray/autoray
+    description: his is a package meant to help writing backend agnostic code, i.e. code that can manipulate objects from different numerical libraries like numpy, tensorflow or pytorch (among others). I added a few extra translations from the numpy API to other libraries, I improved the functionality to infer the backend of the arguments of some functions, and I made data type handling for array creation operations more consistent.
+
+
+work:
+  - name: Junior Scientific Editor
+    date: May 2021--present
+    location: "[The Science Breaker](https://thesciencebreaker.org/)"
+    description: The goal of this journal is to make the core ideas behind published scientific research accessible to a wide audience to foster interest in science. It is also an excellent and informal way for scientists to get a flavor of the research and scientific methods of very different fields. As an editor I propose new articles and edit them to make them easier to read for laypersons.
+  - name: PhD student
+    date: March 2018--present
+    location: University of Geneva
+    description: I was working in pure mathematics from 2018 until early 2020, when I switched research direction to applied math. Over the past few years a significant fraction of my time is spent writing research code in Python, both numerical code and code for computer algebra. I spend about 20% of my time teaching. I also spend about 20% of my time studying to broaden my knowledge about data science and scientific computing, either by doing online courses, reading text books, or doing small programming projects.
+  - name: Teaching assistant
+    date: 2014-2016
+    location: Utrecht University
+    description: I was a teaching assistant for four different courses during my time as a student at Utrecht.
+  - name: Mathematics tutor
+    date: 2012-2014
+    description: I tutored two students in 2012-2013, and one student 2013-2014. The students studied at the International School Hilversum, taking IB Higher Level Mathematics.  
+
+education:
+  - date: 2021/02
+    name: "[Neuroscience and Neuroimaging Specialization](https://www.coursera.org/account/accomplishments/specialization/REWS86DYU496)"
+    location: Coursera
+  - date: 2020/09
+    name: "[Genomic Data Science Specialization](https://www.coursera.org/account/accomplishments/specialization/NYQNJVCT7XV3)"
+    location: Coursera
+  - date: 2019/08
+    name: "[Advanced Machine Learning Specialization](https://www.coursera.org/account/accomplishments/specialization/5BM8U5DJJCJN)"
+    location: Coursera
+  - date: 2016-2017
+    name: Masterclass Geometry, Topology and Physics
+    location: University of Geneva
+  - date: 2015-2018
+    name:  Masters degree Mathematical Sciences
+    location: Utrecht University
+    note: (cum laude, GPA 4.00)
+  - name: Honors degree "Utrecht Geometry Center"
+    location: Utrecht University
+  - date: 2012-2015
+    name: Bachelor degree Mathematic
+    location: Utrecht University
+    note: (cum laude, GPA 4.00)
+  - name: Bachelor degree Physics and Astronomy
+    location: Utrecht University
+    note: (cum laude, GPA 4.00)
+
+programming-languages:
+  - name: Advanced
+    items:
+      - Python
+  - name: Intermediate
+    items:
+      - LaTeX
+      - Mathematica
+  - name: Beginner
+    items:
+      - C/C++
+      - R
+  - name: Tools
+    istools: yes
+    items:
+      - Armadillo
+      - Bash
+      - CVXPY
+      - Cython
+      - Docker
+      - Linux
+      - Networkx
+      - NumPy
+      - Pandas
+      - PyTorch
+      - Sagemath
+      - SciPy
+      - Tensorflow
+      - Windows
+
+languages:
+  - name: C2 (native) Level
+    items:
+      - Dutch
+      - English
+  - name: B1 Level
+    items:
+      - French
+  - name: A2 Level
+    items:
+      - Japanese
+      - Russian
+      - Spanish
+
+math:
+  - title: Applied mathematics
+    items:
+      - Bayesian statistics  
+      - Computer vision  
+      - Inverse problems  
+      - Machine learning  
+      - Neural networks  
+      - Non-convex optimization  
+      - Numerical linear algebra  
+      - Riemannian optimization  
+      - Signal processing  
+      - Tensor networks  
+  - title: Pure mathematics
+    items:
+      - Algebraic topology  
+      - Category theory  
+      - Deformation quantization  
+      - Differential geometry  
+      - Fiber bundles  
+      - Homological algebra  
+      - Lie groupoids / algebroids  
+      - Lie theory  
+      - Moduli spaces  
+      - Operads  
+      - Poisson geometry  
+      - Tensor / monoidal categories

@@ -5,158 +5,78 @@ permalink: /cv/
 toc: true
 ---
 
+
+<style> 
+.listWithDescription p{
+  margin: 0.25em
+}
+</style> 
+
 ## Research
-
-Research interests:  
-- Numerical linear algebra
-- Tensor networks
-- Non-convex and Riemannian optimization
-- Machine learning
-
-Currently I'm working with [Bart Vandereycken](https://www.unige.ch/math/vandereycken/) on low rank
-methods in tensor networks. Specifically I'm exploring the relationship between Tensor Train / MPS
-networks and random forests. It seems that tensor train networks can be used to define a
-general-purpose machine learning estimator that has similar properties to random forests. I'm using
-Riemannian methods to optimize them, and I'm trying to keep all my code compatible with several
-numerical Python libraries. 
-
-On the weekends I like to study topics in data science, bioinformatics and scientific computing to
-broaden my knowledge. I do this by either taking online courses, reading text books, or doing
-small programming projects. For the latter I usually write blog posts on this website.
-
+{{site.data.cv.research-interests}}
 
 ## Publications and preprints
+{% for item in site.data.cv.publications %}
 
-[Recovering data you have never seen](https://doi.org/10.25250/thescbr.brk513) April 2021  
-_Published by The Science Breaker_
-<ul style="list-style-type:none;">
-  <li><sup> I wrote an piece in a science outreach journal describing an article about low-rank matrix completion. The aim of this article is to make the core concepts accessible and interesting to a wide audience. </sup></li>
-</ul>
-
-[On certain Hochschild cohomology groups for the small quantum group](https://arxiv.org/abs/2104.05113) April 2021, joint work with Nicolas Hemelsoet
-<ul style="list-style-type:none;">
-  <li><sup>We apply the algorithm for the BGG resolution developed in the previous paper to compute Hochschild cohomology of blocks of the small quantum group. This allows us to study the center of the small quantum group, and our computations give stronger evidence for several conjectures concerning the small quantum group. My contribution was writing all the code needed for this project. </sup></li>
-</ul>
-
-
-[A computer algorithm for the BGG resolution](https://www.sciencedirect.com/science/article/abs/pii/S0021869320305135) November 2019, joint work with Nicolas Hemelsoet  
-_Published in the Journal of Algebra in 2021_
-<ul style="list-style-type:none;">
-  <li><sup> In this work we describe an algorithm to compute the BGG resolution for modules over a simple Lie algebra. This is then used to compute various thing like the Hochschild cohomology of some flag varieties. My contribution was coding the implementation of the algorithm, and solving several algorithmic problems.</sup></li>
-</ul>
-
-[Parallel 2-transport and 2-group torsors](https://arxiv.org/abs/1811.10060) October 2018
-<ul style="list-style-type:none;">
-  <li><sup>This work is a continuation of my masters thesis. The idea is to study
-  a toy model of principal 2-bundles and 2-transport by restricting to a stricter notion, where the fibers are all strict 2-groups.
-  This allows to get some nice generalizations of the classical theory, which would
-  be harder to proof with the more useful notions weaker notions.</sup></li>
-</ul>
-
-[Higher Gauge Theory](https://dspace.library.uu.nl/handle/1874/361953) February 2018 (Master thesis)
+<div class="listWithDescription" markdown="1">
+[{{item.name}}]({{item.url}}) {{item.date}}{% if item.publisher %}, _published in {{item.publisher}}_{% endif %}
+{% if item.description %}<description>{{item.description}}</description>{% endif %}
+<br>
+</div>
+{% endfor %}
 
 ## Open source contributions
 
-[bgg-cohomology sage package](https://github.com/RikVoorhaar/bgg-cohomology)
-<ul style="list-style-type:none;">
-  <li><sup>I wrote a Sagemath package used for computing the BGG resolution of simple Lie algebra modules and the associated cohomology. </sup></li>
-</ul>
-
-[geoopt](https://github.com/geoopt/geoopt)
-<ul style="list-style-type:none;">
-  <li><sup>This is a package for Riemannian optimization using PyTorch. I added a Riemannian line search and conjugate gradient optimizer to this project. </sup></li>
-</ul>
-
-[autoray](https://github.com/jcmgray/autoray)
-<ul style="list-style-type:none;">
-  <li><sup>This is a package meant to help writing backend agnostic code, i.e. code that can manipulate objects from different numerical libraries like numpy, tensorflow or pytorch (among others). I added a few extra translations from the numpy API to other libraries, I improved the functionality to infer the backend of the arguments of some functions, and I made data type handling for array creation operations more consistent. </sup></li>
-</ul>
+{% for item in site.data.cv.open-source-contribs %}
+<div class="listWithDescription" markdown="1">
+[{{item.name}}]({{item.url}})
+<description>{{item.description}}</description>
+<br>
+</div>
+{% endfor %}
 
 ## Work experience
 
-**May 2021--present**  
--- Junior Scientific Editor at _[The Science Breaker](https://thesciencebreaker.org/)_
-<ul style="list-style-type:none;">
-<li><sup> The goal of this journal is to make the core ideas behind published scientific research accessible to a wide audience to foster interest in science. It is also an excellent and informal way for scientists to get a flavor of the research and scientific methods of very different fields. As an editor I propose new articles and edit them to make them easier to read for laypersons.
-</sup></li></ul>
+{% for item in site.data.cv.work %}
+<div class="listWithDescription" markdown="1">
+**{{item.date}}**:  
+-- {{item.name}}{% if item.location %} at _{{item.location}}_{% endif %}.
+<description>{{item.description}}</description>
+</div>
+<br>
+{% endfor %}
 
-
-**March 2018--present**  
--- PhD student at _University of Geneva_. 
-<ul style="list-style-type:none;">
-<li><sup>I was working in pure mathematics from 2018 until early
-2020, when I switched research direction to applied math. Over the past few years a significant
-fraction of my time is spent writing research code in Python, both numerical code and code for
-computer algebra. I spend about 20% of my time teaching. I also spend about 20% of my time studying 
-to broaden my knowledge about data science and scientific computing, either by doing online courses,
-reading text books, or doing small programming projects. </sup></li>
-</ul>
-
-**2014-2016**  
--- Teaching assistant at _Utrecht University_.
-<ul style="list-style-type:none;">
-<li><sup>I was a teaching assistant for four different courses
-during my time as a student at Utrecht.  </sup></li>
-</ul>
-
-**2012-2014**  
--- Mathematics tutor. 
-<ul style="list-style-type:none;">
-<li><sup> I tutored two students in 2012-2013, and one student 2013-2014. The students studied at the International School Hilversum, taking IB Higher Level Mathematics. </sup></li>
-</ul>
 
 ## Education
 
-**2016-2017**  
--- Masterclass Geometry, Topology and Physics at _University of Geneva_
-
-**2015-2018**  
--- Masters degree Mathematical Sciences at _Utrecht University_ _(cum laude, GPA 4.00)_  
--- Honors degree "Utrecht Geometry Center" at _Utrecht University_
-
-**2012-2015**  
--- Bachelor degree Mathematics at _Utrecht University_ _(cum laude, GPA 4.00)_  
--- Bachelor degree Physics and Astronomy at _Utrecht University_ _(cum laude, GPA 4.00)_
-
-### Online courses completed
-2019/08 (Coursera): [Advanced Machine Learning Specialization](https://www.coursera.org/account/accomplishments/specialization/5BM8U5DJJCJN)  
-2020/09 (Coursera): [Genomic Data Science Specialization](https://www.coursera.org/account/accomplishments/specialization/NYQNJVCT7XV3)  
-2021/02 (Coursera): [Neuroscience and Neuroimaging Specialization](https://www.coursera.org/account/accomplishments/specialization/REWS86DYU496)
+{% for item in site.data.cv.education %}
+<div class="listWithDescription" markdown="1">
+{%if item.date %}<br>**{{item.date}}**<br>{% endif %}
+-- {{item.name}}, at _{{item.location}}{% if item.note %} {{item.note}}{% endif %}_.
+</div>
+{% endfor %}
 
 ## Skills
 
 ### Programming languages
-**Advanced**  
--- Python
 
-**Intermediate**  
--- $$\LaTeX$$  
--- Mathematica
-
-**Beginner**  
--- C/C++  
--- R
-
-**Wishlist**  
--- Julia  
--- MATLAB
-
-**Tools**  
-Armadillo, Bash, Cython, CVXPY, Docker, Linux, Networkx, NumPy, Pandas, PyTorch, Sagemath, SciPy,
-Tensorflow, Windows
+{% for item in site.data.cv.programming-languages %}
+<div class="listWithDescription" markdown="1">
+**{{item.name}}**<br>
+{%- for lang in item.items -%}
+{% if item.istools %}{{lang}}{% if forloop.last == false %}, {% endif %}{% else %}-- {{lang}}<br>{% endif %}
+{% endfor %}<br>
+</div>
+{% endfor %}
 
 ### Languages
-**C2 Level**  
--- Dutch  
--- English
 
-**B1 Level**  
--- French
-
-**A2 Level**  
--- Japanese  
--- Russian  
--- Spanish
+{% for item in site.data.cv.languages %}
+**{{item.name}}**<br>
+{%- for lang in item.items -%}
+-- {{lang}}  
+{% endfor %}
+{% endfor %}
 
 
 ### Mathematical expertise
@@ -164,28 +84,9 @@ Tensorflow, Windows
 I have a wide background in pure and applied mathematics, and I feel comfortable with research-level
 mathematics in the following areas:
 
-**Applied mathematics:**  
--- Bayesian statistics  
--- Inverse problems  
--- Computer vision  
--- Machine learning  
--- Neural networks  
--- Non-convex optimization  
--- Numerical linear algebra  
--- Riemannian optimization  
--- Signal processing  
--- Tensor networks  
-
-**Pure mathematics:**  
--- Algebraic topology  
--- Category theory  
--- Deformation quantization  
--- Differential geometry  
--- Fiber bundles  
--- Homological algebra  
--- Lie groupoids / algebroids  
--- Lie theory  
--- Moduli spaces  
--- Operads  
--- Poisson geometry  
--- Tensor / monoidal categories  
+{% for item in site.data.cv.math %}
+**{{item.title}}:**<br>
+{%- for skill in item.items -%}
+-- {{skill}}  
+{% endfor %}
+{% endfor %}
