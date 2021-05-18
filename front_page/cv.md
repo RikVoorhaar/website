@@ -30,7 +30,7 @@ small programming projects. For the latter I usually write blog posts on this we
 [Recovering data you have never seen](https://doi.org/10.25250/thescbr.brk513) April 2021  
 _Published by The Science Breaker_
 <ul style="list-style-type:none;">
-  <li><sup> I wrote an piece in a science outreach journal describing an article about low-rank matrix completion. The goal of this journal is to make the core ideas behind published scientific research accessible to a wide audience. </sup></li>
+  <li><sup> I wrote an piece in a science outreach journal describing an article about low-rank matrix completion. The aim of this article is to make the core concepts accessible and interesting to a wide audience. </sup></li>
 </ul>
 
 [On certain Hochschild cohomology groups for the small quantum group](https://arxiv.org/abs/2104.05113) April 2021, joint work with Nicolas Hemelsoet
@@ -74,7 +74,14 @@ _Published in the Journal of Algebra in 2021_
 
 ## Work experience
 
-**2018-202X**  
+**May 2021--present**  
+-- Junior Scientific Editor at _[The Science Breaker](https://thesciencebreaker.org/)_
+<ul style="list-style-type:none;">
+<li><sup> The goal of this journal is to make the core ideas behind published scientific research accessible to a wide audience to foster interest in science. It is also an excellent and informal way for scientists to get a flavor of the research and scientific methods of very different fields. As an editor I propose new articles and edit them to make them easier to read for laypersons.
+</sup></li></ul>
+
+
+**March 2018--present**  
 -- PhD student at _University of Geneva_. 
 <ul style="list-style-type:none;">
 <li><sup>I was working in pure mathematics from 2018 until early
@@ -159,6 +166,7 @@ mathematics in the following areas:
 
 **Applied mathematics:**  
 -- Bayesian statistics  
+-- Inverse problems  
 -- Computer vision  
 -- Machine learning  
 -- Neural networks  
