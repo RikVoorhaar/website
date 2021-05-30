@@ -13,7 +13,16 @@ toc: true
 </style> 
 
 ## Research
-{{site.data.cv.research-interests}}
+
+_Research interests_:
+{%- for item in site.data.cv.research-interests-summary -%}
+<br>-- {{item}}
+{% endfor %}
+
+{% for item in site.data.cv.research-interests-text %}
+{{item}}
+{% endfor %}
+<!-- {{site.data.cv.research-interests}} -->
 
 ## Publications and preprints
 {% for item in site.data.cv.publications %}
@@ -40,7 +49,7 @@ toc: true
 {% for item in site.data.cv.work %}
 <div class="listWithDescription" markdown="1">
 **{{item.date}}**:  
--- {{item.name}}{% if item.location %} at _{{item.location}}_{% endif %}.
+-- {{item.name}}{% if item.location %} at _{% if item.url %}[{{item.location}}]({{item.url}}){% else %}{{item.location}}{%endif%}_{% endif %}.
 <description>{{item.description}}</description>
 </div>
 <br>
@@ -52,7 +61,7 @@ toc: true
 {% for item in site.data.cv.education %}
 <div class="listWithDescription" markdown="1">
 {%if item.date %}<br>**{{item.date}}**<br>{% endif %}
--- {{item.name}}, at _{{item.location}}{% if item.note %} {{item.note}}{% endif %}_.
+-- {{item.name}}, at _{% if item.url %}[{{item.location}}]({{item.url}}){% else %}{{item.location}}{%endif%}{% if item.note %} {{item.note}}{% endif %}_.
 </div>
 {% endfor %}
 

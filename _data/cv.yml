@@ -1,17 +1,12 @@
-research-interests:
-  "_Research interests:_
+research-interests-text:
+  - "Currently I'm working with [Bart Vandereycken](https://www.unige.ch/math/vandereycken/) on low rank methods in tensor networks. Specifically I'm exploring the relationship between Tensor Train / MPS networks and random forests. It seems that tensor train networks can be used to define a general-purpose machine learning estimator that has similar properties to random forests. I'm using Riemannian methods to optimize them, and I'm trying to keep all my code compatible with several numerical Python libraries. "
+  - "On the weekends I like to study topics in data science, bioinformatics and scientific computing to broaden my knowledge. I do this by either taking online courses, reading text books, or doing small programming projects. For the latter I usually write blog posts on this website."
 
-  <ul>
-  <li> Numerical linear algebra </li>
-  <li> Tensor networks </li>
-  <li> Non-convex and Riemannian optimization </li>
-  <li> Machine learning </li>
-  </ul>
-
-  Currently I'm working with [Bart Vandereycken](https://www.unige.ch/math/vandereycken/) on low rank methods in tensor networks. Specifically I'm exploring the relationship between Tensor Train / MPS networks and random forests. It seems that tensor train networks can be used to define a general-purpose machine learning estimator that has similar properties to random forests. I'm using Riemannian methods to optimize them, and I'm trying to keep all my code compatible with several numerical Python libraries. 
-  <br><br>
-  On the weekends I like to study topics in data science, bioinformatics and scientific computing to broaden my knowledge. I do this by either taking online courses, reading text books, or doing small programming projects. For the latter I usually write blog posts on this website."
-
+research-interests-summary:
+  - Numerical linear algebra
+  - Tensor networks
+  - Non-convex and Riemannian optimization
+  - Machine learning
 
 publications:
   - name: Recovering data you have never seen
@@ -60,7 +55,8 @@ open-source-contribs:
 work:
   - name: Junior Scientific Editor
     date: May 2021--present
-    location: "[The Science Breaker](https://thesciencebreaker.org/)"
+    location: The Science Breaker
+    url: https://thesciencebreaker.org/
     description: The goal of this journal is to make the core ideas behind published scientific research accessible to a wide audience to foster interest in science. It is also an excellent and informal way for scientists to get a flavor of the research and scientific methods of very different fields. As an editor I propose new articles and edit them to make them easier to read for laypersons.
   - name: PhD student
     date: March 2018--present
@@ -76,13 +72,16 @@ work:
 
 education:
   - date: 2021/02
-    name: "[Neuroscience and Neuroimaging Specialization](https://www.coursera.org/account/accomplishments/specialization/REWS86DYU496)"
+    name: "Neuroscience and Neuroimaging Specialization"
+    url: "https://www.coursera.org/account/accomplishments/specialization/REWS86DYU496"
     location: Coursera
   - date: 2020/09
-    name: "[Genomic Data Science Specialization](https://www.coursera.org/account/accomplishments/specialization/NYQNJVCT7XV3)"
+    name: "Genomic Data Science Specialization"
+    url: "https://www.coursera.org/account/accomplishments/specialization/NYQNJVCT7XV3"
     location: Coursera
   - date: 2019/08
-    name: "[Advanced Machine Learning Specialization](https://www.coursera.org/account/accomplishments/specialization/5BM8U5DJJCJN)"
+    name: "Advanced Machine Learning Specialization"
+    url: "https://www.coursera.org/account/accomplishments/specialization/5BM8U5DJJCJN"
     location: Coursera
   - date: 2016-2017
     name: Masterclass Geometry, Topology and Physics
