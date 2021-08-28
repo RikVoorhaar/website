@@ -7,5 +7,6 @@
     "cSpell.ignoreWords": [
         "imgs",
         "sobel"
-    ]
+    ],
+    "python.pythonPath": "/home/rik/.conda/envs/website/bin/python"
 }

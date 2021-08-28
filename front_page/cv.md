@@ -12,6 +12,9 @@ toc: true
 }
 </style> 
 
+<!-- You can download my CV as well:
+[.pdf]()
+[.docx] -->
 ## Research
 
 _Research interests_:
