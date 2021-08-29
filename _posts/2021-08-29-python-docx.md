@@ -65,7 +65,14 @@ with open('resume.xml', 'w') as f:
 	f.write(document._element.xml)
 ```
 
-It seems the problem was that the text box on the right was nested inside an other object, which is apparently not handled properly. This issue was easy to fix by modifying the Word document. However, the right bar on the side consists of 2 textboxes, and the top box with my contact information _does_ dissappear if I change the first paragraph. _But_, it does not dissapear if I change the second paragraph; it only happens if I change paragraph 1 or 3 (and the latter is empty). I tried inserting two paragraphs before this particular paragraph, or changing the style of this particular paragraph, but the issue remains.
+It seems the problem was that the text box on the right was nested inside an
+other object, which is apparently not handled properly. This issue was easy to
+fix by modifying the Word document. However, the right bar on the side consists
+of 2 text boxes, and the top box with my contact information _does_ disappear if
+I change the first paragraph. _But_, it does not disappear if I change the
+second paragraph; it only happens if I change paragraph 1 or 3 (and the latter
+is empty). I tried inserting two paragraphs before this particular paragraph, or
+changing the style of this particular paragraph, but the issue remains.
 
 Looking at the XML the issue is clear: the text box element lies nested inside
 this paragraph! It turned out to be a bit tricky to avoid this, so for now let
@@ -113,7 +120,7 @@ In Word, each paragraph (`<p>`) is split up in multiple runs (`<r>`). What we
 see here is that originally the paragraph was two runs, and after modifying it,
 it became a single run. However, it seems that in both cases the style
 information is exactly the same, so I don't understand why the style changes
-after modification. In this case if I retype the word 'Resume' in the orginal
+after modification. In this case if I retype the word 'Resume' in the original
 word document, this paragraph become a single run, but _still_ the style changes
 after editing, and I still don't see why this happens when looking at the XML.
 
@@ -124,7 +131,7 @@ me at where exactly the style information is stored, but either way there is a
 simple workaround to what we're trying to do: we can simply modify the text of
 the first _run_ in the paragraph, rather than clearing the entire paragraph and
 adding a new one. This in fact also works for editing the first paragraph,
-where before we had problems with disappearing textboxes:
+where before we had problems with disappearing text boxes:
 
 
 ```python
@@ -175,13 +182,13 @@ else:
 
 
 Seems like there is unfortunately no matching paragraph! This is because the 
-paragraph we want is _inside a textbox_, and modifying textboxes is not supported
+paragraph we want is _inside a text box_, and modifying text boxes is not supported
 in `python-docx`. This is a known issue, but instead of giving up I decided to
-add support for modifying textboxes to `python-docx` myself! It turned out not to
+add support for modifying text boxes to `python-docx` myself! It turned out not to
 be too difficult to implement, despite my limited knowledge of both the package
 and the inner structure of Word documents.
 
-The first step is understanding how textboxes are encoded in the XML. It turns
+The first step is understanding how text boxes are encoded in the XML. It turns
 out that the structure is something like this:
 
 ```XML
@@ -217,7 +224,7 @@ The insides of the two `<w:txbxContent>` elements are exactly identical. The
 information is stored twice probably for legacy reasons. A quick Google reveals
 that `wps` is an XML namespace introduced in Office 2010, and WPS is short for
 Word Processing Shape. The textbox is therefore stored twice to maintain
-backwards compatability with older Word versions. Not sure many people still use
+backwards compatibility with older Word versions. Not sure many people still use
 Office 2006... Either way, this means that if we want to update the contents of
 the textbox, we need to do it in two places. 
 
@@ -340,7 +347,7 @@ Now to insert a new skill, we need to create a new paragraph with the text
 paragraphs `insert_paragraph_before` method with appropriate text and style
 information. The paragraph in question is the one containing the word
 "Research". I want to copy the style of this paragraph to the new paragraph, but
-for some reason the style information is empty for this paragrpah. However, I
+for some reason the style information is empty for this paragraph. However, I
 know that the style of this paragraph should be the `'Skillsentries'`, so I can
 just use that directly.
 
