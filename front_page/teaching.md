@@ -6,18 +6,26 @@ permalink: /teaching/
 
 If I'm assisting a course you're taking this semester, don't hesitate to contact me
 via email or Discord if you have questions!
-
 ## Current Teaching
-**Autumn 2020**  
--- Probabilités et statistique pour informaticiens: [Moodle page](https://moodle.unige.ch/course/view.php?id=8953), [Solutions page](https://probastat2020.readthedocs.io/fr/latest/)  
+
+**Spring 2022**  
+-- Student seminar in applied mathematics  
+-- Laboratoire de programmation mathématique 
+
+**Autumn 2021**
+-- Analyse Numérique
+
+## Past Teaching
+
+### Université de Genève  
 
 **Spring 2021**  
 -- Optimization with applications II: [Solutions page](https://optimization-ii-2021.readthedocs.io/en/latest/index.html)  
 -- Travaux Pratiques
 
-## Past Teaching
+**Autumn 2020**  
+-- Probabilités et statistique pour informaticiens: [Moodle page](https://moodle.unige.ch/course/view.php?id=8953), [Solutions page](https://probastat2020.readthedocs.io/fr/latest/)  
 
-### Université de Genève
 **Spring 2020**  
 -- Mathématiques pour informaticiens  
 -- Travaux Pratiques
