@@ -31,10 +31,12 @@ I don't shy away from any cuisine, and I'm constantly trying to improve and lear
 
 ### Reading
 
-I like to read hard sci-fi books, some of my favorite series are The Expanse (Corey), Foundation
-(Asimov), The Bobiverse (Taylor) and Old Man's War (Scalzi). I'm also a big fan of the books of
-Murakami. I also like to read fantasy books, and I recently came around to reading the Lord of the
-Rings, and the long Stormlight Archive series by Sanderson. Check out [my goodreads
+I like to read hard sci-fi books, some of my favorite series are The Expanse
+(Corey), Foundation (Asimov), The Bobiverse (Taylor) and Old Man's War (Scalzi).
+I'm also a big fan of the books of Murakami. I also like to read fantasy books,
+and I recently came around to reading the Lord of the Rings, and the long
+Stormlight Archive series by Sanderson. Currently I'm working my way through the
+Song of Ice and Fire series by Martin. Check out [my goodreads
 page](https://www.goodreads.com/user/show/62542056-tilpo) for more!
 
 ### Engineering
