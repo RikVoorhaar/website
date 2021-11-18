@@ -1,7 +1,7 @@
 ---
 layout: posts 
 title:  "Low-rank matrices: using structure to recover missing data" 
-date:   2021-05-31
+date:   2021-09-26
 categories: machine-learning mathematics linear-algebra code
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: posts 
 title:  "How to edit Microsoft Word documents in Python" 
-date:   2021-05-31
+date:   2021-08-29
 categories: data-mining code
 ---
 
