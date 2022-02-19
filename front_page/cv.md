@@ -56,8 +56,9 @@ _Research interests_:
 {% for item in site.data.cv.work %}
 <div class="listWithDescription" markdown="1">
 **{{item.date}}**:  
--- {{item.name}}{% if item.location %} at _{% if item.url %}[{{item.location}}]({{item.url}}){% else %}{{item.location}}{%endif%}_{% endif %}.
-<description>{{item.description}}</description>
+{% if item.img %}<div style="padding-right:10px; float: left"><img src="{{item.img}}"></div>{% endif %}
+ {{item.name}}{% if item.location %} at _{% if item.url %}[{{item.location}}]({{item.url}}){% else %}{{item.location}}{%endif%}_{% endif %}.  
+<small>{{item.description}}</small>
 </div>
 <br>
 {% endfor %}
