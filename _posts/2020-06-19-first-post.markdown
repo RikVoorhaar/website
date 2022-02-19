@@ -3,11 +3,12 @@ layout: posts
 title:  "First post"
 date:   2020-06-19 14:19:44 +0200
 categories: jekyll
+header: 
+    teaser: "/imgs/teasers/first-post.jpg"
+excerpt: "My first post in this blog"
 ---
 
 Ah, the classical "first post", often the only post in the blog. Let us hope this is not the case.
-
-<!--more-->
 
 I feel like I should write down some things about my side projects. I tried using Medium, but it has
 two significant problems: the platform feels too monetized, and it really doesn't work very well

@@ -3,6 +3,9 @@ layout: posts
 title:  "Blind Deconvolution #1: Non-blind Deconvolution" 
 date:   2021-03-13 
 categories: machine-learning signal-processing computer-vision
+excerpt: "Deconvolution is one of the cornerstones of image processing. Let's take a look at how it works."
+header: 
+    teaser: "/imgs/teasers/st-vitus-blur.png"
 ---
 
 
@@ -12,7 +15,7 @@ limited information about how they are blurred. Then I went on to do some actual
 started diving into the fascinating topic of blind deconvolution. This post will be the first of
 several, where I dive into blind deconvolution. In the end I will actually look at the
 implementation of one or two blind deconvolution methods. It turns out blind deconvolution is very
-difficicult and has a vast scope of literature associated to it. Therefore I will split it up into
+difficult and has a vast scope of literature associated to it. Therefore I will split it up into
 several posts. This is my preliminary plan:
 
 - Part I: Introduction to convolution and deconvolution

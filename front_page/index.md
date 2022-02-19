@@ -2,6 +2,7 @@
 layout: home
 title: Welcome
 permalink: /
+entries_layout: grid
 ---
 
 I am a math PhD student at the University of Geneva, doing research in tensor networks, numerical

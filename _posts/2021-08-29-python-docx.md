@@ -3,6 +3,9 @@ layout: posts
 title:  "How to edit Microsoft Word documents in Python" 
 date:   2021-08-29
 categories: data-mining code
+excerpt: "Parsing and editing Word documents automatically can be extremely useful, but doing it in Python is not that straightforward."
+header: 
+    teaser: "/imgs/python_docx/doc_comparison.png"
 ---
 
 In preparation for the job market, I started polishing my CV. I try to keep the

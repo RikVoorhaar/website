@@ -3,7 +3,7 @@ main:
   - title: "Hobbies"
     url: /about/
   - title: "Blog"
-    url: /blog/
+    url: /
   - title: "CV/Publications"
     url: /cv/
   - title: "Teaching"

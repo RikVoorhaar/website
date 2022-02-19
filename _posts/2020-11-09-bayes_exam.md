@@ -3,6 +3,9 @@ layout: posts
 title:  "Modeling uncertainty in exam scores"
 date:   2020-11-09
 categories: data-science statistics education
+excerpt: "We use exams to determine how much a student knows, but exams aren't perfect. How can we estimate the uncertainty in students' exams scores?"
+header: 
+    teaser: "/imgs/teasers/bayes-exam.jpg"
 ---
 
 We widely use exams in education to gauge the level of students. The result of an exam is really

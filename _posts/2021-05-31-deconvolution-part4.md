@@ -3,6 +3,9 @@ layout: posts
 title:  "Blind deconvolution #4: Blind deconvolution" 
 date:   2021-05-31
 categories: machine-learning computer-vision
+excerpt: "Finally, let's look at how we can automatically sharpen images, without knowing how they were blurred in the first place."
+header: 
+    teaser: "/imgs/teasers/st-vitus-deblurred.png"
 ---
 
 In this final part on the deconvolution series, we will look at blind deconvolution. That is, we
