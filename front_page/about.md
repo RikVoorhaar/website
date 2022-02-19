@@ -19,10 +19,12 @@ Les Paul model (tuned to drop B♭!). I also have more pairs of headphones than 
 
 ### Gaming
 
-I really enjoy playing open world (both RPG and survivalcraft) games, the feeling of freedom,
-exploration  and creativity is wonderful. I also really enjoy replaying old (Nintendo) games from
-my youth. I'm very enthusiastic about speedrunning and its wonderful community. It feels
-like taking the scientific approach to gaming.
+I really enjoy playing open world (both RPG and survivalcraft) games, the
+feeling of freedom, exploration  and creativity is wonderful. I also really
+enjoy replaying old (Nintendo) games from my youth. Sandbox games and grand
+strategy games are also amazing. I'm very enthusiastic about speedrunning and
+its wonderful community. It feels like taking the scientific approach to gaming.
+Check out my [Steam account](https://steamcommunity.com/profiles/76561197996562422)!
 
 ### Cooking
 
@@ -33,11 +35,10 @@ I don't shy away from any cuisine, and I'm constantly trying to improve and lear
 
 I like to read hard sci-fi books, some of my favorite series are The Expanse
 (Corey), Foundation (Asimov), The Bobiverse (Taylor) and Old Man's War (Scalzi).
-I'm also a big fan of the books of Murakami. I also like to read fantasy books,
-and I recently came around to reading the Lord of the Rings, and the long
-Stormlight Archive series by Sanderson. Currently I'm working my way through the
-Song of Ice and Fire series by Martin. Check out [my goodreads
-page](https://www.goodreads.com/user/show/62542056-tilpo) for more!
+I'm also a big fan of the books of Murakami. Recently I've been on  a spree of
+reading long fantasy series. I have read the Lord of the Rings, Stormlight
+Archive, and Song of Ice and Fire. At the moment I'm working my way through the
+Mistborn series. Check out [my goodreads page](https://www.goodreads.com/user/show/62542056-tilpo) for more!
 
 ### Engineering
 
@@ -45,22 +46,16 @@ I am fascinated with engineering of many kinds. For example I am fascinated by l
 engineering, rocket science, semiconductors, and computing. Rather than academic research in these
 areas I tend to watch YouTube channels and read wikipedia articles. There is so much fascinating
 thought behind everything we experience around us. Here are some of my favorite YouTube channels:
-- [New Mind](https://www.youtube.com/c/NewMind) Great production quality videos about both the
-  history and the cutting edge of important technology.
-- [Scott Manley](https://www.youtube.com/c/szyzyg) Frequent videos about recent space-related events
-  as well as fascinating stories about the science and history of space exploration. 
-- [TechTechPotato](https://www.youtube.com/c/TechTechPotato) Frequent videos about news in the 
-  semiconductor industry. Dr. Ian Cutress is extremely knowledgeable about the semiconductor
-  industry, and his videos are very insightful.
-- [Practical Engineering](https://www.youtube.com/c/PracticalEngineeringChannel) Interesting videos
-  doing deep dives into modern civil engineering, with great explanation about the concepts behind
-  them.
-- [Applied Science](https://www.youtube.com/c/AppliedScience) Channel documenting and explaining
-  hi-tech science projects, such as building a DIY electron microscope or mass spectrometer. He
-  shows that the ideas behind modern applied science are often simpler and easier to implement than
-  you might think.
-- [Retro Game Mechanics Explained](https://www.youtube.com/c/RetroGameMechanicsExplained) This
-  channel makes videos explaining the hardware and software behind old video game consoles. For
-  example he has fantastic videos about how the sprite system of the original Pokémon Red/Blue
-  works, and explains in detail how this could lead to the famous MissingNo. glitch. This gives a
-  lot of insight on how computers and code work at a low level.
+- [Applied Science](https://www.youtube.com/c/AppliedScience) 
+- [Asianometry](https://www.youtube.com/c/Asianometry)
+- [City Beautiful](https://www.youtube.com/c/CityBeautiful)
+- [Linus Tech Tips](https://www.youtube.com/c/LinusTechTips)
+- [New Mind](https://www.youtube.com/c/NewMind) 
+- [Practical Engineering](https://www.youtube.com/c/PracticalEngineeringChannel)
+- [Real Engineering](https://www.youtube.com/c/RealEngineering)
+- [Retro Game Mechanics Explained](https://www.youtube.com/c/RetroGameMechanicsExplained)
+- [Scott Manley](https://www.youtube.com/c/szyzyg)
+- [Tech Ingredients](https://www.youtube.com/c/TechIngredients)
+- [TechTechPotato](https://www.youtube.com/c/TechTechPotato) 
+- [Tom Scott](https://www.youtube.com/c/TomScottGo)
+- [Wendover Productions](https://www.youtube.com/c/Wendoverproductions)
