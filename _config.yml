@@ -123,6 +123,9 @@ author:
     - label: "Goodreads"
       icon: "fab fa-fw fa-goodreads"
       url: "https://www.goodreads.com/user/show/62542056-tilpo"
+    - label: "Steam"
+      icon: "fab fa-fw fa-steam"
+      url: "https://steamcommunity.com/profiles/76561197996562422"
 # Site Footer
 footer:
   links:

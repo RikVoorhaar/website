@@ -109,15 +109,15 @@ education:
 programming-languages:
   - name: Advanced
     items:
-      - Python
+      - <i class="fab fa-fw fa-python"></i> Python
   - name: Intermediate
     items:
-      - LaTeX
-      - Mathematica
+      - <i class="fas fa-fw fa-superscript"></i> LaTeX
+      - <i class="fas fa-fw fa-square-root-variable"></i> Mathematica
   - name: Beginner
     items:
-      - C/C++
-      - R
+      - <i class="fas fa-fw fa-c"></i> C/C++
+      - <i class="fas fa-fw fa-r"></i> R
   - name: Tools
     istools: yes
     items:
