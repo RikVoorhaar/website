@@ -1,6 +1,6 @@
 ---
 layout: home
-title: Welcome
+title: Hello
 permalink: /
 entries_layout: grid
 ---
@@ -10,3 +10,5 @@ linear algebra and machine learning. I like to do data science as a hobby, and I
 website as a blog and post some of my projects.
 
 Feel free to contact me if you're interested in any of the things I do!
+
+# My blog
