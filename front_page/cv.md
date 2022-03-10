@@ -36,6 +36,7 @@ _Research interests_:
 
 <div class="listWithDescription" markdown="1">
 [{{item.name}}]({{item.url}}) {{item.date}}{% if item.publisher %}, _published in {{item.publisher}}_{% endif %}
+{% if item.coauthor %}<br> Joint work with {{item.coauthor}} {% endif %}
 {% if item.description %}<description>{{item.description}}</description>{% endif %}
 <br>
 </div>

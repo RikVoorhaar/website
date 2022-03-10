@@ -1,5 +1,6 @@
 research-interests-text:
-  - "Currently I'm working with [Bart Vandereycken](https://www.unige.ch/math/vandereycken/) on low rank methods in tensor networks. Specifically I'm exploring the relationship between Tensor Train / MPS networks and random forests. It seems that tensor train networks can be used to define a general-purpose machine learning estimator that has similar properties to random forests. I'm using Riemannian methods to optimize them, and I'm trying to keep all my code compatible with several numerical Python libraries. "
+  - "Generally I'm interested in tensors and numerical linear algebra with a focus on applications to machine learning. Currently I'm working on developing a streaming sketch algorithm for tensor trains. This will make it feasible to compute
+  tensor train decompositions of very large tensors in a distributed setting. "
   - "On the weekends I like to study topics in data science, bioinformatics and scientific computing to broaden my knowledge. I do this by either taking online courses, reading text books, or doing small programming projects. For the latter I usually write blog posts on this website."
 
 research-interests-summary:
@@ -9,6 +10,11 @@ research-interests-summary:
   - Machine learning
 
 publications:
+  - name: "TTML: tensor trains for general supervised machine learning"
+    date: March 2022
+    url: https://arxiv.org/abs/2203.04352
+    description: We describe how to use tensor trains to parametrize discretized functions, and how to get a useful supervised machine learning estimator out of it. Learning and initializing these tensor trains is a bit tricky, but definitely doable. I also wrote <a href="/discrete-function-tensor/">a blog post</a> about this paper, explaining the main ideas in a more accessible way.
+    coauthor: Bart Vandereycken
   - name: Recovering data you have never seen
     date: April 2021
     url: https://doi.org/10.25250/thescbr.brk513
@@ -29,7 +35,7 @@ publications:
   - name: Parallel 2-transport and 2-group torsors
     date: October 2018
     url: https://arxiv.org/abs/1811.10060
-    description:  This work is a continuation of my masters thesis. The idea is to study a toy model of principal 2-bundles and 2-transport by restricting to a stricter notion, where the fibers are all strict 2-groups. This allows to get some nice generalizations of the classical theory, which would be harder to proof with the more useful notions weaker notions.
+    description:  This work is a continuation of my masters thesis. The idea is to study a toy model of principal 2-bundles and 2-transport by restricting to a stricter notion, where the fibers are all strict 2-groups. This allows to get some nice generalizations of the classical theory, which would be harder to proof in the more general setting.
     publisher:
     coauthor: 
   - name: Higher Gauge Theory
