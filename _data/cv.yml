@@ -23,12 +23,13 @@ publications:
     coauthor: 
   - name: On certain Hochschild cohomology groups for the small quantum group
     date: April 2021
-    url: https://arxiv.org/abs/2104.05113
+    publisher: Journal of Algebra
+    url: https://doi.org/10.1016/j.jalgebra.2022.04.034
     description: We apply the algorithm for the BGG resolution developed in the previous paper to compute Hochschild cohomology of blocks of the small quantum group. This allows us to study the center of the small quantum group, and our computations give stronger evidence for several conjectures concerning the small quantum group. My contribution was writing all the code needed for this project.
     coauthor: Nicolas Hemelsoet
   - name: A computer algorithm for the BGG resolution
     date: November 2019
-    url: https://www.sciencedirect.com/science/article/abs/pii/S0021869320305135
+    url: https://doi.org/10.1016/j.jalgebra.2020.09.043
     description: In this work we describe an algorithm to compute the BGG resolution for modules over a simple Lie algebra. This is then used to compute various thing like the Hochschild cohomology of some flag varieties. My contribution was coding the implementation of the algorithm, and solving several algorithmic problems.
     publisher: Journal of Algebra
     coauthor: Nicolas Hemelsoet
