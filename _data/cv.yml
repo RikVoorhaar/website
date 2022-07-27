@@ -63,17 +63,17 @@ open-source-contribs:
 
 
 work:
+  - name: PhD student
+    date: March 2018--December 2022 (expected)
+    location: University of Geneva
+    description: I was working in pure mathematics from 2018 until early 2020, when I switched research direction to applied math. Over the past few years a significant fraction of my time is spent writing research code in Python, both numerical code and code for computer algebra. I spend about 20% of my time teaching. I also spend about 20% of my time studying to broaden my knowledge about data science and scientific computing, either by doing online courses, reading text books, or doing small programming projects.
+    img: "/assets/images/fac sciences_pant.png"
   - name: Senior Scientific Editor
     date: May 2021--present
     location: The Science Breaker
     url: https://thesciencebreaker.org/
     description: The goal of this journal is to make the core ideas behind published scientific research accessible to a wide audience to foster interest in science. It is also an excellent and informal way for scientists to get a flavor of the research and scientific methods of very different fields. As an editor I propose new articles and edit them to make them easier to read for laypersons.
     img: "/assets/images/tsb-logo-small.png"
-  - name: PhD student
-    date: March 2018--present
-    location: University of Geneva
-    description: I was working in pure mathematics from 2018 until early 2020, when I switched research direction to applied math. Over the past few years a significant fraction of my time is spent writing research code in Python, both numerical code and code for computer algebra. I spend about 20% of my time teaching. I also spend about 20% of my time studying to broaden my knowledge about data science and scientific computing, either by doing online courses, reading text books, or doing small programming projects.
-    img: "/assets/images/fac sciences_pant.png"
   - name: Teaching assistant
     date: 2014-2016
     location: Utrecht University
