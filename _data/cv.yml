@@ -10,9 +10,14 @@ research-interests-summary:
   - Machine learning
 
 publications:
+  - name: "Streaming Tensor Train Approximation"
+    date: August 2022
+    url: https://doi.org/10.48550/arXiv.2208.02600
+    description: Inspired by the generalized Nyström approximation for low-rank matrices, we created a randomized streaming algorithm for computing tensor trains. This algorithm can quickly compute accurate approximations of a wide variety of tensors (multi-dimensional arrays). It does this by 'sketching' the tensor by multiplying with random tensors to quickly find a small subspace in which it is easy to approximate the tensor. This is a streaming algorithm, which means that we only need to do a single pass over the data of the tensor we want to approximate. It also means it works really well in a distributed setting, and scales very well to big data.
+    coauthor: Daniel Kressner and Bart Vandereycken
   - name: "TTML: tensor trains for general supervised machine learning"
     date: March 2022
-    url: https://arxiv.org/abs/2203.04352
+    url: https://doi.org/10.48550/arXiv.2203.04352
     description: We describe how to use tensor trains to parametrize discretized functions, and how to get a useful supervised machine learning estimator out of it. Learning and initializing these tensor trains is a bit tricky, but definitely doable. I also wrote <a href="/discrete-function-tensor/">a blog post</a> about this paper, explaining the main ideas in a more accessible way.
     coauthor: Bart Vandereycken
   - name: Recovering data you have never seen
@@ -48,6 +53,9 @@ publications:
 
 
 open-source-contribs:
+  - name: tt-sketch python package
+    url: https://github.com/RikVoorhaar/tt-sketch
+    description: A randomized streaming algorithm for computing tensor trains. This library implements several fast algorithms for approximating tensors by tensor trains. It is written in an abstract object-oriented fashion, and it is very easy to extent. It supports quite a few different types of tensors.
   - name: ttml python package
     url: https://github.com/RikVoorhaar/ttml
     description: A novel machine learning estimator based on Tensor Trains. I wrote this library by myself, and includes many features for optimizing tensor trains in addition to the machine learning capabilities.
@@ -121,10 +129,11 @@ programming-languages:
     items:
       - <i class="fas fa-fw fa-superscript"></i> LaTeX
       - <i class="fas fa-fw fa-square-root-variable"></i> Mathematica
+      - <i class="fas fa-fw fa-c"></i> C/C++
   - name: Beginner
     items:
-      - <i class="fas fa-fw fa-c"></i> C/C++
       - <i class="fas fa-fw fa-r"></i> R
+      - <i class="fas fa-fw fa-s"></i> SQL
   - name: Tools
     istools: yes
     items:
@@ -165,6 +174,7 @@ math:
       - Convex optimization
       - Inverse problems  
       - Machine learning  
+      - Multivariate statistics  
       - Neural networks  
       - Non-convex optimization  
       - Numerical linear algebra  
@@ -172,6 +182,7 @@ math:
       - Riemannian optimization  
       - Signal processing  
       - Tensor networks  
+      - Time series analysis  
   - title: Pure mathematics
     items:
       - Algebraic topology  

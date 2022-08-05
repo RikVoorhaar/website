@@ -15,7 +15,7 @@ toc: true
 Below is a detailed CV. If you want to **download a traditional CV**, click the icon below.
 
 <span style="display:inline-block; width: 50px;"></span>
-<a href="https://github.com/RikVoorhaar/RikVoorhaar.github.io/raw/master/_data/resume.pdf" target="_blank"> <i class="fa fa-file-pdf fa-3x"></i></a>
+<a href="https://github.com/RikVoorhaar/RikVoorhaar.github.io/raw/master/_data/cv.pdf" target="_blank"> <i class="fa fa-file-pdf fa-3x"></i></a>
 <!-- <span style="display:inline-block; width: 20px;"></span>
 <a href="https://github.com/RikVoorhaar/RikVoorhaar.github.io/raw/master/_data/resume.docx"> <i class="fa fa-file-word fa-3x"></i> </a> -->
 
