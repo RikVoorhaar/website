@@ -19,7 +19,29 @@ Below is a detailed CV. If you want to **download a traditional CV**, click the 
 <!-- <span style="display:inline-block; width: 20px;"></span>
 <a href="https://github.com/RikVoorhaar/RikVoorhaar.github.io/raw/master/_data/resume.docx"> <i class="fa fa-file-word fa-3x"></i> </a> -->
 
-## Research
+## Work experience
+
+{% for item in site.data.cv.work %}
+<div class="listWithDescription" markdown="1">
+**{{item.date}}**:  
+{% if item.img %}<div style="padding-right:10px; float: left"><img src="{{item.img}}"></div>{% endif %}
+ {{item.name}}{% if item.location %} at _{% if item.url %}[{{item.location}}]({{item.url}}){% else %}{{item.location}}{%endif%}_{% endif %}.  
+<small>{{item.description}}</small>
+</div>
+<br>
+{% endfor %}
+ 
+
+## Education
+
+{% for item in site.data.cv.education %}
+<div class="listWithDescription" markdown="1">
+{%if item.date %}<br>**{{item.date}}**<br>{% endif %}
+-- {{item.name}}, at _{% if item.url %}[{{item.location}}]({{item.url}}){% else %}{{item.location}}{%endif%}{% if item.note %} {{item.note}}{% endif %}_.
+</div>
+{% endfor %}
+
+<!-- ## Research
 
 _Research interests_:
 {%- for item in site.data.cv.research-interests-summary -%}
@@ -28,8 +50,7 @@ _Research interests_:
 
 {% for item in site.data.cv.research-interests-text %}
 {{item}}
-{% endfor %}
-<!-- {{site.data.cv.research-interests}} -->
+{% endfor %} -->
 
 ## Publications and preprints
 {% for item in site.data.cv.publications %}
@@ -52,27 +73,6 @@ _Research interests_:
 </div>
 {% endfor %}
 
-## Work experience
-
-{% for item in site.data.cv.work %}
-<div class="listWithDescription" markdown="1">
-**{{item.date}}**:  
-{% if item.img %}<div style="padding-right:10px; float: left"><img src="{{item.img}}"></div>{% endif %}
- {{item.name}}{% if item.location %} at _{% if item.url %}[{{item.location}}]({{item.url}}){% else %}{{item.location}}{%endif%}_{% endif %}.  
-<small>{{item.description}}</small>
-</div>
-<br>
-{% endfor %}
-
-
-## Education
-
-{% for item in site.data.cv.education %}
-<div class="listWithDescription" markdown="1">
-{%if item.date %}<br>**{{item.date}}**<br>{% endif %}
--- {{item.name}}, at _{% if item.url %}[{{item.location}}]({{item.url}}){% else %}{{item.location}}{%endif%}{% if item.note %} {{item.note}}{% endif %}_.
-</div>
-{% endfor %}
 
 ## Skills
 

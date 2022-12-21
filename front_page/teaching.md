@@ -4,9 +4,14 @@ title: Teaching
 permalink: /teaching/
 ---
 
-If I'm assisting a course you're taking this semester, don't hesitate to contact me
-via email or Discord if you have questions!
-## Current Teaching
+I have taught a variety of courses at the University of Geneva and Utrecht University. Below is a list of courses I have taught, and links to the course pages and solutions.
+
+## Past Teaching
+
+### Université de Genève  
+
+**Autumn 2022**
+-- Analyse Numérique
 
 **Spring 2022**  
 -- Student seminar in applied mathematics  
@@ -15,9 +20,6 @@ via email or Discord if you have questions!
 **Autumn 2021**
 -- Analyse Numérique
 
-## Past Teaching
-
-### Université de Genève  
 
 **Spring 2021**  
 -- Optimization with applications II: [Solutions page](https://optimization-ii-2021.readthedocs.io/en/latest/index.html)  
