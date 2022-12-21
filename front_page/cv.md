@@ -7,15 +7,41 @@ toc: true
 
 
 <style> 
-.listWithDescription p{
-  margin: 0.25em
-}
+  .listWithDescription p{
+    margin: 0.25em
+  }
+
+  .container {
+    display: flex;
+  }
+  .left {
+    width: 100px;
+    margin-right: 20px
+  }
+  .right {
+    flex: 1
+  }
+  small {
+    font-family: $helvetica;
+    font-size: .8em;
+  }
+
+  .experience-header {
+    font-size: 1.1em;
+    font-weight: bold;
+  }
 </style> 
 
-Below is a detailed CV. If you want to **download a traditional CV**, click the icon below.
+<div class="container">
+  <div class="left">
+    <span style="display:inline-block; width: 50px;"></span>
+    <a href="https://github.com/RikVoorhaar/RikVoorhaar.github.io/raw/master/_data/cv.pdf" target="_blank"> <i class="fa fa-file-pdf fa-3x"></i></a>
+  </div>
+  <div class="right">
+    Below is a detailed CV. If you want to <strong>download a traditional CV</strong>, click the icon on the left.
+  </div>
+</div>
 
-<span style="display:inline-block; width: 50px;"></span>
-<a href="https://github.com/RikVoorhaar/RikVoorhaar.github.io/raw/master/_data/cv.pdf" target="_blank"> <i class="fa fa-file-pdf fa-3x"></i></a>
 <!-- <span style="display:inline-block; width: 20px;"></span>
 <a href="https://github.com/RikVoorhaar/RikVoorhaar.github.io/raw/master/_data/resume.docx"> <i class="fa fa-file-word fa-3x"></i> </a> -->
 
@@ -23,10 +49,17 @@ Below is a detailed CV. If you want to **download a traditional CV**, click the 
 
 {% for item in site.data.cv.work %}
 <div class="listWithDescription" markdown="1">
-**{{item.date}}**:  
-{% if item.img %}<div style="padding-right:10px; float: left"><img src="{{item.img}}"></div>{% endif %}
- {{item.name}}{% if item.location %} at _{% if item.url %}[{{item.location}}]({{item.url}}){% else %}{{item.location}}{%endif%}_{% endif %}.  
-<small>{{item.description}}</small>
+  <div class="container">
+    <div class="left">
+      {% if item.img %}<div style="padding-right:10px; float: left"><img src="{{item.img}}"></div>{% endif %}
+    </div>
+    <div class="right">
+    <em>{{item.date}}</em>  
+    <div class="experience-header">
+      {{item.name}}{% if item.location %} at {% if item.url %}<a href="{{item.url}}">{{item.location}}</a>{% else %}{{item.location}}{%endif%}{% endif %}.</div>
+      <small>{{item.description}}</small>
+    </div>
+  </div>
 </div>
 <br>
 {% endfor %}
@@ -37,7 +70,7 @@ Below is a detailed CV. If you want to **download a traditional CV**, click the 
 {% for item in site.data.cv.education %}
 <div class="listWithDescription" markdown="1">
 {%if item.date %}<br>**{{item.date}}**<br>{% endif %}
--- {{item.name}}, at _{% if item.url %}[{{item.location}}]({{item.url}}){% else %}{{item.location}}{%endif%}{% if item.note %} {{item.note}}{% endif %}_.
+{{item.name}}, at _{% if item.url %}[{{item.location}}]({{item.url}}){% else %}{{item.location}}{%endif%}{% if item.note %} {{item.note}}{% endif %}_.
 </div>
 {% endfor %}
 
@@ -51,6 +84,7 @@ _Research interests_:
 {% for item in site.data.cv.research-interests-text %}
 {{item}}
 {% endfor %} -->
+
 
 ## Publications and preprints
 {% for item in site.data.cv.publications %}

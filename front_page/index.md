@@ -5,11 +5,45 @@ permalink: /
 entries_layout: grid
 ---
 
-# Hello
+<style>
+    my-picture {
+        float: right;
+        width: 200px;
+    }
+    
+    .clear {
+        clear: both;
+    }
+    
+    .container {
+        display: flex;
+    }
 
-I am a recent PhD graduate from the University of Geneva, where I did research in tensor networks, numerical linear algebra and machine learning. I like to do data science and numerical mathematics as a hobby, and I use this
-website as a blog and document some of my projects.
+    .left {
+        flex: 1;
+    }
 
-Feel free to contact me if you're interested in any of the things I do!
+    .right {
+        width: 200px;
+        margin-left: 50px;
+    }
+</style>
+
+<div class="container">
+    <div class="left">
+        <p>
+        I am a recent PhD graduate from the University of Geneva, where I did research in tensor networks, numerical linear algebra and machine learning. I like to do data science and numerical mathematics as a hobby, and I use this website as a blog and document some of my projects.
+        <br><br>
+        Feel free to contact me if you're interested in any of the things I do!
+        </p>
+    </div>
+    <div class="right">
+        <img src="/assets/images/me.jpg" alt="a picture of yours truly">
+    </div>
+</div>
+
+
+
+<!-- <div class="clear"></div> -->
 
 # My blog
