@@ -20,7 +20,7 @@ locale                   : "en-US"
 title                    : "Rik Voorhaar"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
-name                     : "Dr. Rik Voorhaar"
+name                     : "Rik Voorhaar"
 description              : ""
 url                      : "https://rikvoorhaar.com"
 baseurl                  : # the subpath of your site, e.g. "/blog"

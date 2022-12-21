@@ -214,6 +214,11 @@ body {
   }
 }
 
+.page__hero-background {
+  background-repeat: repeat-x;
+  background-image: url("/assets/images/header.png");
+  height: 200px;
+}
 .page__hero-image {
   width: 100%;
   height: auto;
