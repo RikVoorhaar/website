@@ -16,6 +16,8 @@ permalink: /about/
 
 I am a person of many interests, some more geeky than the rest. 
 
+Also check out [the website of my lovely wife Arina](https://arina-voorhaar.com/)
+
 ## Music
 
 ![Music](/assets/images/about/music.png#nice)

@@ -20,7 +20,7 @@ locale                   : "en-US"
 title                    : "Rik Voorhaar"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
-name                     : "Rik Voorhaar"
+name                     : "Dr. Rik Voorhaar"
 description              : ""
 url                      : "https://rikvoorhaar.com"
 baseurl                  : # the subpath of your site, e.g. "/blog"
@@ -29,7 +29,7 @@ teaser                   : "/assets/images/test-header-500x300.jpeg" # path of f
 logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
 masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
 # breadcrumbs            : false # true, false (default)
-words_per_minute         : 200
+words_per_minute         : 300
 comments:
   provider               : # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "custom"
   disqus:
@@ -94,7 +94,7 @@ analytics:
 
 # Site Author
 author:
-  name             : "Rik Voorhaar"
+  name             : "Dr. Rik Voorhaar"
   avatar           : "/imgs/avatar.jpg"
   bio              : "ML Software Developer and curious mind"
   location         : "Copenhagen, Denmark"
