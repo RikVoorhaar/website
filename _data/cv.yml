@@ -98,18 +98,19 @@ education:
     name: "Ph.D. in Mathematics"
     location: University of Geneva
     firstitem: true
+    note: "(mention: très bien)"
   - date: 2021/02
     name: "Neuroscience and Neuroimaging Specialization"
     url: "https://www.coursera.org/account/accomplishments/specialization/REWS86DYU496"
-    location: Coursera
+    location: Johns Hopkins University
   - date: 2020/09
     name: "Genomic Data Science Specialization"
     url: "https://www.coursera.org/account/accomplishments/specialization/NYQNJVCT7XV3"
-    location: Coursera
+    location: Johns Hopkins University
   - date: 2019/08
     name: "Advanced Machine Learning Specialization"
     url: "https://www.coursera.org/account/accomplishments/specialization/5BM8U5DJJCJN"
-    location: Coursera
+    location: Higher School of Economics
   - date: 2016-2017
     name: Masterclass Geometry, Topology and Physics
     location: University of Geneva
@@ -128,16 +129,17 @@ education:
 programming-languages:
   - name: Advanced
     items:
-      - <i class="fab fa-fw fa-python"></i> Python
+      - Python
   - name: Intermediate
     items:
-      - <i class="fas fa-fw fa-superscript"></i> LaTeX
-      - <i class="fas fa-fw fa-square-root-variable"></i> Mathematica
-      - <i class="fas fa-fw fa-c"></i> C/C++
+      - LaTeX
+      - Mathematica
+      - C/C++
   - name: Beginner
     items:
-      - <i class="fas fa-fw fa-r"></i> R
-      - <i class="fas fa-fw fa-s"></i> SQL
+      - R
+      - SQL
+      - HTML/CSS
   - name: Tools
     istools: yes
     items:

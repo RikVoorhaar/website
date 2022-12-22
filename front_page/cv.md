@@ -47,11 +47,36 @@ toc: true
 {% if item.date %}{% unless item.firstitem %}<br>{% endunless %}<em>{{item.date}}</em><br>{% endif %}
 <div class="block-line">
 <span class="experience-header">
-{{item.name}}</span>, at <em>{% if item.url %}<a href="{{item.url}}">{{item.location}}</a>{% else %}{{item.location}}{%endif%}{% if item.note %} {{item.note}}{% endif %}</em>.
+{{item.name}}</span> | <em>{{item.location}}{% if item.url %}<a href="{{item.url}}"> (Coursera certificate)</a>{%endif%}{% if item.note %} {{item.note}}{% endif %}</em>.
 </div></div>
 {% endfor %}
  
+## Skills
 
+### Programming languages
+
+{% for item in site.data.cv.programming-languages %}
+<div class="listWithDescription" markdown="1">
+<div class="experience-header">{{item.name}}</div>
+<div class="block-line" style="margin-bottom: 15px;">
+{%- for lang in item.items -%}
+{% if item.istools %}{{lang}}{% if forloop.last == false %}, {% endif %}{% else %} {{lang}}<br>{% endif %}
+{% endfor %}
+</div>
+</div>
+{% endfor %}
+
+
+### Languages
+
+{% for item in site.data.cv.languages %}
+<div class="experience-header">{{item.name}}</div>
+<div class="block-line" style="margin-bottom: 15px;">
+{%- for lang in item.items -%}
+{{lang}}<br> 
+{% endfor %}
+</div>
+{% endfor %}
 
 ## Publications and preprints
 {% for item in site.data.cv.publications %}
@@ -81,31 +106,10 @@ toc: true
 {% endfor %}
 
 
-## Skills
-
-### Programming languages
-
-{% for item in site.data.cv.programming-languages %}
-<div class="listWithDescription" markdown="1">
-**{{item.name}}**<br>
-{%- for lang in item.items -%}
-{% if item.istools %}{{lang}}{% if forloop.last == false %}, {% endif %}{% else %}-- {{lang}}<br>{% endif %}
-{% endfor %}<br>
-</div>
-{% endfor %}
 
 
-### Languages
 
-{% for item in site.data.cv.languages %}
-**{{item.name}}**<br>
-{%- for lang in item.items -%}
--- {{lang}}  
-{% endfor %}
-{% endfor %}
-
-
-### Mathematical expertise
+<!-- ### Mathematical expertise
 
 I have a wide background in pure and applied mathematics, and I feel comfortable with research-level
 mathematics in the following areas:
@@ -115,4 +119,4 @@ mathematics in the following areas:
 {%- for skill in item.items -%}
 -- {{skill}}  
 {% endfor %}
-{% endfor %}
+{% endfor %} -->
