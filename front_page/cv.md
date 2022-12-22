@@ -86,7 +86,7 @@ toc: true
 <div class="block-line" style="margin-bottom: 15px">
 <span class="experience-header">
 <a href="{{item.url}}">{{item.name}}{% if item.publisher %},{% endif %}</a></span>{% if item.publisher %} <em>published in {{item.publisher}}</em>{% endif %}{% if item.coauthor %}<br><em>Joint work with</em> {{item.coauthor}} {% endif %}
-{% if item.description %}<br><description><details><summary>Click for description</summary>{{item.description}}</details></description>{% endif %}
+{% if item.description %}<br><description><details><summary>More info</summary>{{item.description}}</details></description>{% endif %}
 <br>
 </div>
 </div>
@@ -100,7 +100,7 @@ toc: true
     <div class="experience-header">
       <a href="{{item.url}}"><i class="fab fa-fw fa-github"></i> {{item.name}}</a>
     </div><br>
-    <description><details><summary>Click for description</summary>{{item.description}}</details></description>
+    <description><details><summary>More info</summary>{{item.description}}</details></description>
   </div>
 </div>
 {% endfor %}
