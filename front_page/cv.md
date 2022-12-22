@@ -6,31 +6,8 @@ toc: true
 ---
 
 
-<style> 
-  .listWithDescription p{
-    margin: 0.25em
-  }
+<link rel="stylesheet" href="/assets/css/cv.css"/>
 
-  .container {
-    display: flex;
-  }
-  .left {
-    width: 100px;
-    margin-right: 20px
-  }
-  .right {
-    flex: 1
-  }
-  small {
-    font-family: $helvetica;
-    font-size: .8em;
-  }
-
-  .experience-header {
-    font-size: 1.1em;
-    font-weight: bold;
-  }
-</style> 
 
 <div class="container">
   <div class="left">
@@ -42,21 +19,19 @@ toc: true
   </div>
 </div>
 
-<!-- <span style="display:inline-block; width: 20px;"></span>
-<a href="https://github.com/RikVoorhaar/RikVoorhaar.github.io/raw/master/_data/resume.docx"> <i class="fa fa-file-word fa-3x"></i> </a> -->
-
 ## Work experience
 
 {% for item in site.data.cv.work %}
 <div class="listWithDescription" markdown="1">
   <div class="container">
     <div class="left">
-      {% if item.img %}<div style="padding-right:10px; float: left"><img src="{{item.img}}"></div>{% endif %}
+      {% if item.img %}<div style="padding-right:10px; float: left; width: 100%;"><img src="{{item.img}}" style="width: 100%;"></div>{% endif %}
     </div>
     <div class="right">
-    <em>{{item.date}}</em>  
-    <div class="experience-header">
-      {{item.name}}{% if item.location %} at {% if item.url %}<a href="{{item.url}}">{{item.location}}</a>{% else %}{{item.location}}{%endif%}{% endif %}.</div>
+      <em>{{item.date}}</em><br>  
+      <div class="experience-header">
+        {{item.name}}{% if item.location %} at {% if item.url %}<a href="{{item.url}}">{{item.location}}</a>{% else %}{{item.location}}{%endif%}{% endif %}.
+      </div><br>
       <small>{{item.description}}</small>
     </div>
   </div>
@@ -69,41 +44,39 @@ toc: true
 
 {% for item in site.data.cv.education %}
 <div class="listWithDescription" markdown="1">
-{%if item.date %}<br>**{{item.date}}**<br>{% endif %}
-{{item.name}}, at _{% if item.url %}[{{item.location}}]({{item.url}}){% else %}{{item.location}}{%endif%}{% if item.note %} {{item.note}}{% endif %}_.
-</div>
+{% if item.date %}{% unless item.firstitem %}<br>{% endunless %}<em>{{item.date}}</em><br>{% endif %}
+<div class="block-line">
+<span class="experience-header">
+{{item.name}}</span>, at <em>{% if item.url %}<a href="{{item.url}}">{{item.location}}</a>{% else %}{{item.location}}{%endif%}{% if item.note %} {{item.note}}{% endif %}</em>.
+</div></div>
 {% endfor %}
-
-<!-- ## Research
-
-_Research interests_:
-{%- for item in site.data.cv.research-interests-summary -%}
-<br>-- {{item}}
-{% endfor %}
-
-{% for item in site.data.cv.research-interests-text %}
-{{item}}
-{% endfor %} -->
+ 
 
 
 ## Publications and preprints
 {% for item in site.data.cv.publications %}
 
 <div class="listWithDescription" markdown="1">
-[{{item.name}}]({{item.url}}) {{item.date}}{% if item.publisher %}, _published in {{item.publisher}}_{% endif %}
-{% if item.coauthor %}<br> Joint work with {{item.coauthor}} {% endif %}
-{% if item.description %}<description>{{item.description}}</description>{% endif %}
+<em>{{item.date}}</em><br>
+<div class="block-line" style="margin-bottom: 15px">
+<span class="experience-header">
+<a href="{{item.url}}">{{item.name}}{% if item.publisher %},{% endif %}</a></span>{% if item.publisher %} <em>published in {{item.publisher}}</em>{% endif %}{% if item.coauthor %}<br><em>Joint work with</em> {{item.coauthor}} {% endif %}
+{% if item.description %}<br><description><details><summary>Click for description</summary>{{item.description}}</details></description>{% endif %}
 <br>
 </div>
+</div>
 {% endfor %}
-
+ 
 ## Open source contributions
 
 {% for item in site.data.cv.open-source-contribs %}
 <div class="listWithDescription" markdown="1">
-[{{item.name}}]({{item.url}})
-<description>{{item.description}}</description>
-<br>
+  <div class="block-line" style="margin-bottom: 15px">
+    <div class="experience-header">
+      <a href="{{item.url}}"><i class="fab fa-fw fa-github"></i> {{item.name}}</a>
+    </div><br>
+    <description><details><summary>Click for description</summary>{{item.description}}</details></description>
+  </div>
 </div>
 {% endfor %}
 

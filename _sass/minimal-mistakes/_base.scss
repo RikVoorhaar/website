@@ -69,12 +69,15 @@ h6 {
 }
 
 description,
-.description{
+.description {
   display: inline-block;
   font-size: $type-size-6;
   margin-left: 40px;
 }
-.description p{margin-left: 40px}
+
+.description p {
+  margin-left: 40px
+}
 
 small,
 .small {
@@ -89,6 +92,7 @@ u,
 ins {
   text-decoration: none;
   border-bottom: 1px solid $text-color;
+
   a {
     color: inherit;
   }
@@ -144,18 +148,29 @@ blockquote {
 /* links */
 
 a {
+  text-decoration: none;
+  padding: 2px 1px 0;
+
   &:focus {
     @extend %tab-focus;
   }
 
-  &:visited {
-    color: $link-color-visited;
-  }
+  // &:visited {
+  //   color: $link-color-visited;
+  // }
 
   &:hover {
     color: $link-color-hover;
     outline: 0;
   }
+}
+
+.page__content a{
+  text-shadow: .5px .5px 2px rgb(194, 207, 245);
+}
+
+.toc a{
+  text-shadow:none;
 }
 
 /* buttons */
@@ -175,14 +190,15 @@ pre {
 }
 
 pre {
-  overflow-x: auto; /* add scrollbars to wide code blocks*/
+  overflow-x: auto;
+  /* add scrollbars to wide code blocks*/
 }
 
-p > code,
-a > code,
-li > code,
-figcaption > code,
-td > code {
+p>code,
+a>code,
+li>code,
+figcaption>code,
+td>code {
   padding-top: 0.1rem;
   padding-bottom: 0.1rem;
   font-size: 0.8em;
@@ -192,7 +208,8 @@ td > code {
   &:before,
   &:after {
     letter-spacing: -0.2em;
-    content: "\00a0"; /* non-breaking space*/
+    content: "\00a0";
+    /* non-breaking space*/
   }
 }
 
@@ -246,13 +263,14 @@ figure {
     transition: $global-transition;
   }
 
-  > a {
+  >a {
     display: block;
   }
 
   &.half {
-    > a,
-    > img {
+
+    >a,
+    >img {
       @include breakpoint($small) {
         width: calc(50% - 0.5em);
       }
@@ -264,8 +282,9 @@ figure {
   }
 
   &.third {
-    > a,
-    > img {
+
+    >a,
+    >img {
       @include breakpoint($small) {
         width: calc(33.3333% - 0.5em);
       }

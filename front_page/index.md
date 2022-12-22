@@ -6,11 +6,6 @@ entries_layout: grid
 ---
 
 <style>
-    my-picture {
-        float: right;
-        width: 200px;
-    }
-    
     .clear {
         clear: both;
     }
@@ -24,8 +19,15 @@ entries_layout: grid
     }
 
     .right {
+        width: 250px;
+        margin-left: 0px;
+        max-width: 30%;
+    }
+
+    .right img {
+        float: right;
         width: 200px;
-        margin-left: 50px;
+        max-width: 100%;
     }
 </style>
 

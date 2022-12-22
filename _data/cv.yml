@@ -73,30 +73,31 @@ open-source-contribs:
 work:
   - name: PhD student
     date: "March 2018&mdash;December 2022"
-    location: University of Geneva
+    location: the University of Geneva
     description: "PhD in applied mathematics after first studying pure mathematics for 2 years. Researched advanced numerical optimization algorithms, particularly for tensors and their applications to machine learning. Developed 3 high-quality numerical software libraries in Python and contributed to 2 open-source projects as part of several research projects resulting in 4 manuscripts.<br><br>
     
     Taught 3 courses per year as an assistant, receiving consistently positive feedback from students for clear solutions and lectures. Designed Python programming homework using Jupyter and unit tests for 5 courses well-received by both students and teaching staff."
-    img: "/assets/images/fac sciences_pant.png"
+    img: "/assets/images/fac sciences_pant.svg"
   - name: Senior Scientific Editor
     date: "May 2021&mdash;December 2022"
-    location: The Science Breaker
+    location: the Science Breaker
     url: https://thesciencebreaker.org/
     description: Edited summaries of research to make them suitable for a layperson audience. Automated part of the publishing process by automatically turning web version of articles into PDF versions built with LaTeX.
-    img: "/assets/images/tsb-logo-small.png"
+    img: "/assets/images/tsb-logo-small.svg"
   - name: Teaching assistant
     date: "2014&mdash;2016"
     location: Utrecht University
     description: I was a teaching assistant for four different courses during my time as a student at Utrecht.
-    img: "/assets/images/UU_logo.png"
+    img: "/assets/images/UU_logo.svg"
   # - name: Mathematics tutor
   #   date: 2012-2014
   #   description: I tutored two students in 2012-2013, and one student 2013-2014. The students studied at the International School Hilversum, taking IB Higher Level Mathematics.  
 
 education:
   - date: 2018/03 - 2022/12
-    name: "PhD in applied mathematics"
+    name: "Ph.D. in Mathematics"
     location: University of Geneva
+    firstitem: true
   - date: 2021/02
     name: "Neuroscience and Neuroimaging Specialization"
     url: "https://www.coursera.org/account/accomplishments/specialization/REWS86DYU496"
@@ -113,16 +114,14 @@ education:
     name: Masterclass Geometry, Topology and Physics
     location: University of Geneva
   - date: 2015-2018
-    name:  Masters degree Mathematical Sciences
+    name:  Msc. Mathematical Sciences
     location: Utrecht University
     note: (cum laude, GPA 4.00)
-  - name: Honors degree "Utrecht Geometry Center"
-    location: Utrecht University
   - date: 2012-2015
-    name: Bachelor degree Mathematic
+    name: Bsc. Mathematics
     location: Utrecht University
     note: (cum laude, GPA 4.00)
-  - name: Bachelor degree Physics and Astronomy
+  - name: Bsc. Physics and Astronomy
     location: Utrecht University
     note: (cum laude, GPA 4.00)
 

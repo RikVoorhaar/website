@@ -7,6 +7,7 @@ services:
       - .:/srv/jekyll
     ports:
       - "4000:4000"
-    command: jekyll serve --watch --drafts --incremental --livereload
+      - "35729:35729"
+    command: jekyll serve --watch --drafts --livereload
     environment:
       - JEKYLL_VERSION=4.0
