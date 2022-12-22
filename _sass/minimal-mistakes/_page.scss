@@ -17,6 +17,7 @@
   @include breakpoint($x-large) {
     max-width: $max-width;
   }
+
 }
 
 body {
@@ -84,7 +85,7 @@ body {
 
 .page__content {
   h2 {
-    padding-bottom: 0.5em;
+    margin-bottom: 0.2em;
     border-bottom: 1px solid $border-color;
   }
 

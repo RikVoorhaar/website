@@ -8,13 +8,13 @@ toc: true
 
 <link rel="stylesheet" href="/assets/css/cv.css"/>
 
-
+<br>
 <div class="container">
-  <div class="left">
-    <span style="display:inline-block; width: 50px;"></span>
+  <div class="leftbox" style="margin-right: 10px; width: 50px;">
+    <!-- <span style="display:inline-block; width: 10px;"></span> -->
     <a href="https://github.com/RikVoorhaar/RikVoorhaar.github.io/raw/master/_data/cv.pdf" target="_blank"> <i class="fa fa-file-pdf fa-3x"></i></a>
   </div>
-  <div class="right">
+  <div class="rightbox">
     Below is a detailed CV. If you want to <strong>download a traditional CV</strong>, click the icon on the left.
   </div>
 </div>
@@ -24,15 +24,17 @@ toc: true
 {% for item in site.data.cv.work %}
 <div class="listWithDescription" markdown="1">
   <div class="container">
-    <div class="left">
-      {% if item.img %}<div style="padding-right:10px; float: left; width: 100%;"><img src="{{item.img}}" style="width: 100%;"></div>{% endif %}
+    <div class="leftbox" style="max-width: 15%">
+      {% if item.img %}
+      <img src="{{item.img}}" style="width: 100%;">
+      {% endif %}
     </div>
-    <div class="right">
+    <div class="rightbox">
       <em>{{item.date}}</em><br>  
       <div class="experience-header">
         {{item.name}}{% if item.location %} at {% if item.url %}<a href="{{item.url}}">{{item.location}}</a>{% else %}{{item.location}}{%endif%}{% endif %}.
       </div><br>
-      <small>{{item.description}}</small>
+      <div class="small">{{item.description}}</div>
     </div>
   </div>
 </div>
