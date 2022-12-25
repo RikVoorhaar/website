@@ -16,7 +16,6 @@
     width: calc(100% - #{$right-sidebar-width});
     padding-right: $right-sidebar-width;
   }
-  background-color: white;
 }
 
 .archive__item {
@@ -105,7 +104,6 @@
   color: #fff;
   font-family: $caption-font-family;
   font-size: $type-size-8;
-  background: #000;
   text-align: right;
   z-index: 5;
   opacity: 0.5;

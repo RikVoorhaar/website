@@ -19,7 +19,7 @@
   @include breakpoint($large) {
     float: left;
     width: calc(#{$right-sidebar-width-narrow} - 1em);
-    opacity: 0.75;
+    opacity: 1;
     -webkit-transition: opacity 0.2s ease-in-out;
     transition: opacity 0.2s ease-in-out;
 
@@ -166,8 +166,15 @@
   }
 }
 .sidebar .author__name {
-  font-family: $sans-serif;
-  font-size: $type-size-5;
+  font-family: $serif;
+  font-weight: 800;
+  color: rgb(30, 138, 217);
+  // font-size: $type-size-5;
+  font-size: $type-size-4;
+}
+
+.sidebar li i {
+  color: $link-color !important;
 }
 
 .author__bio {
