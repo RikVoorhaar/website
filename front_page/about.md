@@ -12,9 +12,32 @@ permalink: /about/
         margin-left: auto;
         margin-right: auto;
     }
+
+    .yt_chan {
+        text-align: center;
+    }
+    .yt_chan img {
+        width: 1.5em;
+        box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+        margin-right: .1em;
+        vertical-align: text-bottom;
+    }
+    .yt_chan a {
+        font-size: 1.2em;
+        font-weight: bold;
+        text-shadow: 0 0 1px #fff;
+    }
+    .yt_chan_item {
+        display: inline-block;
+        margin-right: 1em;
+        margin-bottom: .3em;
+        margin-top: .3em;
+        vertical-align: text-bottom;
+        line-height: 1.5em;
+    }
 </style>
 
-I am a person of many interests, some more geeky than the rest. 
+I am a person of many interests, some more geeky than the rest.
 
 Also check out [the website of my lovely wife Arina](https://arina-voorhaar.com/)
 
@@ -84,36 +107,12 @@ I am fascinated with engineering of many kinds. For example I am fascinated by l
 engineering, rocket science, semiconductors, and computing. Rather than academic research in these
 areas I tend to watch YouTube channels and read wikipedia articles. There is so much fascinating
 thought behind everything we experience around us. Here are some of my favorite YouTube channels:
-- [Adam Ragusea](https://www.youtube.com/@aragusea)
-- [Applied Science](https://www.youtube.com/c/AppliedScience) 
-- [Asianometry](https://www.youtube.com/c/Asianometry)
-- [City Beautiful](https://www.youtube.com/c/CityBeautiful)
-- [City Nerd](https://www.youtube.com/c/CityNerd)
-- [Climate Town](https://www.youtube.com/c/ClimateTown)
-- [Ethan Chlebowski](https://www.youtube.com/@EthanChlebowski)
-- [Half as Interesting](https://www.youtube.com/c/HalfAsInteresting)
-- [Huygens Optics](https://www.youtube.com/c/HuygensOptics)
-- [James Hoffmann](https://www.youtube.com/@JamesHoffmann)
-- [Linus Tech Tips](https://www.youtube.com/c/LinusTechTips)
-- [mCoding](https://www.youtube.com/c/mCoding)
-- [New Mind](https://www.youtube.com/c/NewMind) 
-- [Not Just Bikes](https://www.youtube.com/c/NotJustBikes)
-- [PolyMatter](https://www.youtube.com/c/PolyMatter)
-- [Practical Engineering](https://www.youtube.com/c/PracticalEngineeringChannel)
-- [Real Engineering](https://www.youtube.com/c/RealEngineering)
-- [Real life Lore](https://www.youtube.com/@RealLifeLore)
-- [Real Science](https://www.youtube.com/@RealScience)
-- [Retro Game Mechanics Explained](https://www.youtube.com/c/RetroGameMechanicsExplained)
-- [Scott Manley](https://www.youtube.com/c/szyzyg)
-- [Steve Mould](https://www.youtube.com/c/SteveMould)
-- [Tasting History](https://www.youtube.com/@TastingHistory)
-- [Tech Tangents](https://www.youtube.com/@TechTangents)
-- [Technology Connections](https://www.youtube.com/@TechnologyConnections)
-- [TechTechPotato](https://www.youtube.com/c/TechTechPotato) 
-- [Tom Scott](https://www.youtube.com/c/TomScottGo)
-- [Two Minute Papers](https://www.youtube.com/c/TwoMinutePapers)
-- [UsefulCharts](https://www.youtube.com/c/UsefulCharts)
-- [Veritasium](https://www.youtube.com/@Veritasium)
-- [Vox](https://www.youtube.com/c/Vox)
-- [We're in hell](https://www.youtube.com/@WereInHell)
-- [Wendover Productions](https://www.youtube.com/c/Wendoverproductions)
+
+<div class="yt_chan">
+    {% for item in site.data.channels.channels %}
+    <div class="yt_chan_item">
+        <a href="{{ item.channel_url }}">
+        <img src="/{{ item.channel_thumbnail_path}}"> <span class="use-serif">{{ item.channel_title }}</span></a>
+    </div>
+    {% endfor %}
+</div>

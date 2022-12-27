@@ -30,3 +30,6 @@ _site
 .vscode/settings.json
 
 _data/~$resume.docx
+
+# Environment variables
+.env

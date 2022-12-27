@@ -17,3 +17,7 @@
 
 ## General:
 - Make analytics work
+- Fix background for main content. Add padding, and maybe some kind of shadom / gradient so that it there are no sharp delineations between the background and the content.
+
+## Teasers:
+- Compress the teasers
