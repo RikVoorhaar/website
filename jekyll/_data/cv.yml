@@ -1,0 +1,205 @@
+research-interests-text:
+  - "Generally I'm interested in tensors and numerical linear algebra with a focus on applications to machine learning. Currently I'm working on developing a streaming sketch algorithm for tensor trains. This will make it feasible to compute
+  tensor train decompositions of very large tensors in a distributed setting. "
+  - "On the weekends I like to study topics in data science, bioinformatics and scientific computing to broaden my knowledge. I do this by either taking online courses, reading text books, or doing small programming projects. For the latter I usually write blog posts on this website."
+
+research-interests-summary:
+  - Numerical linear algebra
+  - Tensor networks
+  - Non-convex and Riemannian optimization
+  - Machine learning
+
+publications:
+  - name: "Streaming Tensor Train Approximation"
+    date: August 2022
+    url: https://doi.org/10.48550/arXiv.2208.02600
+    description: Inspired by the generalized Nyström approximation for low-rank matrices, we created a randomized streaming algorithm for computing tensor trains. This algorithm can quickly compute accurate approximations of a wide variety of tensors (multi-dimensional arrays). It does this by 'sketching' the tensor by multiplying with random tensors to quickly find a small subspace in which it is easy to approximate the tensor. This is a streaming algorithm, which means that we only need to do a single pass over the data of the tensor we want to approximate. It also means it works really well in a distributed setting, and scales very well to big data.
+    coauthor: Daniel Kressner and Bart Vandereycken
+  - name: "TTML: tensor trains for general supervised machine learning"
+    date: March 2022
+    url: https://doi.org/10.48550/arXiv.2203.04352
+    description: We describe how to use tensor trains to parametrize discretized functions, and how to get a useful supervised machine learning estimator out of it. Learning and initializing these tensor trains is a bit tricky, but definitely doable. I also wrote <a href="/discrete-function-tensor/">a blog post</a> about this paper, explaining the main ideas in a more accessible way.
+    coauthor: Bart Vandereycken
+  - name: Recovering data you have never seen
+    date: April 2021
+    url: https://doi.org/10.25250/thescbr.brk513
+    description: I wrote an piece in a science outreach journal describing an article about low-rank matrix completion. The aim of this article is to make the core concepts accessible and interesting to a wide audience. 
+    publisher: The Science Breaker
+    coauthor: 
+  - name: On certain Hochschild cohomology groups for the small quantum group
+    date: April 2021
+    publisher: Journal of Algebra
+    url: https://doi.org/10.1016/j.jalgebra.2022.04.034
+    description: We apply the algorithm for the BGG resolution developed in the previous paper to compute Hochschild cohomology of blocks of the small quantum group. This allows us to study the center of the small quantum group, and our computations give stronger evidence for several conjectures concerning the small quantum group. My contribution was writing all the code needed for this project.
+    coauthor: Nicolas Hemelsoet
+  - name: A computer algorithm for the BGG resolution
+    date: November 2019
+    url: https://doi.org/10.1016/j.jalgebra.2020.09.043
+    description: In this work we describe an algorithm to compute the BGG resolution for modules over a simple Lie algebra. This is then used to compute various thing like the Hochschild cohomology of some flag varieties. My contribution was coding the implementation of the algorithm, and solving several algorithmic problems.
+    publisher: Journal of Algebra
+    coauthor: Nicolas Hemelsoet
+  - name: Parallel 2-transport and 2-group torsors
+    date: October 2018
+    url: https://arxiv.org/abs/1811.10060
+    description:  This work is a continuation of my masters thesis. The idea is to study a toy model of principal 2-bundles and 2-transport by restricting to a stricter notion, where the fibers are all strict 2-groups. This allows to get some nice generalizations of the classical theory, which would be harder to proof in the more general setting.
+    publisher:
+    coauthor: 
+  - name: Higher Gauge Theory
+    date: February 2018 (master thesis)
+    url: https://dspace.library.uu.nl/handle/1874/361953
+    description: 
+    publisher:
+    coauthor: 
+
+
+open-source-contribs:
+  - name: tt-sketch python package
+    url: https://github.com/RikVoorhaar/tt-sketch
+    description: A randomized streaming algorithm for computing tensor trains. This library implements several fast algorithms for approximating tensors by tensor trains. It is written in an abstract object-oriented fashion, and it is very easy to extent. It supports quite a few different types of tensors.
+  - name: ttml python package
+    url: https://github.com/RikVoorhaar/ttml
+    description: A novel machine learning estimator based on Tensor Trains. I wrote this library by myself, and includes many features for optimizing tensor trains in addition to the machine learning capabilities.
+  - name: bgg-cohomology sage package
+    url: https://github.com/RikVoorhaar/bgg-cohomology
+    description: I wrote a Sagemath package used for computing the BGG resolution of simple Lie algebra modules and the associated cohomology.
+  - name: geoopt
+    url: https://github.com/geoopt/geoopt
+    description: This is a package for Riemannian optimization using PyTorch. I added a Riemannian line search and conjugate gradient optimizer to this project. 
+  - name: autoray
+    url: https://github.com/jcmgray/autoray
+    description: This is a package meant to help writing backend agnostic code, i.e. code that can manipulate objects from different numerical libraries like numpy, tensorflow or pytorch (among others). I added a few extra translations from the numpy API to other libraries, I improved the functionality to infer the backend of the arguments of some functions, and I made data type handling for array creation operations more consistent.
+
+
+work:
+  - name: PhD student
+    date: "March 2018&mdash;December 2022"
+    location: the University of Geneva
+    description: "PhD in applied mathematics after first studying pure mathematics for 2 years. Researched advanced numerical optimization algorithms, particularly for tensors and their applications to machine learning. Developed 3 high-quality numerical software libraries in Python and contributed to 2 open-source projects as part of several research projects resulting in 4 manuscripts.<br><br>
+    
+    Taught 3 courses per year as an assistant, receiving consistently positive feedback from students for clear solutions and lectures. Designed Python programming homework using Jupyter and unit tests for 5 courses well-received by both students and teaching staff."
+    img: "/assets/images/fac sciences_pant.svg"
+  - name: Senior Scientific Editor
+    date: "May 2021&mdash;December 2022"
+    location: the Science Breaker
+    url: https://thesciencebreaker.org/
+    description: Edited summaries of research to make them suitable for a layperson audience. Automated part of the publishing process by automatically turning web version of articles into PDF versions built with LaTeX.
+    img: "/assets/images/tsb-logo-small.svg"
+  - name: Teaching assistant
+    date: "2014&mdash;2016"
+    location: Utrecht University
+    description: I was a teaching assistant for four different courses during my time as a student at Utrecht.
+    img: "/assets/images/UU_logo.svg"
+  # - name: Mathematics tutor
+  #   date: 2012-2014
+  #   description: I tutored two students in 2012-2013, and one student 2013-2014. The students studied at the International School Hilversum, taking IB Higher Level Mathematics.  
+
+education:
+  - date: 2018/03 - 2022/12
+    name: "Ph.D. in Mathematics"
+    location: University of Geneva
+    firstitem: true
+    note: "(mention: très bien)"
+  - date: 2021/02
+    name: "Neuroscience and Neuroimaging Specialization"
+    url: "https://www.coursera.org/account/accomplishments/specialization/REWS86DYU496"
+    location: Johns Hopkins University
+  - date: 2020/09
+    name: "Genomic Data Science Specialization"
+    url: "https://www.coursera.org/account/accomplishments/specialization/NYQNJVCT7XV3"
+    location: Johns Hopkins University
+  - date: 2019/08
+    name: "Advanced Machine Learning Specialization"
+    url: "https://www.coursera.org/account/accomplishments/specialization/5BM8U5DJJCJN"
+    location: Higher School of Economics
+  - date: 2016-2017
+    name: Masterclass Geometry, Topology and Physics
+    location: University of Geneva
+  - date: 2015-2018
+    name:  Msc. Mathematical Sciences
+    location: Utrecht University
+    note: (cum laude, GPA 4.00)
+  - date: 2012-2015
+    name: Bsc. Mathematics
+    location: Utrecht University
+    note: (cum laude, GPA 4.00)
+  - name: Bsc. Physics and Astronomy
+    location: Utrecht University
+    note: (cum laude, GPA 4.00)
+
+programming-languages:
+  - name: Advanced
+    items:
+      - Python
+  - name: Intermediate
+    items:
+      - LaTeX
+      - Mathematica
+      - C/C++
+  - name: Beginner
+    items:
+      - R
+      - SQL
+      - HTML/CSS
+  - name: Tools
+    istools: yes
+    items:
+      - Armadillo
+      - Bash
+      - CVXPY
+      - Cython
+      - Docker
+      - Linux
+      - Networkx
+      - NumPy
+      - Pandas
+      - PyTorch
+      - Sagemath
+      - SciPy
+      - Tensorflow
+      - Windows
+
+languages:
+  - name: C2 (native) Level
+    items:
+      - Dutch
+      - English
+  - name: B1 Level
+    items:
+      - French
+  - name: A2 Level
+    items:
+      - Japanese
+      - Russian
+      - Spanish
+
+math:
+  - title: Applied mathematics
+    items:
+      - Bayesian statistics  
+      - Computer vision  
+      - Convex optimization
+      - Inverse problems  
+      - Machine learning  
+      - Multivariate statistics  
+      - Neural networks  
+      - Non-convex optimization  
+      - Numerical linear algebra  
+      - Quantum computing  
+      - Riemannian optimization  
+      - Signal processing  
+      - Tensor networks  
+      - Time series analysis  
+  - title: Pure mathematics
+    items:
+      - Algebraic topology  
+      - Category theory  
+      - Deformation quantization  
+      - Differential geometry  
+      - Fiber bundles  
+      - Homological algebra  
+      - Lie groupoids / algebroids  
+      - Lie theory  
+      - Moduli spaces  
+      - Operads  
+      - Poisson geometry  
+      - Tensor / monoidal categories

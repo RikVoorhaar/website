@@ -3,6 +3,9 @@
 ## CV Page:
 - Update content
 
+## Hobbies:
+<!-- - Nice formatting of Youtube channels. use API to get thumbnails and stuff -->
+
 ## Landing page:
 - Make picture carousel instead of static image
 <!-- ## Banner / background: -->
@@ -18,6 +21,11 @@
 ## General:
 - Make analytics work
 - Fix background for main content. Add padding, and maybe some kind of shadom / gradient so that it there are no sharp delineations between the background and the content.
+<!-- - Host website on my own server -->
+- Make smaller versions of images for faster loading
+- Improve things suggested on page speed insights
+- Add logging
+- Add github webhook to automatically update website when I push to github
 
 ## Teasers:
 - Compress the teasers
