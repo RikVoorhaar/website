@@ -22,14 +22,16 @@ codekit-config.json
 .DS_Store
 
 # Jekyll generated files
-.jekyll-cache
-.jekyll-metadata
-.sass-cache
-_asset_bundler_cache
-_site
+jekyll/.jekyll-cache
+jekyll/.jekyll-metadata
+jekyll/.sass-cache
+jekyll/_asset_bundler_cache
+jekyll/_site
 .vscode/settings.json
 
-_data/~$resume.docx
+mysql
+
+jekyll/_data/~$resume.docx
 
 # Environment variables
-.env
+*.env

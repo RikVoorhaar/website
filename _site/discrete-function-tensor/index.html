@@ -1,0 +1,2428 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.20.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<!-- <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script> -->
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Machine learning with discretized functions and tensors - Rik Voorhaar</title>
+<meta name="description" content="We recently made a paper about supervised machine learning using tensors, here’s the gist of how this works.">
+
+
+  <meta name="author" content="Dr. Rik Voorhaar">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Rik Voorhaar">
+<meta property="og:title" content="Machine learning with discretized functions and tensors">
+<meta property="og:url" content="https://blog.rikvoorhaar.com/discrete-function-tensor/">
+
+
+  <meta property="og:description" content="We recently made a paper about supervised machine learning using tensors, here’s the gist of how this works.">
+
+
+
+  <meta property="og:image" content="https://blog.rikvoorhaar.com/imgs/teasers/discrete-function-tensor.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2022-03-10T00:00:00-06:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://blog.rikvoorhaar.com/discrete-function-tensor/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Rik Voorhaar",
+      "url": "https://blog.rikvoorhaar.com/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Rik Voorhaar Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"> -->
+<script src="https://kit.fontawesome.com/ca9a31e360.js" crossorigin="anonymous"></script>
+
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+
+<!-- end custom head snippets -->
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700;800&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+  </head>
+
+  <body class="layout--posts">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="/assets/images/logo_name.svg" alt=""></a>
+        
+        <a class="site-title" href="/">
+           
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/cv/">CV</a>
+            </li><li class="masthead__menu-item">
+              <a href="/">Blog</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">Hobbies</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      <div class="page__hero-background"> </div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/imgs/avatar.jpg" alt="Dr. Rik Voorhaar" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Dr. Rik Voorhaar</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>ML Software Developer and curious mind</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Contact info and socials</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Copenhagen, Denmark</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:rik.voorhaar@gmail.com" rel="nofollow noopener noreferrer"><i class="far fa-fw fa-envelope" aria-hidden="true"></i><span class="label">rik.voorhaar@gmail.com</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/RikVoorhaar" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.facebook.com/WH.Voorhaar" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span class="label">Facebook</span></a></li>
+          
+        
+          
+            <li><a href="https://discord.com/users/354966598643220480" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-discord" aria-hidden="true"></i><span class="label">Discord</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/rik-voorhaar" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+            <li><a href="https://www.last.fm/user/Tilpo" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-lastfm-square" aria-hidden="true"></i><span class="label">Last.fm</span></a></li>
+          
+        
+          
+            <li><a href="https://www.goodreads.com/user/show/62542056-tilpo" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-goodreads" aria-hidden="true"></i><span class="label">Goodreads</span></a></li>
+          
+        
+          
+            <li><a href="https://steamcommunity.com/profiles/76561197996562422" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-steam" aria-hidden="true"></i><span class="label">Steam</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <div class="archive">
+    <br>
+    
+      <h1 id="page-title" class="page__title">Machine learning with discretized functions and tensors</h1>
+    
+    <p>In <a href="https://arxiv.org/abs/2203.04352">my new paper together with my supervisor</a>, we explain how to use
+discretized functions and tensors to do supervised machine learning. A discretized function is just a function
+defined on some grid, taking a constant value on each grid cell. We can describe such a function using a
+multi-dimensional array (i.e. a tensor), and we can learn this tensor using data. This results in a new and
+interesting type of machine learning model.</p>
+
+<h2 id="what-is-machine-learning">What is machine learning?</h2>
+
+<p>Before we dive into the details of our new type of machine learning model, let’s sit back for a moment and
+think: <em>what is machine learning in the first place?</em> Machine learning is all about <em>learning from data</em>. More
+specifically in <em>supervised machine learning</em> we are given some <em>data points</em> \(X = (x_1,\dots,x_N)\), all lying
+in \(\mathbb R^d\), together with <em>labels</em> \(y=(y_1,\dots,y_N)\) which are just numbers. We then want to find some
+function \(f\colon \mathbb R^d\to \mathbb R\) such that \(f(x_i)\approx y_i\) for all \(i\), and such that \(f\)
+<em>generalizes well to new data</em>. Or rather, we want to minimize a loss function, for example the least-squares
+loss</p>
+
+\[L(f) = \sum_{i=1}^N (f(x_i)-y)^2.\]
+
+<p>This is obviously an ill-posed problem, and there are two main issues with it:</p>
+<ol>
+  <li>What <em>kind</em> of functions \(f\) are we allowed to choose?</li>
+  <li>What does it mean to <em>generalize</em> well on new data?</li>
+</ol>
+
+<p>The first issue has no general solution. We <em>choose</em> some class of functions, usually that depend on some set
+of parameters \(\theta\). For example, if we want to fit a quadratic function to our data we only look at
+quadratic functions</p>
+
+\[f_{(a,b,c)}(x) = a + bx +cx^2,\]
+
+<p>and our set of parameters is \(\theta=\{a,b,c\}\). Then we minimize the loss over this set of parameters, i.e.
+we solve the minimization problem:</p>
+
+\[\min_{a,b,c} \sum_{i=1}^N (a+ bx_i+cx_i^2-y_i)^2.\]
+
+<p>There are many parametric families \(f_\theta\) of functions we can choose from, and many different ways to
+solve the corresponding minimization problem. For example, we can choose \(f_\theta\) to be neural networks
+<em>with some specified layer sizes</em>, or a random forest with a fixed number of trees and fixed maximum tree
+depth. Note that we should strictly speaking always specify hyperparameters like the size of the layers of a
+neural network, since those hyperparameters determine what kind of parameters \(\theta\) we are going to
+optimize. That is, hyperparameters affect the parametric family of functions that we are going to optimize.</p>
+
+<p>The second issue, generalization, is typically solved through <em>cross-validation</em>. If we want to know whether
+the function \(f_\theta\) we learned generalizes well to new data points, we should just keep part of the data
+“hidden” during the training (the <em>test data</em>). After training we then evaluate our trained function on this
+hidden data, and we record the loss function on this test data to obtain the <em>test loss</em>. The test loss is
+then a good measure of how well the function can generalize to new data, and it is very useful if we want to
+compare several different functions trained on the same data. Typically we use a third set of data, the 
+<em>validation</em> dataset for optimizing hyperparameters for example, see <a href="/validation-size/">my blog post on the topic</a>.</p>
+
+<h2 id="discretized-functions">Discretized functions</h2>
+
+<p>Keeping the general problem of machine learning in mind, let’s consider a particular class of parametric
+functions: <em>discretized functions on a grid</em>. To understand this class of functions, we first look at the 1D
+case. Let’s take the interval \([0,1]\), and chop it up into \(n\) equal pieces:</p>
+
+\[[0,1] = [0,1/n]\cup[1/n,2/n]\cup\dots\cup[(n-1)/n,1]\]
+
+<p>A discretized function is then one that <em>takes a constant value on each subinterval</em>. For example, below is a
+discretized version of a sine function:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+
+<span class="n">DEFAULT_FIGSIZE</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">DEFAULT_FIGSIZE</span><span class="p">))</span>
+
+<span class="n">num_intervals</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">num_plotpoints</span> <span class="o">=</span> <span class="mi">1000</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">num_plotpoints</span><span class="p">,</span> <span class="n">num_plotpoints</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">pi</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s">"original function"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">f</span><span class="p">((</span><span class="n">np</span><span class="p">.</span><span class="n">floor</span><span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="n">num_intervals</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">/</span> <span class="n">num_intervals</span><span class="p">),</span>
+    <span class="n">label</span><span class="o">=</span><span class="s">"discretized function"</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">();</span>
+
+</code></pre></div></div>
+
+<p><img src="/imgs/discrete-function-tensor/tensor-completion_2_0.svg" alt="svg" /></p>
+
+<p>Note that if we divide the interval into \(n\) pieces, then we need \(n\) parameters to describe the discretized function \(f_\theta\).</p>
+
+<p>In the 2D case we instead divide the square \([0,1]^2\) into a grid, and demand that a discretized function is <em>constant on each grid cell</em>. If we use \(n\) grid cells for each axis, this gives us \(n^2\) parameters. Let’s see what a discretized function looks like in a 3D plot:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">DEFAULT_FIGSIZE</span><span class="p">))</span>
+
+<span class="n">num_plotpoints</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">num_intervals</span> <span class="o">=</span> <span class="mi">5</span>
+
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">X</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">Y</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="p">((</span><span class="n">X</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">Y</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+
+<span class="n">X_plotpoints</span><span class="p">,</span> <span class="n">Y_plotpoints</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">meshgrid</span><span class="p">(</span>
+    <span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">num_plotpoints</span><span class="p">,</span> <span class="n">num_plotpoints</span><span class="p">),</span>
+    <span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">num_plotpoints</span><span class="p">,</span> <span class="n">num_plotpoints</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="c1"># Smooth plot
+</span><span class="n">Z_smooth</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">X_plotpoints</span><span class="p">,</span> <span class="n">Y_plotpoints</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="p">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s">"3d"</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">X_plotpoints</span><span class="p">,</span> <span class="n">Y_plotpoints</span><span class="p">,</span> <span class="n">Z_smooth</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s">"inferno"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"original function"</span><span class="p">)</span>
+
+
+<span class="c1"># Discrete plot
+</span><span class="n">X_discrete</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">floor</span><span class="p">(</span><span class="n">X_plotpoints</span> <span class="o">*</span> <span class="n">num_intervals</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">/</span> <span class="n">num_intervals</span>
+<span class="n">Y_discrete</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">floor</span><span class="p">(</span><span class="n">Y_plotpoints</span> <span class="o">*</span> <span class="n">num_intervals</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">/</span> <span class="n">num_intervals</span>
+<span class="n">Z_discrete</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">X_discrete</span><span class="p">,</span> <span class="n">Y_discrete</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="p">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s">"3d"</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">X_plotpoints</span><span class="p">,</span> <span class="n">Y_plotpoints</span><span class="p">,</span> <span class="n">Z_discrete</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s">"inferno"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"discretized function"</span><span class="p">);</span>
+
+</code></pre></div></div>
+
+<p><img src="/imgs/discrete-function-tensor/tensor-completion_4_0.svg" alt="svg" /></p>
+
+<h2 id="learning-2d-functions-matrix-completion">Learning 2D functions: matrix completion</h2>
+
+<p>Before diving into higher-dimensional versions of discretized functions, let’s think about how we would solve
+the learning problem. As mentioned, we have \(n^2\) parameters, and we can encode this using an \(n\times n\)
+matrix \(\Theta\). We are doing supervised machine learning, so we have data points
+\(((x_1,y_1),\dots,(x_N,y_N))\) and corresponding labels \((z_1,\dots,z_N)\). Each data point \((x_i,y_i)\)
+correspond to some entry \((j,k)\) in the matrix \(\Theta\); this is simply determined by the specific grid cell
+the data point happens to fall in.</p>
+
+<p>If the points \(((x_{i_1},y_{i_1}),\dots,(x_{i_m},y_{i_m}))\) all fall into the grid cell \((j,k)\), then we can
+define \(\Theta[j,k]\) simply by the mean value of the labels for these points;</p>
+
+\[\Theta[j,k] = \frac{1}{m} \sum_{a=1}^n y_a\]
+
+<p>But what do we do if we have no training data corresponding to some entry \(\Theta[j,k]\)? Then the only thing
+we can do is make an educated guess based on the entries of the matrix we <em>do</em> know. This is the <em>matrix
+completion problem</em>; we are presented with a matrix with some known entries, and we are tasked to find good
+values for the unknown entries. We described this problem in some detail <a href="/low-rank-matrix/">in the previous blog
+post</a>.</p>
+
+<p>The main takeaway is this: to solve the matrix completion problem, we need to assume that the matrix has some
+extra structure. We typically assume that the matrix is of low rank \(r\), that is, we can write \(\Theta\) as a
+product \(\Theta=A B\) where \(A,B\) are of size \(n\times r\) and \(r\times n\) respectively. Intuitively, this is a
+useful assumption because now we only have to learn \(2nr\) parameters instead of \(n^2\). If \(r\) is much smaller
+than \(n\), then this is a clear gain.</p>
+
+<p>From the perspective of machine learning, this changes the class of functions we are considering. Instead of
+<em>all</em> discretized functions on our \(n\times n\) grid inside \([0,1]^2\), we now consider only those functions
+described by a matrix \(\Theta=AB\) that has rank at most \(r\). This also changes the parameters; instead of
+\(n^2\) parameters, we now only consider \(2nr^2\) parameters describing the two matrices \(A,B\).</p>
+
+<p>Real data is often not uniform, so unless we use a very coarse grid, some entries of \(\Theta[j,k]\) are always
+going to be unknown. For example below we show some more realistic data, with the same function as before plus
+some noise. The color indicates the value of the function \(f\) we’re trying to learn.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">num_intervals</span> <span class="o">=</span> <span class="mi">8</span>
+
+<span class="n">N</span> <span class="o">=</span> <span class="mi">50</span>
+
+
+<span class="c1"># A function to make somewhat realistic looking 2D data
+</span><span class="k">def</span> <span class="nf">non_uniform_data</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">179</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">mod</span><span class="p">(</span><span class="n">X</span> <span class="o">**</span> <span class="mi">5</span> <span class="o">+</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="p">(</span><span class="n">Y</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">**</span> <span class="mi">3</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">sin</span><span class="p">(</span><span class="n">Y</span> <span class="o">*</span> <span class="mf">0.2</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">pi</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">mod</span><span class="p">(</span><span class="n">Y</span> <span class="o">+</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">mod</span><span class="p">(</span><span class="n">X</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">Y</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">mod</span><span class="p">(</span><span class="mf">0.3</span> <span class="o">*</span> <span class="n">X</span> <span class="o">+</span> <span class="mf">1.3</span> <span class="o">*</span> <span class="n">Y</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">X</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="mf">0.4</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">mod</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="n">Y</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="mf">0.5</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">mod</span><span class="p">(</span><span class="n">Y</span> <span class="o">+</span> <span class="n">X</span> <span class="o">+</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span>
+
+
+<span class="c1"># The function we want to model
+</span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">X</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">Y</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="p">((</span><span class="n">X</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">Y</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">Y_train</span> <span class="o">=</span> <span class="n">non_uniform_data</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="n">X_test</span><span class="p">,</span> <span class="n">Y_test</span> <span class="o">=</span> <span class="n">non_uniform_data</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="n">Z_train</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">X_train</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.2</span>
+<span class="n">Z_test</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">Y_test</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">X_test</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.2</span>
+
+
+<span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">Z_train</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s">"inferno"</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">colorbar</span><span class="p">()</span>
+
+<span class="c1"># Plot a grid
+</span><span class="n">X_grid</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">num_intervals</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">num_intervals</span><span class="p">)</span>
+<span class="n">Y_grid</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">num_intervals</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">num_intervals</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">perc</span> <span class="ow">in</span> <span class="n">X_grid</span><span class="p">:</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">perc</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s">"gray"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">perc</span> <span class="ow">in</span> <span class="n">Y_grid</span><span class="p">:</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">perc</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s">"gray"</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p><img src="/imgs/discrete-function-tensor/tensor-completion_6_0.svg" alt="svg" /></p>
+
+<p>We plotted an 8x8 grid on top of the data. We can see that in some grid squares we have a lot of data points, whereas in other squares there’s no data at all. Let’s try to fit a discretized function described by an 8x8 matrix of rank 3 to this data. We can do this using the <a href="https://github.com/RikVoorhaar/ttml">ttml</a> package I developed.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">ttml.tensor_train</span> <span class="kn">import</span> <span class="n">TensorTrain</span>
+<span class="kn">from</span> <span class="nn">ttml.tt_rlinesearch</span> <span class="kn">import</span> <span class="n">TTLS</span>
+
+<span class="n">rank</span> <span class="o">=</span> <span class="mi">3</span>
+
+<span class="c1"># Indices of the matrix Theta for each data point
+</span><span class="n">idx_train</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">stack</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">X_grid</span><span class="p">,</span> <span class="n">X_train</span><span class="p">),</span> <span class="n">np</span><span class="p">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">Y_grid</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+<span class="n">idx_test</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">stack</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">X_grid</span><span class="p">,</span> <span class="n">X_test</span><span class="p">),</span> <span class="n">np</span><span class="p">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">Y_grid</span><span class="p">,</span> <span class="n">Y_test</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+
+<span class="c1"># Initialize random rank 3 matrix
+</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">179</span><span class="p">)</span>
+<span class="n">low_rank_matrix</span> <span class="o">=</span> <span class="n">TensorTrain</span><span class="p">.</span><span class="n">random</span><span class="p">((</span><span class="n">num_intervals</span><span class="p">,</span> <span class="n">num_intervals</span><span class="p">),</span> <span class="n">rank</span><span class="p">)</span>
+
+<span class="c1"># Optimize the matrix using iterative method
+</span><span class="n">optimizer</span> <span class="o">=</span> <span class="n">TTLS</span><span class="p">(</span><span class="n">low_rank_matrix</span><span class="p">,</span> <span class="n">Z_train</span><span class="p">,</span> <span class="n">idx_train</span><span class="p">)</span>
+<span class="n">train_losses</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">test_losses</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">):</span>
+    <span class="n">train_loss</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">optimizer</span><span class="p">.</span><span class="n">step</span><span class="p">()</span>
+    <span class="n">train_losses</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">train_loss</span><span class="p">)</span>
+    <span class="n">test_loss</span> <span class="o">=</span> <span class="n">optimizer</span><span class="p">.</span><span class="n">loss</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">Z_test</span><span class="p">,</span> <span class="n">idx</span><span class="o">=</span><span class="n">idx_test</span><span class="p">)</span>
+    <span class="n">test_losses</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">test_loss</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">DEFAULT_FIGSIZE</span><span class="p">))</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">train_losses</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"Training loss"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">test_losses</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"Test loss"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"Number of iterations"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"Loss"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">yscale</span><span class="p">(</span><span class="s">"log"</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Final training loss: </span><span class="si">{</span><span class="n">train_loss</span><span class="si">:</span><span class="p">.</span><span class="mi">4</span><span class="n">f</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Final test loss: </span><span class="si">{</span><span class="n">test_loss</span><span class="si">:</span><span class="p">.</span><span class="mi">4</span><span class="n">f</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Final training loss: 0.0252
+Final test loss: 0.0424
+</code></pre></div></div>
+
+<p><img src="/imgs/discrete-function-tensor/tensor-completion_8_1.svg" alt="svg" /></p>
+
+<p>Above we see how the train and test loss develops during training. At first both train and test loss decrease
+rapidly. Then both train and test loss start to decrease much more slowly, and training loss is less than test
+loss. This means that the model overfits on the training data, but this is not necessarily a problem; the
+question is how much it overfits compared to other models. To see how good this model is, let’s compare it to
+a random forest.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span>
+
+<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">179</span><span class="p">)</span>
+<span class="n">forest</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">()</span>
+<span class="n">forest</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">stack</span><span class="p">([</span><span class="n">X_train</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">Z_train</span><span class="p">)</span>
+<span class="n">Z_pred</span> <span class="o">=</span> <span class="n">forest</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">stack</span><span class="p">([</span><span class="n">X_test</span><span class="p">,</span> <span class="n">Y_test</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">test_loss</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">((</span><span class="n">Z_pred</span> <span class="o">-</span> <span class="n">Z_test</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Random forest test loss: </span><span class="si">{</span><span class="n">test_loss</span><span class="si">:</span><span class="p">.</span><span class="mi">4</span><span class="n">f</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Random forest test loss: 0.0369
+</code></pre></div></div>
+
+<p>We see that the random forest is a little better than the discretized function. And in fact, most standard machine learning estimators will beat a discretized function like this. This is essentially because the discretized function is very simple, and more complicated estimators can do a better job describing the data.</p>
+
+<p>Does this mean that we should stop caring about the discretized function? Test loss is not the only criterion we should use to compare different estimators. Discretized functions like these have two big advantages:</p>
+<ol>
+  <li>They use very few parameters compared to many common machine learning estimators.</li>
+  <li>Making new predictions is <em>very</em> fast. Much faster in fact than most other machine learning estimators.</li>
+</ol>
+
+<p>This makes them excellent candidates for low-memory applications. For example, we may want to implement a machine learning model for a very cheap consumer device. If we don’t need extreme accuracy, and we pre-train the model on a more powerful device, discretized functions can be a very attractive option.</p>
+
+<h2 id="discretized-functions-in-higher-dimensions-tensor-trains">Discretized functions in higher dimensions: tensor trains</h2>
+
+<p>The generalization to \(d\)-dimensions is now straightforward; we take a \(d\)-dimensional grid on \([0,1]^d\), with
+\(n\) subdivisions in each axis. Then we specify the value of our function \(f_\Theta\) on each of the \(n^d\) grid
+cells.  These \(n^d\) values form a <em>tensor</em> \(\Theta\), i.e. a \(d\)-dimensional array. We access the entries of
+\(\Theta\) with a \(d\)-tuple of indices \(\Theta[i_1,i_2,\dots,i_d]\).</p>
+
+<p>This suffers from the same problems as in the 2D case; the tensor \(\Theta\) is really big, and during training
+we would need at least one data point for each entry of the tensor. But the situation is even worse, even
+storing \(\Theta\) can be prohibitively expensive. For example, if \(d=10\) and \(n=20\); then we would need about
+82 TB just to store the tensor! In fact, \(n=20\) grid points in each direction is not even that much, so in
+practice we might need a much bigger tensor still.</p>
+
+<p>In the 2D case we solved this problem by storing the matrix as the product of two smaller matrices. In the 2D
+case this doesn’t actually save that much on memory, and we mainly did it so that we can solve the matrix
+completion problem; that is, so that we can actually fit the discretized function to data. In higher
+dimensions however, storing the tensor in the right way can save immense amounts of space.</p>
+
+<p>In the 2D case, we store matrices as a low rank matrix; as a product of two smaller matrices. But what is the
+correct analogue of ‘low rank’ for tensors? Unfortunately (or fortunately), there are many answers to this
+question. There are many ‘low rank tensor formats’, all with very different properties. We will be focusing on
+<em>tensor trains</em>. A tensor train decomposition of an \(n_1\times n_2\times \dots \times n_d\) tensor \(\Theta\)
+consists of a set of \(d\) <em>cores</em> \(C_k\) of shape \(r_{k-1}\times n_k \times r_k\), where \((r_1,\dots,r_{d-1})\)
+are the <em>ranks</em> of the tensor train. Using these cores we can then express the entries of \(\Theta\) using the
+following formula:</p>
+
+\[\Theta[i_1,\dots,i_d] = \sum_{k_1,\dots,k_{d-1}}C_1[1,i_1,k_1]C_2[k_1,i_2,k_2]\cdots C_{d-1}[k_{d-2},i_{d-1},k_{d-1}]C_d[k_{d-1},i_{d},1]\]
+
+<p>This may look intimidating, but the idea is actually quite simple. We should think of the core \(C_{k}\) as a
+<em>collection</em> of \(n_k\) matrices \((C_k[1],\dots,C_k[n_k])\), each of shape \(r_{k-1}\times r_k\). The index \(i_k\)
+then <em>selects</em> which of these matrices to use. The first and last cores are special, by convention
+\(r_0=r_d=1\), this means that \(C_1\) is a collection of \(1\times r_1\) matrices, i.e. (row) vectors. Similarly,
+\(C_d\) is a collection of \(r_{d-1}\times 1\) matrices, i.e. (column) vectors. Thus each entry of \(\Theta\) is
+determined by a product like this:</p>
+
+<blockquote>
+  <p>row vector * matrix * matrix * … * matrix * column vector</p>
+</blockquote>
+
+<p>The result is a number, since a row/column vector times a matrix is a row/column vector, and the product of a
+row and column vector is just a number. In fact, if we think about it, this is exactly how a low-rank matrix
+decomposition works as well. If we write a matrix \(\Theta = AB\), then</p>
+
+\[\Theta[i,j]=\sum_k A[i,k] B[k,j] = A[i,:]\cdot B[:,j].\]
+
+<p>Here \(A[i,:]\) is a <em>row</em> of \(A\), and \(B[:,j]\) is a <em>column</em> of \(B\). In other words, \(A\)
+is just a collection of row vectors, and \(B\) is just a collection of column vectors. Then to obtain an entry
+\(\Theta[i,j]\), we select the \(i\text{th}\) row of \(A\) and the \(j\text{th}\) column of \(B\) and take the product.</p>
+
+<p>In summary, a tensor train is a way to cheaply store large tensors. Assuming all ranks \((r_1,\dots,r_{d-1})\)
+are the same, a tensor train requires \(O(dr^2n)\) entries to store a tensor with \(O(n^d)\) entries; a huge gain
+if \(d\) and \(n\) are big. For context, if \(d=10\), \(n=20\), and \(r=10\) then instead of 82 TB we just need 131 KB
+to store the tensor; that’s about 9 orders of magnitude cheaper! Furthermore, computing entries of this tensor
+is cheap; it’s just a couple matrix-vector products.</p>
+
+<p>There is obviously a catch to this. Just like not every matrix is low-rank, not every tensor can be
+represented by a low-rank tensor train. The point, however, is that tensor trains can efficiently represent
+many tensors that we <em>do</em> care about. In particular, they are good at representing the tensors required for
+discretized functions.</p>
+
+<h2 id="learning-discretized-functions-tensor-completion">Learning discretized functions: tensor completion</h2>
+
+<p>How can we learn a discretized function \([0,1]^d\to \mathbb R\) represented by a tensor train? Like in the
+matrix case, many entries of the the tensor are unobserved, and we have to <em>complete</em> these entries based on
+the entries that we <em>can</em> estimate. In <a href="/low-rank-matrix">my post on matrix completion</a> we have seen that even
+the matrix case is tricky, and there are many algorithms to solve the problem. One thing these algorithms have
+in common is that they are iterative algorithms minimizing some loss function. Let’s derive such an algorithm
+for <em>tensor train completion</em>.</p>
+
+<p>First of all, what is the loss function we want to minimize during training? It’s simply the least squares
+loss:</p>
+
+\[L(\Theta) = \sum_{j=1}^N(f_\Theta(x_j) - y_j)^2\]
+
+<p>Each data point \(x_j\in [0,1]^d\) fits into some grid cell given by index \((i_1[j],i_2[j],\dots,i_d[j])\), so
+using the definition of the tensor train the loss \(L(\Theta)\) becomes</p>
+
+\[\begin{align*}
+L(\Theta) &amp;= \sum_{j=1}^N (\Theta[i_1[j],i_2[j],\dots,i_d[j]] - y_j)^2\\
+ &amp;= \sum_{j=1}^N(C_1[1,i_1[j],:]C_2[:,i_2[j],:]\cdots C_d[:,i_d[j],1] - y_j)^2
+\end{align*}\]
+
+<p>A straightforward approach to minimizing \(L(\Theta)\) is to just use <em>gradient descent</em>. We could compute the
+derivatives with respect to each of the cores \(C_i\) and just update the cores using this derivative. This is,
+however, very slow. There are two reasons for this, but they are a bit subtle:</p>
+<ol>
+  <li><em>There is a lot of curvature.</em> In gradient descent, the size of step we can optimally take is depended on
+how big the <em>second derivatives</em> of a function are (the <em>‘curvature’</em>). The derivative of a function is the
+<em>best linear approximation</em> of a function, and gradient descent works faster if this linear approximation
+is a good approximation of the function. In this case, the function we are trying to optimize is <em>very
+non-linear</em>, and any linear approximation is going to be very bad. Therefore we are forced to take really
+tiny steps during gradient descent, and convergence is going to be very slow.</li>
+  <li><em>There are a lot of symmetries.</em> For example we can replace \(C_i\) and \(C_{i+1}\) with \(C_i M\) and
+\(A^{-1}C_{i+1}\) for any matrix \(A\). Gradient descent ‘doesn’t know’ about these symmetries, and keeps
+updating \(\Theta\) in directions that doesn’t affect \(L(\Theta)\).</li>
+</ol>
+
+<p>To efficiently optimize \(L(\theta)\), we can’t just use gradient descent as-is, and we are forced to walk a
+different route. While \(L(\Theta)\) is very non-linear as function of the tensor train cores \(C_i\), it is only
+quadratic in the <em>entries</em> of \(L(\Theta)\), and we can easily compute its derivative:</p>
+
+\[\nabla_{\Theta}L(\Theta) = 2\sum_{j=1}^N (\Theta[i_1[j],i_2[j],\dots,i_d[j]] -
+y_j)E(i_1[j],i_2[j],\dots,i_d[j]),\]
+
+<p>where \(E(i_1,i_2,\dots,i_d)\) denotes a sparse tensor that’s zero in all entries <em>except</em> \((i_1,\dots,i_d)\)
+where it takes value \(1\). In other words, \(\nabla_{\Theta}L(\Theta)\) is a <em>sparse tensor</em> that is both simple
+and cheap to compute; it just requires sampling at most \(N\) entries of \(\Theta\). For gradient descent we would
+then update \(\Theta\) by \(\Theta-\alpha \nabla_{\Theta}L(\Theta)\) with \(\alpha\) the stepsize. Unfortunately,
+this expression is not a tensor train. However, we can try to <em>approximate</em> 
+\(\Theta-\alpha \nabla_{\Theta}L(\Theta)\) by a tensor train of the same rank as \(\Theta\).</p>
+
+<p>Recall that we can approximate a matrix \(A\) by a rank \(r\) matrix by using the <em>truncated SVD</em> of \(A\). In fact
+this is the best-possible approximation of \(A\) by a rank \(\leq  r\) matrix. There is a similar procedure for
+tensor trains; we can approximate a tensor \(\Theta\) by a rank \((r_1,\dots,r_{d-1})\) tensor train using the
+TT-SVD procedure. While this is not the <em>best</em> approximation of \(\Theta\) by such a tensor train, it is
+<em>‘quasi-optimal’</em> and pretty good in practice. The details of the TT-SVD procedure are a little involved, so
+let’s leave it as a black box. We now have the following iterative procedure for optimizing \(L(\Theta)\):</p>
+
+\[\Theta_{k+1} \leftarrow \operatorname{TT-SVD}(\Theta_{k}-\alpha \nabla_{\Theta}L(\Theta_k) )\]
+
+<p>If you’re familiar with optimizing neural networks, you might notice that this procedure could work very well
+with <em>stochastic gradient descent</em>. Indeed \(\nabla_{\Theta}L(\Theta)\) is a sum over all the data points, so we
+can just pick a subset of data points (a minibatch) to obtain a stochastic gradient. The reason we would want
+to do this is that we have so many data points that the cost of each step is dominated by computing the
+gradient. In this situation this is however not true, and the cost is dominated by the TT-SVD procedure. We
+therefore stick to more classical gradient descent methods. In particular, the function \(L(\theta)\) can be
+optimized well with conjugate gradient descent using Armijo backtracking line search.</p>
+
+<h2 id="discretized-functions-in-practice">Discretized functions in practice</h2>
+
+<p>Let’s now see all of this in practice. Let’s train a discretized function \(f_\Theta\) represented by a tensor
+train on some data using the technique described above. We will do this on a real dataset: the <a href="https://archive.ics.uci.edu/ml/datasets/airfoil+self-noise">airfoil
+self-noise dataset</a>. This NASA dataset contains
+experimental data about the self-noise of airfoils in a wind tunnel, originally used to optimize wing shapes.
+We can do the fitting and optimization using my <code class="language-plaintext highlighter-rouge">ttml</code> package. Let’s use a rank 5 tensor train with 10 grid
+points for each feature.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MinMaxScaler</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="c1"># Load the data
+</span><span class="n">airfoil_data</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="s">"airfoil_self_noise.dat"</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">"</span><span class="se">\t</span><span class="s">"</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">None</span>
+<span class="p">).</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">airfoil_data</span><span class="p">[:,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">airfoil_data</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">N</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="n">X</span><span class="p">.</span><span class="n">shape</span>
+<span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Dataset has </span><span class="si">{</span><span class="n">N</span><span class="o">=</span><span class="si">}</span><span class="s"> samples and </span><span class="si">{</span><span class="n">d</span><span class="o">=</span><span class="si">}</span><span class="s"> features."</span><span class="p">)</span>
+
+
+<span class="c1"># Do train-test split, and scale data to interval [0,1]
+</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">179</span>
+<span class="p">)</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">(</span><span class="n">clip</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">scaler</span><span class="p">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">scaler</span><span class="p">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># Define grid, and find associated indices for each data point
+</span><span class="n">num_intervals</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="n">grids</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">num_intervals</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">num_intervals</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">d</span><span class="p">)]</span>
+<span class="n">tensor_shape</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span> <span class="k">for</span> <span class="n">grid</span> <span class="ow">in</span> <span class="n">grids</span><span class="p">)</span>
+<span class="n">idx_train</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">stack</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">X_train</span><span class="p">[:,</span> <span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">grid</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">grids</span><span class="p">)],</span>
+    <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">idx_test</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">stack</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">X_test</span><span class="p">[:,</span> <span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">grid</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">grids</span><span class="p">)],</span>
+    <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Initialize the tensor train
+</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">179</span><span class="p">)</span>
+<span class="n">rank</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">tensor_train</span> <span class="o">=</span> <span class="n">TensorTrain</span><span class="p">.</span><span class="n">random</span><span class="p">(</span><span class="n">tensor_shape</span><span class="p">,</span> <span class="n">rank</span><span class="p">)</span>
+
+<span class="c1"># Optimize the tensor train using iterative method
+</span><span class="n">optimizer</span> <span class="o">=</span> <span class="n">TTLS</span><span class="p">(</span><span class="n">tensor_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">idx_train</span><span class="p">)</span>
+<span class="n">train_losses</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">test_losses</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+    <span class="n">train_loss</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">optimizer</span><span class="p">.</span><span class="n">step</span><span class="p">()</span>
+    <span class="n">train_losses</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">train_loss</span><span class="p">)</span>
+    <span class="n">test_loss</span> <span class="o">=</span> <span class="n">optimizer</span><span class="p">.</span><span class="n">loss</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">y_test</span><span class="p">,</span> <span class="n">idx</span><span class="o">=</span><span class="n">idx_test</span><span class="p">)</span>
+    <span class="n">test_losses</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">test_loss</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">DEFAULT_FIGSIZE</span><span class="p">))</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">train_losses</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"Training loss"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">test_losses</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"Test loss"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"Number of iterations"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"Loss"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">yscale</span><span class="p">(</span><span class="s">"log"</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Final training loss: </span><span class="si">{</span><span class="n">train_loss</span><span class="si">:</span><span class="p">.</span><span class="mi">4</span><span class="n">f</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Final test loss: </span><span class="si">{</span><span class="n">test_loss</span><span class="si">:</span><span class="p">.</span><span class="mi">4</span><span class="n">f</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Dataset has N=1503 samples and d=5 features.
+Final training loss: 15.3521
+Final test loss: 54.4698
+</code></pre></div></div>
+
+<p><img src="/imgs/discrete-function-tensor/tensor-completion_15_1.svg" alt="svg" /></p>
+
+<p>We see a similar training profile to the matrix completion case. Let’s see now how this estimator compares to a random forest trained on the same data:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">179</span><span class="p">)</span>
+<span class="n">forest</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">()</span>
+<span class="n">forest</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">forest</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">test_loss</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y_pred</span> <span class="o">-</span> <span class="n">y_test</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Random forest test loss: </span><span class="si">{</span><span class="n">test_loss</span><span class="si">:</span><span class="p">.</span><span class="mi">4</span><span class="n">f</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Random forest test loss: 3.2568
+</code></pre></div></div>
+
+<p>The random forest has a loss of around <code class="language-plaintext highlighter-rouge">3.3</code>, but the discretized function has a loss of around <code class="language-plaintext highlighter-rouge">54.5</code>! That gap in performance is completely unacceptable. We could try to improve it by increasing the number of grid points, and by tweaking the rank of the tensor train. However, it will still come nowhere close to the performance of a random forest, even with its default parameters. Even the <em>training error</em> of the discretized function is much worse than the <em>test error</em> of the random forest.</p>
+
+<p><strong>Why is it so bad?</strong> <em>Bad initialization!</em></p>
+
+<p>Recall that a gradient descent method converges to a <em>local</em> minimum of the function. Usually we hope that whatever local minimum we converge to is ‘good’. Indeed for neural networks we see that, especially if we use a lot of parameters, most local minima found by stochastic gradient descent are quite good, and give a low train <em>and</em> test error. This is not true for our discretized function. We converge to local minima that have both bad train and test error.</p>
+
+<p><strong>The solution?</strong> <em>Better initialization!</em></p>
+
+<h2 id="using-other-estimators-for-initialization">Using other estimators for initialization</h2>
+
+<p>Instead of initializing the tensor trains <em>randomly</em>, we can learn from other machine learning estimators. We
+fit our favorite machine learning estimator (e.g. a neural network) to the training data. This gives a function
+\(g\colon [0,1]^d\to \mathbb R\). This function is defined for <em>any</em> input, not just for the training/test data
+points. Therefore we can try to first fit our discretized function \(f_\Theta\) to match \(g\), i.e. we solve the
+following minimization problem:</p>
+
+\[\min_\Theta \|f_\Theta - g\|^2\]
+
+<p>One way to solve this minimization problem is by first (randomly) sampling a lot of new data points
+\((x_1,\dots,x_N)\in [0,1]^d\) and then fitting \(f_\Theta\) to these data points with labels
+\((g(x_1),\dots,g(x_N))\). This is essentially <em>data augmentation</em>, and can drastically increase the <em>number</em> of
+data points available for training. With more training data, the function \(f_\Theta\) will indeed converge to a
+better local minimum.</p>
+
+<p>While data augmentation does improve performance, we can do better. We don’t need to <em>randomly</em> sample data
+points \((x_1,\dots,x_N)\in[0,1]^d\). Instead we can <em>choose</em> good points to sample; points that give us the
+most information on how to efficiently update the tensor train. This is essentially the idea behind the
+<em>tensor train cross approximation</em> algorithm, or TT-Cross for short. Using TT-Cross we can quickly and
+efficiently get a good approximation to the minimization problem \(\min_\Theta \|f_\Theta - g\|^2\).</p>
+
+<p>We could stop here. If \(g\) models our data really well, and \(f_\Theta\) approximates \(g\) really well, then we
+should be happy. Like the matrix completion model, discretized functions based on tensor trains are <em>fast</em> and
+are <em>memory efficient</em>. Therefore we can make an approximation of \(g\) that uses less memory and can make
+faster predictions! However, the model \(g\) really should be used for <em>initialization</em> only. Usually \(f_\Theta\)
+actually doesn’t do a great job of approximating \(g\), but if we first approximate \(g\), and <em>then</em> use a
+gradient descent algorithm to improve \(f_\Theta\) even further, we end up with something much more competitive.</p>
+
+<p>Let’s see this in action. This is actually much easier than what we did before, because I wrote the <code class="language-plaintext highlighter-rouge">ttml</code>
+package specifically for this use case.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">ttml.ttml</span> <span class="kn">import</span> <span class="n">TTMLRegressor</span>
+
+
+<span class="c1"># Use random forest as base estimator
+</span><span class="n">forest</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">()</span>
+
+<span class="c1"># Fit tt on random forest, and then optimize further on training data
+</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">179</span><span class="p">)</span>
+<span class="n">tt</span> <span class="o">=</span> <span class="n">TTMLRegressor</span><span class="p">(</span><span class="n">forest</span><span class="p">,</span> <span class="n">max_rank</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">opt_tol</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+<span class="n">tt</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_val</span><span class="o">=</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_val</span><span class="o">=</span><span class="n">y_test</span><span class="p">)</span>
+
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">tt</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">test_loss</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y_pred</span> <span class="o">-</span> <span class="n">y_test</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"TTML test loss: </span><span class="si">{</span><span class="n">test_loss</span><span class="si">:</span><span class="p">.</span><span class="mi">4</span><span class="n">f</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+
+<span class="c1"># Forest is fit on same data during fitting of tt
+# Let's also report how good the forest does
+</span><span class="n">y_pred_forest</span> <span class="o">=</span> <span class="n">forest</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">test_loss_forest</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y_pred_forest</span> <span class="o">-</span> <span class="n">y_test</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Random forest test loss: </span><span class="si">{</span><span class="n">test_loss_forest</span><span class="si">:</span><span class="p">.</span><span class="mi">4</span><span class="n">f</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+
+<span class="c1"># Training and test loss is also recording during optimization, let's plot it
+</span><span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">DEFAULT_FIGSIZE</span><span class="p">))</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tt</span><span class="p">.</span><span class="n">history_</span><span class="p">[</span><span class="s">"train_loss"</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s">"Training loss"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tt</span><span class="p">.</span><span class="n">history_</span><span class="p">[</span><span class="s">"val_loss"</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s">"Test loss"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">test_loss_forest</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s">"g"</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s">"--"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"Random forest test loss"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"Number of iterations"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"Loss"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">yscale</span><span class="p">(</span><span class="s">"log"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>TTML test loss: 2.8970
+Random forest test loss: 3.2568
+</code></pre></div></div>
+
+<p><img src="/imgs/discrete-function-tensor/tensor-completion_19_1.svg" alt="svg" /></p>
+
+<p>We see that using a random forest for initialization gives a huge improvement to both training and test loss.
+In fact,the final test loss is better than that of the random forest itself! On top of that, this estimator doesn’t use many parameters:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"TT uses </span><span class="si">{</span><span class="n">tt</span><span class="p">.</span><span class="n">ttml_</span><span class="p">.</span><span class="n">num_params</span><span class="si">}</span><span class="s"> parameters"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>TT uses 1356 parameters
+</code></pre></div></div>
+
+<p>Let’s compare that to the random forest. If we look under the hood, the scikit-learn implementation of random forests stores 8 parameters per node in each tree in the forest. This is inefficient, and you really only <em>need</em> 2 parameters per node, so let’s use that.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">num_params_forest</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span>
+    <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">tree</span><span class="p">.</span><span class="n">tree_</span><span class="p">.</span><span class="n">__getstate__</span><span class="p">()[</span><span class="s">"nodes"</span><span class="p">])</span> <span class="o">*</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">tree</span> <span class="ow">in</span> <span class="n">forest</span><span class="p">.</span><span class="n">estimators_</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Forest uses </span><span class="si">{</span><span class="n">num_params_forest</span><span class="si">}</span><span class="s"> parameters"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Forest uses 303180 parameters
+</code></pre></div></div>
+
+<p>That’s 1356 parameters vs. more than 300,000 parameters! What about my claim of prediction speed? Let’s compare the amount of time it takes both estimators to predict 1 million samples. We do this by just concatenating the training data until we get 1 million samples.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">perf_counter_ns</span>
+
+<span class="n">target_num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">1e6</span><span class="p">)</span>
+<span class="n">n_copies</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">target_num</span><span class="o">//</span><span class="nb">len</span><span class="p">(</span><span class="n">X_train</span><span class="p">))</span><span class="o">+</span><span class="mi">1</span>
+<span class="n">X_one_million</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">n_copies</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)[:</span><span class="n">target_num</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">X_one_million</span><span class="p">.</span><span class="n">shape</span><span class="o">=</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+
+<span class="n">time_before</span> <span class="o">=</span> <span class="n">perf_counter_ns</span><span class="p">()</span>
+<span class="n">tt</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_one_million</span><span class="p">)</span>
+<span class="n">time_taken</span> <span class="o">=</span> <span class="p">(</span><span class="n">perf_counter_ns</span><span class="p">()</span> <span class="o">-</span> <span class="n">time_before</span><span class="p">)</span><span class="o">/</span><span class="mf">1e6</span>
+<span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Time taken by TT: </span><span class="si">{</span><span class="n">time_taken</span><span class="si">:</span><span class="p">.</span><span class="mi">0</span><span class="n">f</span><span class="si">}</span><span class="s">ms"</span><span class="p">)</span>
+
+<span class="n">time_before</span> <span class="o">=</span> <span class="n">perf_counter_ns</span><span class="p">()</span>
+<span class="n">forest</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_one_million</span><span class="p">)</span>
+<span class="n">time_taken</span> <span class="o">=</span> <span class="p">(</span><span class="n">perf_counter_ns</span><span class="p">()</span> <span class="o">-</span> <span class="n">time_before</span><span class="p">)</span><span class="o">/</span><span class="mf">1e6</span>
+<span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Time taken by Forest: </span><span class="si">{</span><span class="n">time_taken</span><span class="si">:</span><span class="p">.</span><span class="mi">0</span><span class="n">f</span><span class="si">}</span><span class="s">ms"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>X_one_million.shape=(1000000, 5)
+Time taken by TT: 430ms
+Time taken by Forest: 2328ms
+</code></pre></div></div>
+
+<p>While not by orders of magnitude, we see that the tensor train model is faster. You might be thinking that
+this is just because the tensor train has fewer parameters, but this is not the case. Even if we use a very
+high-rank tensor train with high-dimensional data, it is still going to be fast. The speed scales really well,
+and will beat most conventional machine learning estimators.</p>
+
+<h2 id="no-free-lunch">No free lunch</h2>
+
+<p>With good initialization the model based on distretized functions perform really well. On our test dataset the
+model is fast, uses few parameters, and beats a random forest in test loss (in fact, it is <em>the best
+estimator</em> I have found so far for this problem). This is great! I should publish a paper in NeurIPS and get a
+job at Google! Well… let’s not get ahead of ourselves. It performs well on <em>this particular dataset</em>, yes,
+but how does it fare on other data?</p>
+
+<p>As we shall see, it doesn’t do all that well actually. The airfoil self-noise dataset is a very particular
+dataset on which this algorithm excels. The model seems to perform well on data that can be described by a
+somewhat smooth function, and doesn’t deal well with the noisy and stochastic nature of most data we encounter
+in the real world. As an example let’s repeat the experiment, but let’s first add some noise:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">ttml.ttml</span> <span class="kn">import</span> <span class="n">TTMLRegressor</span>
+
+<span class="n">X_noise_std</span> <span class="o">=</span> <span class="mf">1e-6</span>
+<span class="n">X_train_noisy</span> <span class="o">=</span> <span class="n">X_train</span> <span class="o">+</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">X_noise_std</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">X_train</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">X_test_noisy</span> <span class="o">=</span> <span class="n">X_test</span> <span class="o">+</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="n">X_noise_std</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">X_test</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+
+
+<span class="c1"># Use random forest as base estimator
+</span><span class="n">forest</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">()</span>
+
+<span class="c1"># Fit tt on random forest, and then optimize further on training data
+</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">179</span><span class="p">)</span>
+<span class="n">tt</span> <span class="o">=</span> <span class="n">TTMLRegressor</span><span class="p">(</span><span class="n">forest</span><span class="p">,</span> <span class="n">max_rank</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">opt_tol</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">opt_steps</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">tt</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_noisy</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_val</span><span class="o">=</span><span class="n">X_test_noisy</span><span class="p">,</span> <span class="n">y_val</span><span class="o">=</span><span class="n">y_test</span><span class="p">)</span>
+
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">tt</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_noisy</span><span class="p">)</span>
+<span class="n">test_loss</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y_pred</span> <span class="o">-</span> <span class="n">y_test</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"TTML test loss (noisy): </span><span class="si">{</span><span class="n">test_loss</span><span class="si">:</span><span class="p">.</span><span class="mi">4</span><span class="n">f</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+
+<span class="c1"># Forest is fit on same data during fitting of tt
+# Let's also report how good the forest does
+</span><span class="n">y_pred_forest</span> <span class="o">=</span> <span class="n">forest</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_noisy</span><span class="p">)</span>
+<span class="n">test_loss_forest</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y_pred_forest</span> <span class="o">-</span> <span class="n">y_test</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Random forest test loss (noisy): </span><span class="si">{</span><span class="n">test_loss_forest</span><span class="si">:</span><span class="p">.</span><span class="mi">4</span><span class="n">f</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+
+<span class="c1"># Training and test loss is also recording during optimization, let's plot it
+</span><span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">DEFAULT_FIGSIZE</span><span class="p">))</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tt</span><span class="p">.</span><span class="n">history_</span><span class="p">[</span><span class="s">"train_loss"</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s">"Training loss"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tt</span><span class="p">.</span><span class="n">history_</span><span class="p">[</span><span class="s">"val_loss"</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s">"Test loss"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">test_loss_forest</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s">"g"</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s">"--"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"Random forest test loss"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"Number of iterations"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"Loss"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">();</span>
+
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>TTML test loss (noisy): 7.1980
+Random forest test loss (noisy): 5.1036
+</code></pre></div></div>
+
+<p><img src="/imgs/discrete-function-tensor/tensor-completion_28_1.svg" alt="svg" /></p>
+
+<p>Even a tiny bit of noise in the training data can severely degrade the model. We see that it starts to overfit
+a lot. This is because my algorithm tries to automatically find a ‘good’ discretization of the data, not just
+a uniform discretization as we have discussed in our 2D example (i.e. equally spacing all the grid cells).
+Some of the variables in this dataset are however categorical, and a small amount of noise makes it much more
+difficult to automatically detect a good way to discretize them.</p>
+
+<p>The model has a lot of hyperparameters we won’t go into now, and playing with them does help with overfitting.
+Furthermore, the noisy data we show here is perhaps not very realistic. However, the fact remains that the
+model (at least the way its currently implemented) is not very robust to noise. In particular, the model is
+very sensitive to the discretization of the feature space used.</p>
+
+<p>Right now we don’t have anything better than simple heuristics for finding discretizations of the features
+space. Since the loss function depends in a really discontinuous way on the discretization, optimizing the
+discretization is difficult. Perhaps we can use an algorithm to adaptively split and merge thresholds used in
+the discretization, or use some kind of clustering algorithm for discretization. I have tried things along
+those lines but getting it to work well is difficult. I think that with more study, the problem of finding a
+good discretization can be solved, but it’s not easy.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>We looked at discretized functions and their use in supervised machine learning. In higher dimensions
+discretized functions are parametrized by tensors, which we can represent efficiently using tensor trains. The
+tensor train can be optimized directly on the data to produce a potentially useful machine learning model. It
+is both very fast, and doesn’t use many parameters. In order to initialize it well, we can first fit an
+auxiliary machine learning model on the same data, and then sample predictions from that model to effectively
+increase the amount of training data. This model performs really well on some datasets, but in general it is
+not very robust to noise. As a result, without further improvements, the model will only be useful in a select
+number of cases. On the other hand, I really think that the model does have a lot of potential, once some of
+its drawbacks are fixed.</p>
+
+
+Recent posts
+
+
+
+
+<div class="entries-grid">
+  
+    
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/gmres-teaser.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/gmres/" rel="permalink">GMRES: or how to do fast linear algebra
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2022-03-10T00:00:00-06:00">March 10, 2022</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        16 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">Linear least-squares system pop up everywhere, and there are many fast way to solve them. We’ll be looking at one such way: GMRES.
+</p>
+  </article>
+</div>
+
+  
+    
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/discrete-function-tensor.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/discrete-function-tensor/" rel="permalink">Machine learning with discretized functions and tensors
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2022-03-10T00:00:00-06:00">March 10, 2022</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        17 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">We recently made a paper about supervised machine learning using tensors, here’s the gist of how this works.
+</p>
+  </article>
+</div>
+
+  
+    
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/st-vitus-rank-10.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/low-rank-matrix/" rel="permalink">Low-rank matrices: using structure to recover missing data
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2021-09-26T00:00:00-05:00">September 26, 2021</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        10 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">A lot of data is naturally of ‘low rank’. I will explain what this means, and how to exploit this fact.
+</p>
+  </article>
+</div>
+
+  
+    
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/python_docx/doc_comparison.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/python-docx/" rel="permalink">How to edit Microsoft Word documents in Python
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2021-08-29T00:00:00-05:00">August 29, 2021</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        6 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">Parsing and editing Word documents automatically can be extremely useful, but doing it in Python is not that straightforward.
+</p>
+  </article>
+</div>
+
+  
+    
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/st-vitus-deblurred.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/deconvolution-part4/" rel="permalink">Blind deconvolution #4: Blind deconvolution
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2021-05-31T00:00:00-05:00">May 31, 2021</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        6 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">Finally, let’s look at how we can automatically sharpen images, without knowing how they were blurred in the first place.
+</p>
+  </article>
+</div>
+
+  
+    
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/cow-weird-blur.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/deconvolution-part3/" rel="permalink">Blind Deconvolution #3: More about non-blind deconvolution
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2021-05-02T00:00:00-05:00">May 2, 2021</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        5 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">Deconvolving and sharpening images is actually pretty tricky. Let’s have a look at some more advanced methods for deconvolution.
+</p>
+  </article>
+</div>
+
+  
+    
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/st-vitus-laplace.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/deconvolution-part2/" rel="permalink">Blind Deconvolution #2: Image Priors
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2021-04-09T00:00:00-05:00">April 9, 2021</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        10 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">In order to automatically sharpen images, we need to first understand how a computer can judge how ‘natural’ an image looks.
+</p>
+  </article>
+</div>
+
+  
+    
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/st-vitus-blur.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/deconvolution-part1/" rel="permalink">Blind Deconvolution #1: Non-blind Deconvolution
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2021-03-13T00:00:00-06:00">March 13, 2021</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        6 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">Deconvolution is one of the cornerstones of image processing. Let’s take a look at how it works.
+</p>
+  </article>
+</div>
+
+  
+</div>
+
+<!-- <ul class="taxonomy__index">
+  
+  
+    <li>
+      <a href="#2022">
+        <strong>2022</strong> <span class="taxonomy__count">2</span>
+      </a>
+    </li>
+  
+    <li>
+      <a href="#2021">
+        <strong>2021</strong> <span class="taxonomy__count">7</span>
+      </a>
+    </li>
+  
+    <li>
+      <a href="#2020">
+        <strong>2020</strong> <span class="taxonomy__count">7</span>
+      </a>
+    </li>
+  
+</ul> -->
+<!-- 
+
+
+
+
+
+  <section id="2022" class="taxonomy__section">
+    <h2 class="archive__subtitle">2022</h2>
+    <div class="entries-grid">
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/gmres-teaser.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/gmres/" rel="permalink">GMRES: or how to do fast linear algebra
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2022-03-10T00:00:00-06:00">March 10, 2022</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        16 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">Linear least-squares system pop up everywhere, and there are many fast way to solve them. We’ll be looking at one such way: GMRES.
+</p>
+  </article>
+</div>
+
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/discrete-function-tensor.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/discrete-function-tensor/" rel="permalink">Machine learning with discretized functions and tensors
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2022-03-10T00:00:00-06:00">March 10, 2022</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        17 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">We recently made a paper about supervised machine learning using tensors, here’s the gist of how this works.
+</p>
+  </article>
+</div>
+
+      
+    </div>
+    <a href="#page-title" class="back-to-top">Back to top &uarr;</a>
+  </section>
+
+  <section id="2021" class="taxonomy__section">
+    <h2 class="archive__subtitle">2021</h2>
+    <div class="entries-grid">
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/st-vitus-rank-10.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/low-rank-matrix/" rel="permalink">Low-rank matrices: using structure to recover missing data
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2021-09-26T00:00:00-05:00">September 26, 2021</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        10 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">A lot of data is naturally of ‘low rank’. I will explain what this means, and how to exploit this fact.
+</p>
+  </article>
+</div>
+
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/python_docx/doc_comparison.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/python-docx/" rel="permalink">How to edit Microsoft Word documents in Python
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2021-08-29T00:00:00-05:00">August 29, 2021</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        6 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">Parsing and editing Word documents automatically can be extremely useful, but doing it in Python is not that straightforward.
+</p>
+  </article>
+</div>
+
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/st-vitus-deblurred.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/deconvolution-part4/" rel="permalink">Blind deconvolution #4: Blind deconvolution
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2021-05-31T00:00:00-05:00">May 31, 2021</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        6 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">Finally, let’s look at how we can automatically sharpen images, without knowing how they were blurred in the first place.
+</p>
+  </article>
+</div>
+
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/cow-weird-blur.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/deconvolution-part3/" rel="permalink">Blind Deconvolution #3: More about non-blind deconvolution
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2021-05-02T00:00:00-05:00">May 2, 2021</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        5 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">Deconvolving and sharpening images is actually pretty tricky. Let’s have a look at some more advanced methods for deconvolution.
+</p>
+  </article>
+</div>
+
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/st-vitus-laplace.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/deconvolution-part2/" rel="permalink">Blind Deconvolution #2: Image Priors
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2021-04-09T00:00:00-05:00">April 9, 2021</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        10 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">In order to automatically sharpen images, we need to first understand how a computer can judge how ‘natural’ an image looks.
+</p>
+  </article>
+</div>
+
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/st-vitus-blur.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/deconvolution-part1/" rel="permalink">Blind Deconvolution #1: Non-blind Deconvolution
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2021-03-13T00:00:00-06:00">March 13, 2021</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        6 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">Deconvolution is one of the cornerstones of image processing. Let’s take a look at how it works.
+</p>
+  </article>
+</div>
+
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/email-time-series.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/email-time-series/" rel="permalink">Time series analysis of my email traffic
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2021-02-13T00:00:00-06:00">February 13, 2021</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        6 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">I have 15 years worth of email traffic data, let’s take a closer look and discover some fascinating patterns.
+</p>
+  </article>
+</div>
+
+      
+    </div>
+    <a href="#page-title" class="back-to-top">Back to top &uarr;</a>
+  </section>
+
+  <section id="2020" class="taxonomy__section">
+    <h2 class="archive__subtitle">2020</h2>
+    <div class="entries-grid">
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/music-2020.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/music_2020/" rel="permalink">2020 in music
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2020-12-31T00:00:00-06:00">December 31, 2020</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        4 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">2020 was a great year for music, I will look back and give some thoughts on the best albums that came out in 20202.
+</p>
+  </article>
+</div>
+
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/bayes-exam.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/bayes_exam/" rel="permalink">Modeling uncertainty in exam scores
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2020-11-09T00:00:00-06:00">November 9, 2020</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        3 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">We use exams to determine how much a student knows, but exams aren’t perfect. How can we estimate the uncertainty in students’ exams scores?
+</p>
+  </article>
+</div>
+
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/validation-data.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/validation-size/" rel="permalink">How big should my validation set be?
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2020-08-26T00:00:00-05:00">August 26, 2020</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        12 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">Cross validation is extremely important, but how should we choose the size of our validation and test sets?
+</p>
+  </article>
+</div>
+
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/lastfm.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/lastfm/" rel="permalink">How do my music preferences evolve?
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2020-08-12T00:00:00-05:00">August 12, 2020</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        5 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">I use last.fm to track my music listening. Let’s look at my data to discover how my musical preferences evolve over time.
+</p>
+  </article>
+</div>
+
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/normal-data.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/normal-data/" rel="permalink">Is my data normal?
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2020-08-10T00:00:00-05:00">August 10, 2020</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        6 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">Normally distributed data is great, but how do you know whether your data is normally distributed?
+</p>
+  </article>
+</div>
+
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/figure-skating.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/figure-skating/" rel="permalink">Bias in figure skating judging
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2020-06-20T00:00:00-05:00">June 20, 2020</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        3 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">Judging in figure skating is biased. Let’s use data science to figure out just how bad the issue is.
+</p>
+  </article>
+</div>
+
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/first-post.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/first-post/" rel="permalink">First post
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2020-06-19T07:19:44-05:00">June 19, 2020</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        less than 1 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">My first post in this blog
+</p>
+  </article>
+</div>
+
+      
+    </div>
+    <a href="#page-title" class="back-to-top">Back to top &uarr;</a>
+  </section>
+ -->
+
+  </div>
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    <!-- 
+      <li><strong>Contact info and socials</strong></li>
+     -->
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 Rik Voorhaar. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+  <script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'G-Q5W21THKW2']);
+  
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

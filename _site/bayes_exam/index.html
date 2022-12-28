@@ -1,0 +1,1810 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.20.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<!-- <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script> -->
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Modeling uncertainty in exam scores - Rik Voorhaar</title>
+<meta name="description" content="We use exams to determine how much a student knows, but exams aren’t perfect. How can we estimate the uncertainty in students’ exams scores?">
+
+
+  <meta name="author" content="Dr. Rik Voorhaar">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Rik Voorhaar">
+<meta property="og:title" content="Modeling uncertainty in exam scores">
+<meta property="og:url" content="https://blog.rikvoorhaar.com/bayes_exam/">
+
+
+  <meta property="og:description" content="We use exams to determine how much a student knows, but exams aren’t perfect. How can we estimate the uncertainty in students’ exams scores?">
+
+
+
+  <meta property="og:image" content="https://blog.rikvoorhaar.com/imgs/teasers/bayes-exam.jpg">
+
+
+
+
+
+  <meta property="article:published_time" content="2020-11-09T00:00:00-06:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://blog.rikvoorhaar.com/bayes_exam/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Rik Voorhaar",
+      "url": "https://blog.rikvoorhaar.com/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Rik Voorhaar Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"> -->
+<script src="https://kit.fontawesome.com/ca9a31e360.js" crossorigin="anonymous"></script>
+
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+
+<!-- end custom head snippets -->
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700;800&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+  </head>
+
+  <body class="layout--posts">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="/assets/images/logo_name.svg" alt=""></a>
+        
+        <a class="site-title" href="/">
+           
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/cv/">CV</a>
+            </li><li class="masthead__menu-item">
+              <a href="/">Blog</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">Hobbies</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      <div class="page__hero-background"> </div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/imgs/avatar.jpg" alt="Dr. Rik Voorhaar" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Dr. Rik Voorhaar</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>ML Software Developer and curious mind</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Contact info and socials</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Copenhagen, Denmark</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:rik.voorhaar@gmail.com" rel="nofollow noopener noreferrer"><i class="far fa-fw fa-envelope" aria-hidden="true"></i><span class="label">rik.voorhaar@gmail.com</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/RikVoorhaar" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.facebook.com/WH.Voorhaar" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span class="label">Facebook</span></a></li>
+          
+        
+          
+            <li><a href="https://discord.com/users/354966598643220480" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-discord" aria-hidden="true"></i><span class="label">Discord</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/rik-voorhaar" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+            <li><a href="https://www.last.fm/user/Tilpo" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-lastfm-square" aria-hidden="true"></i><span class="label">Last.fm</span></a></li>
+          
+        
+          
+            <li><a href="https://www.goodreads.com/user/show/62542056-tilpo" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-goodreads" aria-hidden="true"></i><span class="label">Goodreads</span></a></li>
+          
+        
+          
+            <li><a href="https://steamcommunity.com/profiles/76561197996562422" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-steam" aria-hidden="true"></i><span class="label">Steam</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <div class="archive">
+    <br>
+    
+      <h1 id="page-title" class="page__title">Modeling uncertainty in exam scores</h1>
+    
+    <p>We widely use exams in education to gauge the level of students. The result of an exam is really
+only indicator of the students actual level, and has a certainly level of uncertainty. In this
+article we will try to model the uncertainty in the grades of an exam through a Bayesian model,
+using the amount of points obtained in each question. Such an analysis may be useful in designing
+good exams, as in principal this error is something we would wish to minimize.</p>
+
+<h2 id="the-data">The data</h2>
+
+<p>We will use scores for 8 individual questions of a university math exam. We recorded scores of 100
+students. Each question is worth 12 points for a total of 96 points, and students could obtain
+anywhere between 0 and 12 points for each question.</p>
+
+<p><em>Notice: this data is modified from the original in multiple ways due to privacy reasons. The
+modifications preserve most qualitative statistical properties.</em></p>
+
+<h2 id="modeling-the-data">Modeling the data</h2>
+
+<p>Let \(S\) denote the total exam score, and let \(G_j\) denote the score obtained for the \(j\)th question.
+Obviously these variables are not independent, high scores in one question are a indicator the
+student will get high scores in another question as well. For simplicity we want to model the
+question scores as conditionally independent given the total score \(S\). The idea behind this is that
+\(S\) is an unbiased measurement of the students abilities, and the score obtained for a question
+should only depend on the student’s abilities. This ignores the fact that some questions test
+similar aspects of the course, and so are more correlated compared to others. If we plot the
+covariance matrix of the scores we see that there doesn’t seem to be a strong correlation between
+question scores. We do however see that the 6th question has a higher variance than the other
+questions</p>
+
+<p><img src="/imgs/bayes_exam_3_0.png" alt="png" /></p>
+
+<p>Now we need to obtain a good model for the conditional probability \(P(G_j|S)\). We will model \(G_j\)
+by a binomial distribution, which corresponds to assuming \(G_j\) consists of \(12\) ‘subproblems’, of
+which the student has equal chance of solving. While this does not seem like a natural assumption,
+it is very convenient. If \(m_j\) denotes the total score obtainable for question \(G_j\) this gives
+model</p>
+
+\[P(G_j|S) \propto P(G_j|p_j,S)P(p_j|S),\]
+
+<p>with</p>
+
+\[G_j|p_j,S \sim \mbox{Bin}(p_j,m_j).\]
+
+<p>Next we need to model the conditional distribution \(P(p_j|S)\). We tried linear and quadratic
+regression on \(\mbox{logit}(p_j)\), but this tends to perform badly near the limits \(S=0\) and \(S=96\),
+and in general tends to shift the predictions towards the global mean. Instead we want a model such
+that if \(S=0\) then \(p_j\) is concentrated near zero. To do this we model \(p_j\) with a beta
+distribution, whose parameters depend quadratically on \(S\). More precisely if \(\hat S= S/96\) (which
+supported on \([0,1]\)), then we set</p>
+
+\[p_j|S,\alpha_0,\alpha^j_1,\beta^j_0,\beta^j_1 \sim \mbox{Beta}\left(e^{\alpha^j_0} S+e^{\alpha^j_1} S^2+\tau,\, e^{\beta^j_0} (1-S)+e^{\beta^j_1} (1-S)^2+\tau\right),\]
+
+<p>where \(\tau=0.01\) is a small regularization parameter. This model has \(p_j\) constrained close to \(0\)
+if \(S\) is small (and similarly \(p_j\simeq 1\) if \(S\) close to 96), and also has enough flexibility to
+fit our data reasonably well. The exponentials are used both to force the parameters to be positive,
+and this parametrization also improves the fit. The parameters \(\alpha_i,\beta_i\) are given normal
+priors with mean \(0\) and large sigma, although the fit is not sensitive on this prior.</p>
+
+<p>We will model all the parameters in this model using a Monte Carlo Markov Chain (MCMC) simulation
+using <code class="language-plaintext highlighter-rouge">pymc3</code>. With <code class="language-plaintext highlighter-rouge">pymc3</code> it is very straightforward to implement this model, and requires only a
+couple lines of code. In the end we obtain samples for the variables \(G_j\), and we can model the
+error in the total score by looking at the distribution of the posterior \(\sum_{j=1}^{8} G_j\).</p>
+
+<h2 id="results">Results</h2>
+
+<p>First we compare the distribution of the predicted exam scores to the actual exam scores. The graph
+below shows the real scores on the horizontal axis, and predicted scores on vertical axis. The
+vertically shaded area indicates one standard deviation. The model appears to by unbiased for lower
+scores, but picks up a slight bias for higher scores. In the original unmodified data this behavior
+was not apparent, and is therefore likely a byproduct of how the data was modified due to privacy
+concerns.</p>
+
+<p><img src="/imgs/bayes_exam_9_0.png" alt="png" /></p>
+
+<p>The goal of this project is to simulate the error in the exam score. Below we plot the the standard
+deviations of the predicted scores as function of total score. We compare this to a theoretical
+variance coming from a binomial distribution with 96 trials, and we see that the error is close to
+this theoretical variance. This means that most of the variance in posterior comes directly from the
+binomial distributions modeling the question scores \(G_j\). We also plot the the variance in the
+posterior predictive, which is significantly higher. This makes sense, because for the posterior
+predictive we do not just model the error in each question score, we also have to predict the scores
+for each question given just the total score.</p>
+
+<p><img src="/imgs/bayes_exam_11_0.png" alt="png" /></p>
+
+<p>To measure how well our model describes the data, we compare the posterior predictive for each
+question to the data for each question as function of total score. Here we see that our model
+describes the distribution quite well for most questions, although in some questions the model
+underestimates the spread of the data. This is likely because the binomial model is not accurate. To
+model the questions scores more accurately we would need to step away from the binomial model.
+However this would make the model more complicated, and the current model does give reasonable
+predictions for the most part.</p>
+
+<p><img src="/imgs/bayes_exam_13_0.png" alt="png" /></p>
+
+<h2 id="evaluation-the-qualities-of-questions">Evaluation the qualities of questions</h2>
+
+<p>We can also use the posterior predictive to qualitatively evaluate the quality of questions. Let us
+plot the standard deviation and mean of the posterior predictive for each individual question as
+function of the total score \(S\) below. In a perfect question the variation is as low as possible,
+and the mean should be relatively close to the straight line. All in all this means that the
+question provides as much information about the students abilities. Based on this it seems that
+questions 2,4,8 are quite good, whereas 1,3,6 are not as good. In particular the points obtained for
+question 6 has the weakest correlation with the total score. Question 5 seems to have been
+relatively easy, whereas question 3 appears to have been difficult. Analyzing questions in such a
+manner can be useful for designing future tests, as well as determining what aspects of the course
+the students found easier or more difficult.</p>
+
+<p><img src="/imgs/bayes_exam_15_0.png" alt="png" /></p>
+
+<p><img src="/imgs/bayes_exam_16_0.png" alt="png" /></p>
+
+
+
+Recent posts
+
+
+
+
+<div class="entries-grid">
+  
+    
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/gmres-teaser.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/gmres/" rel="permalink">GMRES: or how to do fast linear algebra
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2022-03-10T00:00:00-06:00">March 10, 2022</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        16 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">Linear least-squares system pop up everywhere, and there are many fast way to solve them. We’ll be looking at one such way: GMRES.
+</p>
+  </article>
+</div>
+
+  
+    
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/discrete-function-tensor.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/discrete-function-tensor/" rel="permalink">Machine learning with discretized functions and tensors
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2022-03-10T00:00:00-06:00">March 10, 2022</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        18 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">We recently made a paper about supervised machine learning using tensors, here’s the gist of how this works.
+</p>
+  </article>
+</div>
+
+  
+    
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/st-vitus-rank-10.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/low-rank-matrix/" rel="permalink">Low-rank matrices: using structure to recover missing data
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2021-09-26T00:00:00-05:00">September 26, 2021</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        10 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">A lot of data is naturally of ‘low rank’. I will explain what this means, and how to exploit this fact.
+</p>
+  </article>
+</div>
+
+  
+    
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/python_docx/doc_comparison.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/python-docx/" rel="permalink">How to edit Microsoft Word documents in Python
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2021-08-29T00:00:00-05:00">August 29, 2021</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        6 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">Parsing and editing Word documents automatically can be extremely useful, but doing it in Python is not that straightforward.
+</p>
+  </article>
+</div>
+
+  
+    
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/st-vitus-deblurred.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/deconvolution-part4/" rel="permalink">Blind deconvolution #4: Blind deconvolution
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2021-05-31T00:00:00-05:00">May 31, 2021</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        6 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">Finally, let’s look at how we can automatically sharpen images, without knowing how they were blurred in the first place.
+</p>
+  </article>
+</div>
+
+  
+    
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/cow-weird-blur.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/deconvolution-part3/" rel="permalink">Blind Deconvolution #3: More about non-blind deconvolution
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2021-05-02T00:00:00-05:00">May 2, 2021</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        5 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">Deconvolving and sharpening images is actually pretty tricky. Let’s have a look at some more advanced methods for deconvolution.
+</p>
+  </article>
+</div>
+
+  
+    
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/st-vitus-laplace.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/deconvolution-part2/" rel="permalink">Blind Deconvolution #2: Image Priors
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2021-04-09T00:00:00-05:00">April 9, 2021</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        10 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">In order to automatically sharpen images, we need to first understand how a computer can judge how ‘natural’ an image looks.
+</p>
+  </article>
+</div>
+
+  
+    
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/st-vitus-blur.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/deconvolution-part1/" rel="permalink">Blind Deconvolution #1: Non-blind Deconvolution
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2021-03-13T00:00:00-06:00">March 13, 2021</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        6 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">Deconvolution is one of the cornerstones of image processing. Let’s take a look at how it works.
+</p>
+  </article>
+</div>
+
+  
+</div>
+
+<!-- <ul class="taxonomy__index">
+  
+  
+    <li>
+      <a href="#2022">
+        <strong>2022</strong> <span class="taxonomy__count">2</span>
+      </a>
+    </li>
+  
+    <li>
+      <a href="#2021">
+        <strong>2021</strong> <span class="taxonomy__count">7</span>
+      </a>
+    </li>
+  
+    <li>
+      <a href="#2020">
+        <strong>2020</strong> <span class="taxonomy__count">7</span>
+      </a>
+    </li>
+  
+</ul> -->
+<!-- 
+
+
+
+
+
+  <section id="2022" class="taxonomy__section">
+    <h2 class="archive__subtitle">2022</h2>
+    <div class="entries-grid">
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/gmres-teaser.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/gmres/" rel="permalink">GMRES: or how to do fast linear algebra
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2022-03-10T00:00:00-06:00">March 10, 2022</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        16 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">Linear least-squares system pop up everywhere, and there are many fast way to solve them. We’ll be looking at one such way: GMRES.
+</p>
+  </article>
+</div>
+
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/discrete-function-tensor.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/discrete-function-tensor/" rel="permalink">Machine learning with discretized functions and tensors
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2022-03-10T00:00:00-06:00">March 10, 2022</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        18 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">We recently made a paper about supervised machine learning using tensors, here’s the gist of how this works.
+</p>
+  </article>
+</div>
+
+      
+    </div>
+    <a href="#page-title" class="back-to-top">Back to top &uarr;</a>
+  </section>
+
+  <section id="2021" class="taxonomy__section">
+    <h2 class="archive__subtitle">2021</h2>
+    <div class="entries-grid">
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/st-vitus-rank-10.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/low-rank-matrix/" rel="permalink">Low-rank matrices: using structure to recover missing data
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2021-09-26T00:00:00-05:00">September 26, 2021</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        10 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">A lot of data is naturally of ‘low rank’. I will explain what this means, and how to exploit this fact.
+</p>
+  </article>
+</div>
+
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/python_docx/doc_comparison.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/python-docx/" rel="permalink">How to edit Microsoft Word documents in Python
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2021-08-29T00:00:00-05:00">August 29, 2021</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        6 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">Parsing and editing Word documents automatically can be extremely useful, but doing it in Python is not that straightforward.
+</p>
+  </article>
+</div>
+
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/st-vitus-deblurred.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/deconvolution-part4/" rel="permalink">Blind deconvolution #4: Blind deconvolution
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2021-05-31T00:00:00-05:00">May 31, 2021</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        6 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">Finally, let’s look at how we can automatically sharpen images, without knowing how they were blurred in the first place.
+</p>
+  </article>
+</div>
+
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/cow-weird-blur.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/deconvolution-part3/" rel="permalink">Blind Deconvolution #3: More about non-blind deconvolution
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2021-05-02T00:00:00-05:00">May 2, 2021</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        5 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">Deconvolving and sharpening images is actually pretty tricky. Let’s have a look at some more advanced methods for deconvolution.
+</p>
+  </article>
+</div>
+
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/st-vitus-laplace.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/deconvolution-part2/" rel="permalink">Blind Deconvolution #2: Image Priors
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2021-04-09T00:00:00-05:00">April 9, 2021</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        10 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">In order to automatically sharpen images, we need to first understand how a computer can judge how ‘natural’ an image looks.
+</p>
+  </article>
+</div>
+
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/st-vitus-blur.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/deconvolution-part1/" rel="permalink">Blind Deconvolution #1: Non-blind Deconvolution
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2021-03-13T00:00:00-06:00">March 13, 2021</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        6 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">Deconvolution is one of the cornerstones of image processing. Let’s take a look at how it works.
+</p>
+  </article>
+</div>
+
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/email-time-series.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/email-time-series/" rel="permalink">Time series analysis of my email traffic
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2021-02-13T00:00:00-06:00">February 13, 2021</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        6 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">I have 15 years worth of email traffic data, let’s take a closer look and discover some fascinating patterns.
+</p>
+  </article>
+</div>
+
+      
+    </div>
+    <a href="#page-title" class="back-to-top">Back to top &uarr;</a>
+  </section>
+
+  <section id="2020" class="taxonomy__section">
+    <h2 class="archive__subtitle">2020</h2>
+    <div class="entries-grid">
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/music-2020.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/music_2020/" rel="permalink">2020 in music
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2020-12-31T00:00:00-06:00">December 31, 2020</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        4 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">2020 was a great year for music, I will look back and give some thoughts on the best albums that came out in 20202.
+</p>
+  </article>
+</div>
+
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/bayes-exam.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/bayes_exam/" rel="permalink">Modeling uncertainty in exam scores
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2020-11-09T00:00:00-06:00">November 9, 2020</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        3 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">We use exams to determine how much a student knows, but exams aren’t perfect. How can we estimate the uncertainty in students’ exams scores?
+</p>
+  </article>
+</div>
+
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/validation-data.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/validation-size/" rel="permalink">How big should my validation set be?
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2020-08-26T00:00:00-05:00">August 26, 2020</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        12 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">Cross validation is extremely important, but how should we choose the size of our validation and test sets?
+</p>
+  </article>
+</div>
+
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/lastfm.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/lastfm/" rel="permalink">How do my music preferences evolve?
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2020-08-12T00:00:00-05:00">August 12, 2020</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        5 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">I use last.fm to track my music listening. Let’s look at my data to discover how my musical preferences evolve over time.
+</p>
+  </article>
+</div>
+
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/normal-data.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/normal-data/" rel="permalink">Is my data normal?
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2020-08-10T00:00:00-05:00">August 10, 2020</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        6 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">Normally distributed data is great, but how do you know whether your data is normally distributed?
+</p>
+  </article>
+</div>
+
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/figure-skating.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/figure-skating/" rel="permalink">Bias in figure skating judging
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2020-06-20T00:00:00-05:00">June 20, 2020</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        3 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">Judging in figure skating is biased. Let’s use data science to figure out just how bad the issue is.
+</p>
+  </article>
+</div>
+
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/first-post.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/first-post/" rel="permalink">First post
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2020-06-19T07:19:44-05:00">June 19, 2020</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        less than 1 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">My first post in this blog
+</p>
+  </article>
+</div>
+
+      
+    </div>
+    <a href="#page-title" class="back-to-top">Back to top &uarr;</a>
+  </section>
+ -->
+
+  </div>
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    <!-- 
+      <li><strong>Contact info and socials</strong></li>
+     -->
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 Rik Voorhaar. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+  <script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'G-Q5W21THKW2']);
+  
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

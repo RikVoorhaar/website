@@ -1,0 +1,1852 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.20.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<!-- <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script> -->
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Blind Deconvolution #3: More about non-blind deconvolution - Rik Voorhaar</title>
+<meta name="description" content="Deconvolving and sharpening images is actually pretty tricky. Let’s have a look at some more advanced methods for deconvolution.">
+
+
+  <meta name="author" content="Dr. Rik Voorhaar">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Rik Voorhaar">
+<meta property="og:title" content="Blind Deconvolution #3: More about non-blind deconvolution">
+<meta property="og:url" content="https://blog.rikvoorhaar.com/deconvolution-part3/">
+
+
+  <meta property="og:description" content="Deconvolving and sharpening images is actually pretty tricky. Let’s have a look at some more advanced methods for deconvolution.">
+
+
+
+  <meta property="og:image" content="https://blog.rikvoorhaar.com/imgs/teasers/cow-weird-blur.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2021-05-02T00:00:00-05:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://blog.rikvoorhaar.com/deconvolution-part3/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Rik Voorhaar",
+      "url": "https://blog.rikvoorhaar.com/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Rik Voorhaar Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"> -->
+<script src="https://kit.fontawesome.com/ca9a31e360.js" crossorigin="anonymous"></script>
+
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+
+<!-- end custom head snippets -->
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700;800&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+  </head>
+
+  <body class="layout--posts">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="/assets/images/logo_name.svg" alt=""></a>
+        
+        <a class="site-title" href="/">
+           
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/cv/">CV</a>
+            </li><li class="masthead__menu-item">
+              <a href="/">Blog</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">Hobbies</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      <div class="page__hero-background"> </div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/imgs/avatar.jpg" alt="Dr. Rik Voorhaar" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Dr. Rik Voorhaar</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>ML Software Developer and curious mind</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Contact info and socials</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Copenhagen, Denmark</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:rik.voorhaar@gmail.com" rel="nofollow noopener noreferrer"><i class="far fa-fw fa-envelope" aria-hidden="true"></i><span class="label">rik.voorhaar@gmail.com</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/RikVoorhaar" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.facebook.com/WH.Voorhaar" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span class="label">Facebook</span></a></li>
+          
+        
+          
+            <li><a href="https://discord.com/users/354966598643220480" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-discord" aria-hidden="true"></i><span class="label">Discord</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/rik-voorhaar" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+            <li><a href="https://www.last.fm/user/Tilpo" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-lastfm-square" aria-hidden="true"></i><span class="label">Last.fm</span></a></li>
+          
+        
+          
+            <li><a href="https://www.goodreads.com/user/show/62542056-tilpo" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-goodreads" aria-hidden="true"></i><span class="label">Goodreads</span></a></li>
+          
+        
+          
+            <li><a href="https://steamcommunity.com/profiles/76561197996562422" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-steam" aria-hidden="true"></i><span class="label">Steam</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <div class="archive">
+    <br>
+    
+      <h1 id="page-title" class="page__title">Blind Deconvolution #3: More about non-blind deconvolution</h1>
+    
+    <p>In part 1 we saw how to do non-blind image deconvolution. In part 2 we saw a couple good image
+priors and we saw how they can be used for simple blind deconvolution. This worked well for
+deconvolution of Gaussian point spread functions, but it gave bad artifacts for motion blur kernels.
+Typical distortions seen in pictures taken by conventional cameras have both a motion blur and
+Gaussian component, so having good deconvolution for motion blur is absolutely essential.</p>
+
+<p>We will explore two methods to improve the deconvolution method. First is a simple modification to
+our current method, and second is an more expensive iterative method for deconvolution that works
+better for sparse kernels.</p>
+<h2 id="an-improved-wiener-filter">An improved Wiener filter</h2>
+
+<p>Recall that deconvolution comes down to solving the equation
+\(y = k*x,\)
+where \(y\) is the observed (blured) image, \(k\) is the point-spread function, \(x\) is the
+unobserved (sharp) images. If we take a discrete Fourier Transform (DFT) then this equation becomes
+\(Y = K\odot X,\)
+where capital letters denote the Fourier-transformed variables, and \(\odot\) is the <em>pointwise</em>
+multiplication. To solve the deconvolution problem we can then do pointwise division by \(K\) and then
+do the inverse Fourier transform. Because \(K\) may have zero or near-zero entries, we can run into
+numerical instability. A quick fix is to instead multiply by \(K^* / (|K|^2+\epsilon)\), giving
+solution</p>
+
+\[x = \mathcal F^{-1}\left(Y \odot \frac{K^*}{|K|^2+\epsilon}\right)\]
+
+<p>This is fast to compute, and gives decent results. This simple method of deconvolution is known as
+the Wiener filter. In the situation where there is some noise \(n\) such that \(y=k*x+n\), this
+corresponds (for a certain value of \(\epsilon\)) to \(x^*\) minimizing the expected square error
+\(E(\|x-x^*\|^2)\). Instead of minimizing the error, we can accept that \(\|k*x-y\|\approx \|n\|^2\),
+and then find the <em>smoothest</em>  \(x^*\) with that error, to avoid ringing artifacts. Smoothness can be
+modeled by the laplacian \(\Delta x^*\) This leads to the problem</p>
+
+\[\begin{array}{ll}
+        \text{minimize} &amp; \Delta x \\
+        \text{subject to} &amp; \|k*x-y\|\leq \|n\|^2
+    \end{array}\]
+
+<p>If \(L\) is the Fourier transform of the Laplacian kernel, then the solution to this problem has form</p>
+
+\[x = \mathcal F^{-1}\left(Y \odot \frac{K^*}{|K|^2+\gamma |L|^2}\right)\]
+
+<p>where the parameter \(\gamma&gt;0\) is determined by the noise level. In the end this is a simple
+modification to the Wiener filter, that should give less ringing effects. Let’s see what this does
+in practice.</p>
+
+<p><img src="/imgs/deconvolution_part3/part3_2_0.svg" alt="svg" /></p>
+
+<p>In the picture above we tried to deblur a motion blur consisting of a diagonal strip of 10 pixels.
+The deblurring is done with a kernel of 9.6 pixels (the last pixel on either end is dimmed). We do
+this both with and without the Laplacian, with amounts of regularization so that the two methods
+have a similar amount of ringing artifacts. The two methods look very similar, and if anything the
+method without Laplacian may look a little sharper. The reason the methods behave so similarly is
+probably because the Fourier transform of the Laplacian (show below) has a fairly spread-out
+distribution and is therefore not too different from a uniform distribution we use in the Wiener
+filter.</p>
+
+<p><img src="/imgs/deconvolution_part3/part3_4_1.svg" alt="svg" /></p>
+
+<h2 id="richardson-lucy-deconvolution">Richardson-Lucy deconvolution</h2>
+
+<p>There are many iterative deconvolution methods, and one often-used method in particular is
+Richardson-Lucy decomposition. The iteration step is given by</p>
+
+\[x_{k+1} = x_k\odot \left(\frac{y}{x_k*k}*k^*\right)\]
+
+<p>Here \(k^*\) is the flipped point spread function, its Fourier transform is the complex conjugate of
+the Fourier transform of \(k\). As first iteration we typically pick \(x_0=y\). Note that if
+\(\sum_{i,j}k_{ij} = 1\), then \(\mathbf 1*k = \mathbf 1\), with \(\mathbf 1\) a constant 1 signal.
+Therefore if we plug in \(x_k = \lambda x\) we obtain</p>
+
+\[x_{k+1} = x_k \odot \left(\frac{y}{\lambda y}*k^*\right) = x_k\odot \frac1\lambda \mathbf 1*k^* =
+\frac{x_k}\lambda\]
+
+<p>This both shows that \(x\) is a fixed point of the Richardson-Lucy algorithm, and at the same time it
+show that the algorithm doesn’t necessarily converge, since it could alternate between \(2x\) and
+\(x/2\) for example. In practice on natural images, if initialized with \(x_0=y\), it does seem to
+converge. Below we try this algorithm for different number of iterations, considering the same image
+and point spread function as before.</p>
+
+<p><img src="/imgs/deconvolution_part3/part3_6_0.svg" alt="svg" /></p>
+
+<p>We see very similar ringing artifacts as with the Wiener filter. The number of iterations of the
+algorithm is related to the size of the regularization constant. The more iterations, the sharper
+the image is, but also the more pronounced the ringing artifacts are.</p>
+
+<p>Like with the Wiener filter, we need to add a small positive constant when dividing, to avoid
+division-by-zero errors. Unlike the Wiener filter however, Richardson-Lucy deconvolution is very
+insensitive to the amount of regularization used.</p>
+
+<p>Richardson-Lucy deconvolution is much slower than Wiener filter, requiring perhaps 100 iterations to
+reach good result. Each iteration takes roughly as long as applying the Wiener filter. Fortunately
+the algorithm is easy to implement on a GPU, and each iteration of the (426, 640) image above takes
+only about 1ms on my computer with a simple GPU implementation using <code class="language-plaintext highlighter-rouge">cupy</code>.</p>
+
+<h2 id="boundary-effects">Boundary effects</h2>
+
+<p>One issue that I have so far swept under the rug is the problem of boundary effects. If we convolve
+an \((n,m)\) image by a \((\ell,\ell)\) kernel, then the result is an image of size \((n+\ell-1,
+m+\ell-1)\), and not \((n,m)\). There is typically a ‘fuzzy border’ around the image, which we crop
+away when displaying, but not when deconvolving. In real life we don’t have the luxury of including
+this fuzzy border around the image, and this can lead to heavy artifacts when deconvolving an image.
+Below is the St. Vitus church image blurred with \(\sigma=3\) Gaussian blur, and subsequently
+deblurred using a Wiener filter with and without using the border around the image.</p>
+
+<p><img src="/imgs/deconvolution_part3/part3_10_0.svg" alt="svg" /></p>
+
+<p>The ringing at the boundary is known as Gibbs oscillation. The reason it occurs is because the
+deconvolution method implicitly assumes the image is periodic. This is because the convolution
+theorem (stating that convolution becomes multiplication after a (discrete) Fourier transform) needs
+the assumption that the signal is periodic. If we would periodically stack a natural image we would
+find a sudden sharp transition at the boundary, and this contributes to high-frequency components in
+the Fourier transform, giving the sharp oscillations at the boundary.</p>
+
+<p>The more we regularize the deconvolution, the less big the boundary effects. This is because
+regularization essentially acts as a low-pass filter, getting rid of high-frequency effects.
+However, this also blurs the image considerably. For Richardson-Lucy deconvolution we essentially
+have the same problem.</p>
+
+<p>The straightforward to deal with this problem is to extend the image to mimmick the ‘fuzzy’ border
+introduces by convolution. Or better yet, we should pad the image in such a way that the image is as
+regular as possible when stacked periodically. This is a strategy <a href="https://doi.org/10.1109/ICIP.2008.4711802">employed by Liu and
+Jia</a>, they extend the image to be periodic by using three
+different ‘tiles’ stacked in a pattern shown below. The image is then cropped to the dotted line,
+and this gives a periodic image. The tiles are optimized such that the image is continuous along
+each boundary, and such that the total Laplacian is minimized.</p>
+
+<p><img src="/imgs/deconvolution_part3/part3_12_1.svg" alt="svg" /></p>
+
+<p>There are many similar methods in the literature. Unfortunately, all of these methods are
+complicated, and very few methods include a reference implementation. If there is one, it is almost
+always in Matlab. This seems to be a general problem when reading literature about (de)convolution and image processing, for some reason in this scientific community it is not standard practice to include code with papers, and descriptions of algorithms are often vague require significant work to translate to working code. I found a Python implementation of Liu-Jia’s algorithm <a href="https://github.com/ys-koshelev/nla_deblur/blob/90fe0ab98c26c791dcbdf231fe6f938fca80e2a0/boundaries.py">at this github</a>.</p>
+
+<p>Below we see the Laplacian of the image extended using Liu-Jia’s method, using zero padding and by reflecting the image. We see that both in the reflected image, and the one using Liu-Jia’s method there are no large values of the Laplacian around the border, because of the soft transition to the border.</p>
+
+<p><img src="/imgs/deconvolution_part3/part3_15_1.svg" alt="svg" /></p>
+
+<p>Next we can check if these periodic extensions of the images actually reduces boundary artifacts when deconvolving. Below we see the three methods for both the Wiener and Richardson-Lucy (RL) deconvolution in action on an image distorted with \(\sigma=3\) Gaussian blur.</p>
+
+<p><img src="/imgs/deconvolution_part3/part3_17_0.svg" alt="svg" /></p>
+
+<p>We can see that the Liu-Jia’s method gives a significant improvement, especially for the Wiener
+filter. More strikingly, the reflective padding works even better. This is because the convolution that the distorted the image implicitly used reflective padding as well. If you change the settings of the convolution blurring the image, then the results will not be as good. Liu-Jia’s method probably works the best out-of-the box on images blurred by natural means.</p>
+
+<p>It is interesting to note that Richardson-Lucy deconvolution suffers heavily in quality regardless of padding method. Interestingly, if we look at motion blur instead of Gaussian blur, the roles are a bit reversed. For the Wiener filter we have to use fairly aggressive regularization to not get too many artifacts, whereas RL deconvolution works without problems.</p>
+
+<p><img src="/imgs/deconvolution_part3/part3_19_0.svg" alt="svg" /></p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>We have reiterated the fact that even non-blind deconvolution can be a difficult problem. The relatively simple Wiener filter in general does a good job, and changing it to use a Laplacian for regularization doesn’t seem to help much. The Richardson-Lucy algorithm often performs comparably to the Wiener filter, although it seems to perform relatively better for sparse kernels like the motion blur kernel we used.</p>
+
+<p>Before we have completely ignored boundary problems, which is not something we can do with real images. Fortunately, we can deal with these issues by appropriately padding the image. Simply using reflections of the image for padding works quite well, especially depending on how we blur the image in the first place. Extending the image to be periodic while minimizing the Laplacian is more complicated, but also works well, and probably performs better in natural images.</p>
+
+<p>In the next part (and hopefully final part) we will dive into some simple approaches for blind deconvolution. Starting off with a modification of the Richardson-Lucy algorithm, and then trying to use what we learned about image priors in part 2.</p>
+
+
+Recent posts
+
+
+
+
+<div class="entries-grid">
+  
+    
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/gmres-teaser.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/gmres/" rel="permalink">GMRES: or how to do fast linear algebra
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2022-03-10T00:00:00-06:00">March 10, 2022</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        16 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">Linear least-squares system pop up everywhere, and there are many fast way to solve them. We’ll be looking at one such way: GMRES.
+</p>
+  </article>
+</div>
+
+  
+    
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/discrete-function-tensor.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/discrete-function-tensor/" rel="permalink">Machine learning with discretized functions and tensors
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2022-03-10T00:00:00-06:00">March 10, 2022</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        18 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">We recently made a paper about supervised machine learning using tensors, here’s the gist of how this works.
+</p>
+  </article>
+</div>
+
+  
+    
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/st-vitus-rank-10.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/low-rank-matrix/" rel="permalink">Low-rank matrices: using structure to recover missing data
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2021-09-26T00:00:00-05:00">September 26, 2021</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        10 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">A lot of data is naturally of ‘low rank’. I will explain what this means, and how to exploit this fact.
+</p>
+  </article>
+</div>
+
+  
+    
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/python_docx/doc_comparison.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/python-docx/" rel="permalink">How to edit Microsoft Word documents in Python
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2021-08-29T00:00:00-05:00">August 29, 2021</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        6 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">Parsing and editing Word documents automatically can be extremely useful, but doing it in Python is not that straightforward.
+</p>
+  </article>
+</div>
+
+  
+    
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/st-vitus-deblurred.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/deconvolution-part4/" rel="permalink">Blind deconvolution #4: Blind deconvolution
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2021-05-31T00:00:00-05:00">May 31, 2021</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        6 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">Finally, let’s look at how we can automatically sharpen images, without knowing how they were blurred in the first place.
+</p>
+  </article>
+</div>
+
+  
+    
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/cow-weird-blur.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/deconvolution-part3/" rel="permalink">Blind Deconvolution #3: More about non-blind deconvolution
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2021-05-02T00:00:00-05:00">May 2, 2021</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        5 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">Deconvolving and sharpening images is actually pretty tricky. Let’s have a look at some more advanced methods for deconvolution.
+</p>
+  </article>
+</div>
+
+  
+    
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/st-vitus-laplace.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/deconvolution-part2/" rel="permalink">Blind Deconvolution #2: Image Priors
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2021-04-09T00:00:00-05:00">April 9, 2021</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        10 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">In order to automatically sharpen images, we need to first understand how a computer can judge how ‘natural’ an image looks.
+</p>
+  </article>
+</div>
+
+  
+    
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/st-vitus-blur.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/deconvolution-part1/" rel="permalink">Blind Deconvolution #1: Non-blind Deconvolution
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2021-03-13T00:00:00-06:00">March 13, 2021</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        6 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">Deconvolution is one of the cornerstones of image processing. Let’s take a look at how it works.
+</p>
+  </article>
+</div>
+
+  
+</div>
+
+<!-- <ul class="taxonomy__index">
+  
+  
+    <li>
+      <a href="#2022">
+        <strong>2022</strong> <span class="taxonomy__count">2</span>
+      </a>
+    </li>
+  
+    <li>
+      <a href="#2021">
+        <strong>2021</strong> <span class="taxonomy__count">7</span>
+      </a>
+    </li>
+  
+    <li>
+      <a href="#2020">
+        <strong>2020</strong> <span class="taxonomy__count">7</span>
+      </a>
+    </li>
+  
+</ul> -->
+<!-- 
+
+
+
+
+
+  <section id="2022" class="taxonomy__section">
+    <h2 class="archive__subtitle">2022</h2>
+    <div class="entries-grid">
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/gmres-teaser.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/gmres/" rel="permalink">GMRES: or how to do fast linear algebra
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2022-03-10T00:00:00-06:00">March 10, 2022</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        16 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">Linear least-squares system pop up everywhere, and there are many fast way to solve them. We’ll be looking at one such way: GMRES.
+</p>
+  </article>
+</div>
+
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/discrete-function-tensor.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/discrete-function-tensor/" rel="permalink">Machine learning with discretized functions and tensors
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2022-03-10T00:00:00-06:00">March 10, 2022</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        18 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">We recently made a paper about supervised machine learning using tensors, here’s the gist of how this works.
+</p>
+  </article>
+</div>
+
+      
+    </div>
+    <a href="#page-title" class="back-to-top">Back to top &uarr;</a>
+  </section>
+
+  <section id="2021" class="taxonomy__section">
+    <h2 class="archive__subtitle">2021</h2>
+    <div class="entries-grid">
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/st-vitus-rank-10.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/low-rank-matrix/" rel="permalink">Low-rank matrices: using structure to recover missing data
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2021-09-26T00:00:00-05:00">September 26, 2021</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        10 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">A lot of data is naturally of ‘low rank’. I will explain what this means, and how to exploit this fact.
+</p>
+  </article>
+</div>
+
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/python_docx/doc_comparison.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/python-docx/" rel="permalink">How to edit Microsoft Word documents in Python
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2021-08-29T00:00:00-05:00">August 29, 2021</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        6 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">Parsing and editing Word documents automatically can be extremely useful, but doing it in Python is not that straightforward.
+</p>
+  </article>
+</div>
+
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/st-vitus-deblurred.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/deconvolution-part4/" rel="permalink">Blind deconvolution #4: Blind deconvolution
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2021-05-31T00:00:00-05:00">May 31, 2021</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        6 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">Finally, let’s look at how we can automatically sharpen images, without knowing how they were blurred in the first place.
+</p>
+  </article>
+</div>
+
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/cow-weird-blur.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/deconvolution-part3/" rel="permalink">Blind Deconvolution #3: More about non-blind deconvolution
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2021-05-02T00:00:00-05:00">May 2, 2021</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        5 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">Deconvolving and sharpening images is actually pretty tricky. Let’s have a look at some more advanced methods for deconvolution.
+</p>
+  </article>
+</div>
+
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/st-vitus-laplace.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/deconvolution-part2/" rel="permalink">Blind Deconvolution #2: Image Priors
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2021-04-09T00:00:00-05:00">April 9, 2021</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        10 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">In order to automatically sharpen images, we need to first understand how a computer can judge how ‘natural’ an image looks.
+</p>
+  </article>
+</div>
+
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/st-vitus-blur.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/deconvolution-part1/" rel="permalink">Blind Deconvolution #1: Non-blind Deconvolution
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2021-03-13T00:00:00-06:00">March 13, 2021</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        6 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">Deconvolution is one of the cornerstones of image processing. Let’s take a look at how it works.
+</p>
+  </article>
+</div>
+
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/email-time-series.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/email-time-series/" rel="permalink">Time series analysis of my email traffic
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2021-02-13T00:00:00-06:00">February 13, 2021</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        6 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">I have 15 years worth of email traffic data, let’s take a closer look and discover some fascinating patterns.
+</p>
+  </article>
+</div>
+
+      
+    </div>
+    <a href="#page-title" class="back-to-top">Back to top &uarr;</a>
+  </section>
+
+  <section id="2020" class="taxonomy__section">
+    <h2 class="archive__subtitle">2020</h2>
+    <div class="entries-grid">
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/music-2020.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/music_2020/" rel="permalink">2020 in music
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2020-12-31T00:00:00-06:00">December 31, 2020</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        4 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">2020 was a great year for music, I will look back and give some thoughts on the best albums that came out in 20202.
+</p>
+  </article>
+</div>
+
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/bayes-exam.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/bayes_exam/" rel="permalink">Modeling uncertainty in exam scores
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2020-11-09T00:00:00-06:00">November 9, 2020</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        3 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">We use exams to determine how much a student knows, but exams aren’t perfect. How can we estimate the uncertainty in students’ exams scores?
+</p>
+  </article>
+</div>
+
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/validation-data.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/validation-size/" rel="permalink">How big should my validation set be?
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2020-08-26T00:00:00-05:00">August 26, 2020</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        12 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">Cross validation is extremely important, but how should we choose the size of our validation and test sets?
+</p>
+  </article>
+</div>
+
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/lastfm.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/lastfm/" rel="permalink">How do my music preferences evolve?
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2020-08-12T00:00:00-05:00">August 12, 2020</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        5 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">I use last.fm to track my music listening. Let’s look at my data to discover how my musical preferences evolve over time.
+</p>
+  </article>
+</div>
+
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/normal-data.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/normal-data/" rel="permalink">Is my data normal?
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2020-08-10T00:00:00-05:00">August 10, 2020</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        6 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">Normally distributed data is great, but how do you know whether your data is normally distributed?
+</p>
+  </article>
+</div>
+
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/figure-skating.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/figure-skating/" rel="permalink">Bias in figure skating judging
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2020-06-20T00:00:00-05:00">June 20, 2020</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        3 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">Judging in figure skating is biased. Let’s use data science to figure out just how bad the issue is.
+</p>
+  </article>
+</div>
+
+      
+        
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/teasers/first-post.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/first-post/" rel="permalink">First post
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2020-06-19T07:19:44-05:00">June 19, 2020</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        less than 1 minute read
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">My first post in this blog
+</p>
+  </article>
+</div>
+
+      
+    </div>
+    <a href="#page-title" class="back-to-top">Back to top &uarr;</a>
+  </section>
+ -->
+
+  </div>
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    <!-- 
+      <li><strong>Contact info and socials</strong></li>
+     -->
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 Rik Voorhaar. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+  <script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'G-Q5W21THKW2']);
+  
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
