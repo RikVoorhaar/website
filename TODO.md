@@ -1,9 +1,9 @@
 # Changes I need to make to the webstie
 
-## CV Page:
-- Update content
+<!-- ## CV Page: -->
+<!-- - Update content -->
 
-## Hobbies:
+<!-- ## Hobbies: -->
 <!-- - Nice formatting of Youtube channels. use API to get thumbnails and stuff -->
 
 ## Landing page:
@@ -26,6 +26,8 @@
 - Improve things suggested on page speed insights
 - Add logging
 - Add github webhook to automatically update website when I push to github
+- Selected text is not pretty
+- Find a way to notify me when the website is down
 
 ## Teasers:
 - Compress the teasers

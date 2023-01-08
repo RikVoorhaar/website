@@ -2,35 +2,42 @@ version: '3'
 
 services:
   jekyll:
+    restart: always
     image: jekyll/jekyll:4.0
     volumes:
-      - /jekyll:/srv/jekyll
+      - ./jekyll:/srv/jekyll
     ports:
       - "4000:4000"
-    # labels:
-    #   - "traefik.enable=true"
-    #   - "traefik.http.routers.jekyll.rule=Host(`blog.rikvoorhaar.com`)"
     networks:
       - internal
-
 
     command: jekyll serve
     environment:
       - JEKYLL_VERSION=4.0
       - JEKYLL_ENV=production
-    
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:4000"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+
   nginx:
+    restart: always
     image: nginx:latest
-    volumes: 
+    volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./.htpasswd:/etc/nginx/.htpasswd
       - /jekyll/_site:/usr/share/nginx/html
+      - ./nginx_log:/var/log/nginx
+    env_file:
+      - .env
     environment:
       - NGINX_PORT=80
-      - NGINX_HOST=blog.rikvoorhaar.com
+      - NGINX_HOST=www.rikvoorhaar.com
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.nginx.rule=Host(`blog.rikvoorhaar.com`)"
-      # - "traefik.http.routers.nginx.entrypoints=web"
+      - "traefik.http.routers.nginx.rule=Host(`rikvoorhaar.com`, `www.rikvoorhaar.com`)"
       - "traefik.http.routers.nginx.entrypoints=websecure"
       - "traefik.http.routers.nginx.tls=true"
       - "traefik.http.routers.nginx.tls.certresolver=myresolver"
@@ -40,28 +47,7 @@ services:
     networks:
       - internal
 
-  fluentd:
-    image: fluent/fluentd
-    volumes:
-      - ./fluentd.conf:/fluentd/etc/fluent.conf
-      - ./fluentd-plugins:/fluentd/plugins
-    ports:
-      - "24224:24224"
-      - "24224:24224/udp"
-    networks:
-      - internal
-  
-  mysql:
-    image: mysql:latest
-    volumes:
-      - ./mysql:/var/lib/mysql
-    environment:
-      - MYSQL_ROOT_PASSWORD=password
-      - MYSQL_DATABASE=logs
-    networks:
-      - internal
-
 networks:
+  internal:
   web:
     external: true
-  internal:
