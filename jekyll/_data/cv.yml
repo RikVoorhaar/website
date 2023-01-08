@@ -68,13 +68,22 @@ open-source-contribs:
   - name: autoray
     url: https://github.com/jcmgray/autoray
     description: This is a package meant to help writing backend agnostic code, i.e. code that can manipulate objects from different numerical libraries like numpy, tensorflow or pytorch (among others). I added a few extra translations from the numpy API to other libraries, I improved the functionality to infer the backend of the arguments of some functions, and I made data type handling for array creation operations more consistent.
+  - name: scipy
+    url: https://scipy.org/
+    description: "Fixed a bug preventing <code>scipy.linalg.lu_factor</code> only accepting square matrices. Additionally discovered performance issues with the implementation of the matrix logarithm <code>scipy.linalg.logm</code>."
 
 
 work:
-  - name: PhD student
+  - name: Software Developer
+    date: "January 2022&mdash;Now"
+    location: Grazper Technologies
+    img: "/assets/images/grazper_circle.svg"
+    url: https://grazper.com/
+    description: "Recently started as software developer and currenctly working on projects involving Augmented Reality and Computer Vision."
+  - name: Doctoral candidate
     date: "March 2018&mdash;December 2022"
     location: the University of Geneva
-    description: "PhD in applied mathematics after first studying pure mathematics for 2 years. Researched advanced numerical optimization algorithms, particularly for tensors and their applications to machine learning. Developed 3 high-quality numerical software libraries in Python and contributed to 2 open-source projects as part of several research projects resulting in 4 manuscripts.<br><br>
+    description: "Performed research in applied mathematics after first studying pure mathematics for 2 years. Focussed on advanced numerical optimization algorithms, particularly for tensors and their applications to machine learning. Developed 3 high-quality numerical software libraries in Python and contributed to 2 open-source projects as part of several research projects resulting in 4 manuscripts.<br><br>
     
     Taught 3 courses per year as an assistant, receiving consistently positive feedback from students for clear solutions and lectures. Designed Python programming homework using Jupyter and unit tests for 5 courses well-received by both students and teaching staff."
     img: "/assets/images/fac sciences_pant.svg"
@@ -82,16 +91,13 @@ work:
     date: "May 2021&mdash;December 2022"
     location: the Science Breaker
     url: https://thesciencebreaker.org/
-    description: Edited summaries of research to make them suitable for a layperson audience. Automated part of the publishing process by automatically turning web version of articles into PDF versions built with LaTeX.
+    description: "Edited layperson summaries of published scientific papers to make them suitable for a layperson audience. Collaborated on manuscripts with 16 different scientist.<br><br> Automated part of the publishing process by automatically turning web version of articles into PDF versions built with LaTeX, saving 15 minutes per published manuscript."
     img: "/assets/images/tsb-logo-small.svg"
   - name: Teaching assistant
     date: "2014&mdash;2016"
     location: Utrecht University
-    description: I was a teaching assistant for four different courses during my time as a student at Utrecht.
+    description: Assisted 4 different courses during my time as a student at Utrecht.
     img: "/assets/images/UU_logo.svg"
-  # - name: Mathematics tutor
-  #   date: 2012-2014
-  #   description: I tutored two students in 2012-2013, and one student 2013-2014. The students studied at the International School Hilversum, taking IB Higher Level Mathematics.  
 
 education:
   - date: 2018/03 - 2022/12
@@ -140,6 +146,7 @@ programming-languages:
       - R
       - SQL
       - HTML/CSS
+      - Javascript
   - name: Tools
     istools: yes
     items:
@@ -148,6 +155,7 @@ programming-languages:
       - CVXPY
       - Cython
       - Docker
+      - Git
       - Linux
       - Networkx
       - NumPy

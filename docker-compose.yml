@@ -2,12 +2,52 @@ version: '3'
 
 services:
   jekyll:
+    restart: always
     image: jekyll/jekyll:4.0
     volumes:
-      - .:/srv/jekyll
+      - ./jekyll:/srv/jekyll
     ports:
       - "4000:4000"
-      - "35729:35729"
-    command: jekyll serve --watch --drafts --livereload --incremental
+    networks:
+      - internal
+
+    command: jekyll serve
     environment:
       - JEKYLL_VERSION=4.0
+      - JEKYLL_ENV=production
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:4000"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+
+  nginx:
+    restart: always
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./.htpasswd:/etc/nginx/.htpasswd
+      - /jekyll/_site:/usr/share/nginx/html
+      - ./nginx_log:/var/log/nginx
+    env_file:
+      - .env
+    environment:
+      - NGINX_PORT=80
+      - NGINX_HOST=www.rikvoorhaar.com
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.nginx.rule=Host(`rikvoorhaar.com`, `www.rikvoorhaar.com`)"
+      - "traefik.http.routers.nginx.entrypoints=websecure"
+      - "traefik.http.routers.nginx.tls=true"
+      - "traefik.http.routers.nginx.tls.certresolver=myresolver"
+      - "traefik.http.services.nginx.loadbalancer.server.port=80"
+    depends_on:
+      - jekyll
+    networks:
+      - internal
+
+networks:
+  internal:
+  web:
+    external: true
