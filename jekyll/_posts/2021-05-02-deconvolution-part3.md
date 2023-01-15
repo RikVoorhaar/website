@@ -5,7 +5,7 @@ date:   2021-05-02
 categories: machine-learning signal-processing computer-vision
 excerpt: "Deconvolving and sharpening images is actually pretty tricky. Let's have a look at some more advanced methods for deconvolution."
 header: 
-    teaser: "/imgs/teasers/cow-weird-blur.png"
+    teaser: "/imgs/teasers/cow-weird-blur.webp"
 ---
 
 In part 1 we saw how to do non-blind image deconvolution. In part 2 we saw a couple good image

@@ -5,7 +5,7 @@ date:   2020-08-26
 categories: data-science statistics
 excerpt: "Cross validation is extremely important, but how should we choose the size of our validation and test sets?"
 header: 
-    teaser: "/imgs/teasers/validation-data.jpg"
+    teaser: "/imgs/teasers/validation-data.webp"
 ---
 
 

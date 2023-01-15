@@ -1,0 +1,17 @@
+# Docker compose for running the website locally
+
+version: '3'
+
+services:
+  jekyll:
+    image: jekyll/jekyll:latest
+    volumes:
+      - ./:/srv/jekyll
+    ports:
+      - "4000:4000"
+    command: jekyll serve --live-reload --force_polling --host
+    # command: tail -f /dev/null
+    stdin_open: true
+    tty: true
+    environment:
+      - JEKYLL_VERSION=4.0

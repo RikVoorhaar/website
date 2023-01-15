@@ -5,7 +5,7 @@ date:   2021-03-13
 categories: machine-learning signal-processing computer-vision
 excerpt: "Deconvolution is one of the cornerstones of image processing. Let's take a look at how it works."
 header: 
-    teaser: "/imgs/teasers/st-vitus-blur.png"
+    teaser: "/imgs/teasers/st-vitus-blur.webp"
 ---
 
 
