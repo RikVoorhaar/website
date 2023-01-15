@@ -95,7 +95,7 @@ analytics:
 # Site Author
 author:
   name             : "Dr. Rik Voorhaar"
-  avatar           : "/imgs/avatar.jpg"
+  avatar           : "/imgs/avatar.webp"
   bio              : "ML Software Developer and curious mind"
   location         : "Copenhagen, Denmark"
   links:

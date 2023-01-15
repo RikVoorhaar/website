@@ -30,4 +30,4 @@
 - Find a way to notify me when the website is down
 
 ## Teasers:
-- Compress the teasers
+<!-- - Compress the teasers -->
