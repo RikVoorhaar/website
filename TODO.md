@@ -31,3 +31,6 @@
 
 ## Teasers:
 <!-- - Compress the teasers -->
+
+## Blog posts:
+- The "recent posts" at the bottom of the page is small text.
