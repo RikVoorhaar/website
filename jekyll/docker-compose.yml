@@ -9,9 +9,7 @@ services:
       - ./:/srv/jekyll
     ports:
       - "4000:4000"
-    command: jekyll serve --live-reload --force_polling --host
-    # command: tail -f /dev/null
-    stdin_open: true
-    tty: true
+      - "35729:35729"
+    command: jekyll serve --livereload --force_polling # --host=0.0.0.0
     environment:
       - JEKYLL_VERSION=4.0
