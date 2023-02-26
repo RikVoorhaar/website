@@ -5,7 +5,7 @@ date:   2021-04-09
 categories: machine-learning signal-processing computer-vision
 excerpt: "In order to automatically sharpen images, we need to first understand how a computer can judge how 'natural' an image looks."
 header: 
-    teaser: "/imgs/teasers/st-vitus-laplace.png"
+    teaser: "/imgs/teasers/st-vitus-laplace.webp"
 ---
 
 This is part two in a series on blind deconvolution of images. In the previous part we looked at non-blind deconvolution, where we have an image and we know exactly how it was distorted. While this situation may seem unrealistic, it does occur in cases where we have excellent understanding of how the camera takes images; for example for telescopes or microscopes which always work in the same environment. 

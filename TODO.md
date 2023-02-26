@@ -30,4 +30,7 @@
 - Find a way to notify me when the website is down
 
 ## Teasers:
-- Compress the teasers
+<!-- - Compress the teasers -->
+
+## Blog posts:
+- The "recent posts" at the bottom of the page is small text.

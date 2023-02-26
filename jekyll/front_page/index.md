@@ -40,7 +40,7 @@ entries_layout: grid
         </p>
     </div>
     <div class="right">
-        <img src="/assets/images/me.jpg" alt="a picture of yours truly">
+        <img src="/assets/images/me.webp" alt="a picture of yours truly">
     </div>
 </div>
 

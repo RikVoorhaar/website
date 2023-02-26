@@ -5,7 +5,7 @@ date:   2022-03-10
 categories: machine-learning mathematics linear-algebra code
 excerpt: "We recently made a paper about supervised machine learning using tensors, here's the gist of how this works."
 header: 
-    teaser: "/imgs/teasers/discrete-function-tensor.png"
+    teaser: "/imgs/teasers/discrete-function-tensor.webp"
 ---
 
 In [my new paper together with my supervisor](https://arxiv.org/abs/2203.04352), we explain how to use

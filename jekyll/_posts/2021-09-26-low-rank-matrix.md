@@ -5,7 +5,7 @@ date:   2021-09-26
 categories: machine-learning mathematics linear-algebra code
 excerpt: "A lot of data is naturally of 'low rank'. I will explain what this means, and how to exploit this fact."
 header: 
-    teaser: "/imgs/teasers/st-vitus-rank-10.png"
+    teaser: "/imgs/teasers/st-vitus-rank-10.webp"
 ---
 
 Tensor networks are probably the most important tool in my research, and I want

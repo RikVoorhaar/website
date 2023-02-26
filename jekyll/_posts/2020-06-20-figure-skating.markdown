@@ -5,7 +5,7 @@ date:   2020-06-20
 categories: data-science
 excerpt: "Judging in figure skating is biased. Let's use data science to figure out just how bad the issue is."
 header: 
-    teaser: "/imgs/teasers/figure-skating.jpg"
+    teaser: "/imgs/teasers/figure-skating.webp"
 ---
 
 My wife is very enthuisiastic about figure skating. She often mentions that the judging is biased, in the sense that many judges give higher scores to athletes from their own country, and lower scores to athletes from other countries.

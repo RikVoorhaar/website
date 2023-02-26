@@ -43,7 +43,7 @@ Also check out [the website of my lovely wife Arina](https://arina-voorhaar.com/
 
 ## Music
 
-![Music](/assets/images/about/music.png#nice)
+![Music](/assets/images/about/music.webp#nice)
 
 
 Music is a big part of my life! I like almost any kind of rock music, but I tend to gravitate towards heavier and noisier genres. Check out my [last.fm page](https://www.last.fm/user/Tilpo) and my [rym page](https://rateyourmusic.com/~Tilpo)! Usually I find new music by looking at recent album charts on RYM, and I strongly suggest this method for anyone into music.
@@ -52,22 +52,22 @@ I like to play electric guitar (though admittedly I haven't been doing it much l
 
 ## Gaming
 
-![Music](/assets/images/about/gaming.png#nice)
+![Music](/assets/images/about/gaming.webp#nice)
 
 I really enjoy playing open world (both RPG and survivalcraft) games, the feeling of freedom, exploration  and creativity is wonderful. I also really enjoy replaying old (Nintendo) games from my youth. Sandbox games and grand strategy games are also amazing. I'm very enthusiastic about speedrunning and its wonderful community. It feels like taking the scientific approach to gaming.  Check out my [Steam account](https://steamcommunity.com/profiles/76561197996562422)!
 
 ## Cooking
-![Music](/assets/images/about/cooking.png#nice)
+![Music](/assets/images/about/cooking.webp#nice)
 
 I love cooking and the sense of satisfaction that comes with eating food you made yourself. I don't shy away from any cuisine, and I'm constantly trying to improve and learn new things. I have a nice collection of pans and knives.
 
 ## Reading
-![Music](/assets/images/about/reading.png#nice)
+![Music](/assets/images/about/reading.webp#nice)
 
 I like to read hard sci-fi books, some of my favorite series are The Expanse (Corey), Foundation (Asimov), The Bobiverse (Taylor) and Old Man's War (Scalzi).  I'm also a big fan of the books of Murakami. Recently I've been on  a spree of reading long fantasy series. I have read the Lord of the Rings, Stormlight Archive, and Song of Ice and Fire, Mistborn, Narnia and Harry Potter. Check out [my goodreads page](https://www.goodreads.com/user/show/62542056-tilpo) for more!
 
 ## Gear
-![Music](/assets/images/about/gear.png#nice)
+![Music](/assets/images/about/gear.webp#nice)
 
 I'm a bit of a technophile, and I have accumulated a lot of gear over the years. Here's a list of some of my cool stuff (that I actually use):
 
@@ -101,7 +101,7 @@ I'm a bit of a technophile, and I have accumulated a lot of gear over the years.
 - Sony WH-1000XM3 (noise cancelling)
 
 ## Engineering
-![Music](/assets/images/about/engineering.png#nice)
+![Music](/assets/images/about/engineering.webp#nice)
 
 I am fascinated with engineering of many kinds. For example I am fascinated by logistics, civil
 engineering, rocket science, semiconductors, and computing. Rather than academic research in these
