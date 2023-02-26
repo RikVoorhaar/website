@@ -10,6 +10,10 @@ research-interests-summary:
   - Machine learning
 
 publications:
+  - name: "Tensor Train Approximations: Riemannian Methods, Randomized Linear Algebra and Applications to Machine Learning"
+    date: December 2022 (PhD Thesis)
+    url: https://doi.org/10.13097/archive-ouverte/unige:166308
+    description: This is my PhD thesis, which is mostly an extended version of my two papers together with Bart Vandereycken, together with a comphrensive preliminaries section. You can also find <a href="https://github.com/RikVoorhaar/website/raw/master/jekyll/_data/presentation.pdf">slides for my oral defense by clicking here</a>. 
   - name: "Streaming Tensor Train Approximation"
     date: August 2022
     url: https://doi.org/10.48550/arXiv.2208.02600
