@@ -79,7 +79,7 @@ open-source-contribs:
 
 work:
   - name: Software Developer
-    date: "January 2022&mdash;Now"
+    date: "January 2023&mdash;Now"
     location: Grazper Technologies
     img: "/assets/images/grazper_circle.svg"
     url: https://grazper.com/
@@ -109,18 +109,6 @@ education:
     location: University of Geneva
     firstitem: true
     note: "(mention: très bien)"
-  - date: 2021/02
-    name: "Neuroscience and Neuroimaging Specialization"
-    url: "https://www.coursera.org/account/accomplishments/specialization/REWS86DYU496"
-    location: Johns Hopkins University
-  - date: 2020/09
-    name: "Genomic Data Science Specialization"
-    url: "https://www.coursera.org/account/accomplishments/specialization/NYQNJVCT7XV3"
-    location: Johns Hopkins University
-  - date: 2019/08
-    name: "Advanced Machine Learning Specialization"
-    url: "https://www.coursera.org/account/accomplishments/specialization/5BM8U5DJJCJN"
-    location: Higher School of Economics
   - date: 2016-2017
     name: Masterclass Geometry, Topology and Physics
     location: University of Geneva
@@ -136,6 +124,20 @@ education:
     location: Utrecht University
     note: (cum laude, GPA 4.00)
 
+online-courses:
+  - date: 2021/02
+    name: "Neuroscience and Neuroimaging Specialization"
+    url: "https://www.coursera.org/account/accomplishments/specialization/REWS86DYU496"
+    location: Johns Hopkins University
+  - date: 2020/09
+    name: "Genomic Data Science Specialization"
+    url: "https://www.coursera.org/account/accomplishments/specialization/NYQNJVCT7XV3"
+    location: Johns Hopkins University
+  - date: 2019/08
+    name: "Advanced Machine Learning Specialization"
+    url: "https://www.coursera.org/account/accomplishments/specialization/5BM8U5DJJCJN"
+    location: Higher School of Economics
+    
 programming-languages:
   - name: Advanced
     items:
@@ -150,7 +152,7 @@ programming-languages:
       - R
       - SQL
       - HTML/CSS
-      - Javascript
+      - Javascript / Typescript
   - name: Tools
     istools: yes
     items:
@@ -161,8 +163,9 @@ programming-languages:
       - Docker
       - Git
       - Linux
-      - Networkx
+      # - Networkx
       - NumPy
+      - OpenCV
       - Pandas
       - PyTorch
       - Sagemath

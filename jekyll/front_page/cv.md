@@ -52,6 +52,16 @@ toc: true
 {{item.name}}</span> | <em>{{item.location}}{% if item.url %}<a href="{{item.url}}"> (Coursera certificate)</a>{%endif%}{% if item.note %} {{item.note}}{% endif %}</em>.
 </div></div>
 {% endfor %}
+
+### Online courses
+{% for item in site.data.cv.online-courses %}
+<div class="listWithDescription" markdown="1">
+{% if item.date %}{% unless item.firstitem %}<br>{% endunless %}<em>{{item.date}}</em><br>{% endif %}
+<div class="block-line">
+<span class="experience-header">
+{{item.name}}</span> | <em>{{item.location}}{% if item.url %}<a href="{{item.url}}"> (Coursera certificate)</a>{%endif%}{% if item.note %} {{item.note}}{% endif %}</em>.
+</div></div>
+{% endfor %}
  
 ## Skills
 
