@@ -83,7 +83,7 @@ work:
     location: Grazper Technologies
     img: "/assets/images/grazper_circle.svg"
     url: https://grazper.com/
-    description: "Recently started as software developer and currenctly working on projects involving Augmented Reality and Computer Vision."
+    description: "Developed an augmented reality system using real-time 3d pose estimation to display holograms on any video projector from the correct 3d perspective of a person standing next to it. "
   - name: Doctoral candidate
     date: "March 2018&mdash;December 2022"
     location: the University of Geneva
@@ -97,11 +97,11 @@ work:
     url: https://thesciencebreaker.org/
     description: "Edited layperson summaries of published scientific papers to make them suitable for a layperson audience. Collaborated on manuscripts with 16 different scientist.<br><br> Automated part of the publishing process by automatically turning web version of articles into PDF versions built with LaTeX, saving 15 minutes per published manuscript."
     img: "/assets/images/tsb-logo-small.svg"
-  - name: Teaching assistant
-    date: "2014&mdash;2016"
-    location: Utrecht University
-    description: Assisted 4 different courses during my time as a student at Utrecht.
-    img: "/assets/images/UU_logo.svg"
+  # - name: Teaching assistant
+  #   date: "2014&mdash;2016"
+  #   location: Utrecht University
+  #   description: Assisted 4 different courses during my time as a student at Utrecht.
+  #   img: "/assets/images/UU_logo.svg"
 
 education:
   - date: 2018/03 - 2022/12
@@ -115,14 +115,14 @@ education:
   - date: 2015-2018
     name:  Msc. Mathematical Sciences
     location: Utrecht University
-    note: (cum laude, GPA 4.00)
+    note: (cum laude)
   - date: 2012-2015
     name: Bsc. Mathematics
     location: Utrecht University
-    note: (cum laude, GPA 4.00)
+    note: (cum laude)
   - name: Bsc. Physics and Astronomy
     location: Utrecht University
-    note: (cum laude, GPA 4.00)
+    note: (cum laude)
 
 online-courses:
   - date: 2021/02
@@ -147,34 +147,31 @@ programming-languages:
       - LaTeX
       - Mathematica
       - C/C++
+      - HTML/CSS
+      - Javascript / Typescript
   - name: Beginner
     items:
       - R
       - SQL
-      - HTML/CSS
-      - Javascript / Typescript
   - name: Tools
     istools: yes
     items:
-      - Armadillo
-      - Bash
       - CVXPY
       - Cython
       - Docker
       - Git
       - Linux
-      # - Networkx
-      - NumPy
+      - NumPy / SciPy
       - OpenCV
       - Pandas
+      - Polars
       - PyTorch
-      - Sagemath
-      - SciPy
+      - Scikit-learn
       - Tensorflow
       - Windows
 
 languages:
-  - name: C2 (native) Level
+  - name: native/bilingual
     items:
       - Dutch
       - English
