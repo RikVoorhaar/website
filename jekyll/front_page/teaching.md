@@ -22,11 +22,11 @@ I have taught a variety of courses at the University of Geneva and Utrecht Unive
 
 
 **Spring 2021**  
--- Optimization with applications II: [Solutions page](https://optimization-ii-2021.readthedocs.io/en/latest/index.html)  
+-- Optimization with applications II
 -- Travaux Pratiques
 
 **Autumn 2020**  
--- Probabilités et statistique pour informaticiens: [Moodle page](https://moodle.unige.ch/course/view.php?id=8953), [Solutions page](https://probastat2020.readthedocs.io/fr/latest/)  
+-- Probabilités et statistique pour informaticiens
 
 **Spring 2020**  
 -- Mathématiques pour informaticiens  

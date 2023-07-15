@@ -96,12 +96,12 @@ analytics:
 author:
   name             : "Dr. Rik Voorhaar"
   avatar           : "/imgs/avatar.webp"
-  bio              : "ML Software Developer and curious mind"
+  bio              : "Computer vision Python software developer"
   location         : "Copenhagen, Denmark"
   links:
-    # - label: "Rue du Conseil-Général 9"
-    #   icon:  "fas fa-fw fa-building"
-    #   url: "https://goo.gl/maps/51HT1ecJZTyKxDMh9"
+    - label: "Grazper Technologies"
+      icon:  "fas fa-fw fa-building"
+      url: "https://grazper.com/"
     - label: "rik.voorhaar@gmail.com"
       icon: "far fa-fw fa-envelope"
       url: "mailto:rik.voorhaar@gmail.com"

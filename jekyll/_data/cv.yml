@@ -83,7 +83,10 @@ work:
     location: Grazper Technologies
     img: "/assets/images/grazper_circle.svg"
     url: https://grazper.com/
-    description: "Developed an augmented reality system using real-time 3d pose estimation to display holograms on any video projector from the correct 3d perspective of a person standing next to it. "
+    description: "Developed an augmented reality system using real-time 3d pose estimation to display holograms on a screen from the correct 3d perspective of a person standing next to it. This is a full stack project, with frontends for calibration procedures and displaying holograms, and backends for interfacing with hardware and numerical algorithms.<br><br>
+    
+    Maintained and upgraded the Jenkins CI/CD pipeline, improving the workflow for all our Python projects. 
+    "
   - name: Doctoral candidate
     date: "March 2018&mdash;December 2022"
     location: the University of Geneva
@@ -108,7 +111,7 @@ education:
     name: "Ph.D. in Mathematics"
     location: University of Geneva
     firstitem: true
-    note: "(mention: très bien)"
+    # note: "(mention: très bien)"
   - date: 2016-2017
     name: Masterclass Geometry, Topology and Physics
     location: University of Geneva
@@ -148,11 +151,12 @@ programming-languages:
       - Mathematica
       - C/C++
       - HTML/CSS
-      - Javascript / Typescript
+      - Javascript/Typescript
   - name: Beginner
     items:
       - R
       - SQL
+      - Rust
   - name: Tools
     istools: yes
     items:
@@ -161,6 +165,7 @@ programming-languages:
       - Docker
       - Git
       - Linux
+      - Jenkins
       - NumPy / SciPy
       - OpenCV
       - Pandas
@@ -171,7 +176,7 @@ programming-languages:
       - Windows
 
 languages:
-  - name: native/bilingual
+  - name: Native/bilingual
     items:
       - Dutch
       - English

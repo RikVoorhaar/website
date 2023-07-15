@@ -36,5 +36,8 @@ jekyll/_data/~$resume.docx
 # Environment variables
 *.env
 
+# Python environment
+.venv
+
 # Nginx logs
 nginx_log

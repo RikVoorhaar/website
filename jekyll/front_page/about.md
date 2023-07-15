@@ -48,7 +48,7 @@ Also check out [the website of my lovely wife Arina](https://arina-voorhaar.com/
 
 Music is a big part of my life! I like almost any kind of rock music, but I tend to gravitate towards heavier and noisier genres. Check out my [last.fm page](https://www.last.fm/user/Tilpo) and my [rym page](https://rateyourmusic.com/~Tilpo)! Usually I find new music by looking at recent album charts on RYM, and I strongly suggest this method for anyone into music.
 
-I like to play electric guitar (though admittedly I haven't been doing it much lately...). I have Japanese made Fender "Aerodyne" strat, and an Epiphone Les Paul model (tuned to drop B♭!). I also have more pairs of headphones than I can count...
+I like to play electric guitar (though admittedly I haven't been doing it much lately...). I have Japanese made Fender "Aerodyne" strat, and an Epiphone Les Paul model (tuned to drop B♭!). I also have more pairs of headphones than I can count.
 
 ## Gaming
 
@@ -78,15 +78,15 @@ I'm a bit of a technophile, and I have accumulated a lot of gear over the years.
 - <ins>Cooler:</ins> Noctua NH-U12S
 - <ins>Case:</ins> InWin Midi Tower 101C with 6 Arctic F12 120mm fans
 - <ins>PSU:</ins> 750W Corsair
-- <ins>Monitor:</ins> 2x 1080p Dell UltraSharp, 1x 1440p Dell UltraSharp
-- <ins>OS:</ins> Manjaro Linux with KDE Plasma
+- <ins>Monitor:</ins> 1x Dell 1440p 27" curved 165hz, 1x 24" 1440p Dell UltraSharp, 1x 24" 1080p Dell UltraSharp,
+- <ins>OS:</ins> Arch linux
+- <ins>DE:</ins> Hyprland
 
 **Peripherals:**
 - <ins>Mouse:</ins> Logitech G502
 - <ins>Trackpad:</ins> Apple Magic Trackpad 2 (using a trackpad instead of a mouse helps immensely with ergonomics for me)
 - <ins>Keyboard:</ins>  Keychron Q6 with lubed 60g silent tactile Gatoron Aliaz switches and Drop ``/dev/tty`` keycaps.
-- <ins>Wacom O</ins>ne 10" tablet for taking notes on the go
-- <ins>Wacom O</ins>ne 1080p pen display for taking notes at home
+- <ins>Wacom One</ins> 10" tablet for taking notes
 - <ins>Controllers:</ins> Nintendo Pro Controller, 8bitdo SN30 PRO+ (because Pro Controller has a terrible d-pad)
 
 **Laptop:**

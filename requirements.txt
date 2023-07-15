@@ -1,11 +1,6 @@
-beautifulsoup4
-black
 aiohttp
-jupyter
-pycodestyle
+black
 python-dotenv
-selenium
+ruff
 tqdm
-urllib3
-google-api-python-client
-google_auth_oauthlib
+yaml

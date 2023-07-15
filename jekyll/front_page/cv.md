@@ -15,7 +15,7 @@ toc: true
     <a href="https://github.com/RikVoorhaar/RikVoorhaar.github.io/raw/master/_data/cv.pdf" target="_blank"> <i class="fa fa-file-pdf fa-3x"></i></a>
   </div>
   <div class="rightbox">
-    Below is a detailed CV. If you want to <strong>download a traditional CV</strong>, click the icon on the left.
+    Below is a detailed CV. If you want to <strong>download a traditional CV</strong>, click the icon on the left. <i>Note to recruiters: If you need an up-to-date version of my CV, please write me a message.</i>
   </div>
 </div>
 
@@ -53,15 +53,6 @@ toc: true
 </div></div>
 {% endfor %}
 
-### Online courses
-{% for item in site.data.cv.online-courses %}
-<div class="listWithDescription" markdown="1">
-{% if item.date %}{% unless item.firstitem %}<br>{% endunless %}<em>{{item.date}}</em><br>{% endif %}
-<div class="block-line">
-<span class="experience-header">
-{{item.name}}</span> | <em>{{item.location}}{% if item.url %}<a href="{{item.url}}"> (Coursera certificate)</a>{%endif%}{% if item.note %} {{item.note}}{% endif %}</em>.
-</div></div>
-{% endfor %}
  
 ## Skills
 
@@ -88,6 +79,16 @@ toc: true
 {{lang}}<br> 
 {% endfor %}
 </div>
+{% endfor %}
+
+### Online courses
+{% for item in site.data.cv.online-courses %}
+<div class="listWithDescription" markdown="1">
+{% if item.date %}{% unless item.firstitem %}<br>{% endunless %}<em>{{item.date}}</em><br>{% endif %}
+<div class="block-line">
+<span class="experience-header">
+{{item.name}}</span> | <em>{{item.location}}{% if item.url %}<a href="{{item.url}}"> (Coursera certificate)</a>{%endif%}{% if item.note %} {{item.note}}{% endif %}</em>.
+</div></div>
 {% endfor %}
 
 ## Publications and preprints

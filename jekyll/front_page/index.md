@@ -34,18 +34,19 @@ entries_layout: grid
 <div class="container">
     <div class="left">
         <p>
-        I am a recent PhD graduate from the University of Geneva, where I did research in tensor networks, numerical linear algebra and machine learning. I like to do data science and numerical mathematics as a hobby, and I use this website as a blog and document some of my projects.
-        <br><br>
-        Feel free to contact me if you're interested in any of the things I do!
+        <h2>Hi</h2>
+
+        I am a software developer and recent PhD mathematics graduate. My current work
+        mostly entails computer vision, but I have a background in numerical mathematics. 
+        </p>
+
+        <p>
+        This website serves as my personal blog. Have a look <a href="/cv">at my CV</a> or my <a href="/about">about page</a> if you want to know more about me.
         </p>
     </div>
     <div class="right">
-        <img src="/assets/images/me.webp" alt="a picture of yours truly">
+        <img src="/assets/images/me.webp" alt="A picture of Rik Voorhaar">
     </div>
 </div>
-
-
-
-<!-- <div class="clear"></div> -->
 
 # My blog
