@@ -16,7 +16,8 @@ publications:
     description: This is my PhD thesis, which is mostly an extended version of my two papers together with Bart Vandereycken, together with a comphrensive preliminaries section. You can also find <a href="https://github.com/RikVoorhaar/website/raw/master/jekyll/_data/presentation.pdf">slides for my oral defense by clicking here</a>. 
   - name: "Streaming Tensor Train Approximation"
     date: August 2022
-    url: https://doi.org/10.48550/arXiv.2208.02600
+    publisher: "SIAM Journal on Scientific Computing"
+    url: https://doi.org/10.1137/22M1515045
     description: Inspired by the generalized Nyström approximation for low-rank matrices, we created a randomized streaming algorithm for computing tensor trains. This algorithm can quickly compute accurate approximations of a wide variety of tensors (multi-dimensional arrays). It does this by 'sketching' the tensor by multiplying with random tensors to quickly find a small subspace in which it is easy to approximate the tensor. This is a streaming algorithm, which means that we only need to do a single pass over the data of the tensor we want to approximate. It also means it works really well in a distributed setting, and scales very well to big data.
     coauthor: Daniel Kressner and Bart Vandereycken
   - name: "TTML: tensor trains for general supervised machine learning"
@@ -84,6 +85,9 @@ work:
     img: "/assets/images/grazper_circle.svg"
     url: https://grazper.com/
     description: "Developed an augmented reality system using real-time 3d pose estimation to display holograms on a screen from the correct 3d perspective of a person standing next to it. This is a full stack project, with frontends for calibration procedures and displaying holograms, and backends for interfacing with hardware and numerical algorithms.<br><br>
+
+    Developed a 'service broker' system for monitoring and launching all our services, and to allow services to find each other. This system makes it much easier to start up and develop product demos, as well as providing a convenient place to monitor running servces. The backend uses a combination of our own network stack, together with FastAPI, and the frontend is developed in Svelte with Tailwind CSS.
+    <br><br>
     
     Maintained and upgraded the Jenkins CI/CD pipeline, improving the workflow for all our Python projects. 
     "
@@ -112,9 +116,9 @@ education:
     location: University of Geneva
     firstitem: true
     # note: "(mention: très bien)"
-  - date: 2016-2017
-    name: Masterclass Geometry, Topology and Physics
-    location: University of Geneva
+  # - date: 2016-2017
+  #   name: Masterclass Geometry, Topology and Physics
+  #   location: University of Geneva
   - date: 2015-2018
     name:  Msc. Mathematical Sciences
     location: Utrecht University
@@ -163,15 +167,19 @@ programming-languages:
       - CVXPY
       - Cython
       - Docker
+      - FastAPI
+      - Flask
       - Git
-      - Linux
       - Jenkins
+      - Linux
       - NumPy / SciPy
       - OpenCV
       - Pandas
       - Polars
       - PyTorch
       - Scikit-learn
+      - Svelte
+      - Tailwind
       - Tensorflow
       - Windows
 
